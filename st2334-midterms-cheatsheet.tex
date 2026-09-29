@@ -1,0 +1,499 @@
+\documentclass[10pt]{article}
+\lineskip=0pt
+
+\usepackage[skins,breakable,raster]{tcolorbox}
+\tcbsetforeverylayer{
+  skin=enhanced jigsaw,
+  fonttitle=\bfseries\small,
+  parbox=false,
+  colback=white,
+  subtitle style={colback=gray!15,fontupper=\scriptsize\bfseries},
+  left=1pt,right=1pt,top=1pt,bottom=1pt,
+  breakable,
+  boxrule=0.35pt,
+}
+
+\usepackage{parskip}
+\setlength\parskip{0pt}
+\usepackage{multicol}
+\usepackage{geometry}
+\newgeometry{noheadfoot=true,tmargin=5pt,bmargin=5pt,hmargin=5pt}
+\geometry{paperheight=297mm,paperwidth=420mm}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,mathtools}
+\usepackage[inline]{enumitem}
+\usepackage{tabularx}
+\usepackage{tabularray}
+\usepackage{graphicx}
+\pagestyle{empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{2pt}
+\setlist{leftmargin=*,labelsep=2pt,itemsep=0pt,topsep=0pt,parsep=0pt}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\newcommand{\warn}[1]{\textbf{\color{red!65!black}#1}}
+\newcommand{\key}[1]{\textbf{#1}}
+\newcommand{\ind}[1]{\mathbf 1_{\{#1\}}}
+\newcommand{\boxstart}[1]{\begin{tcolorbox}[title={#1},sharp corners]}
+\newcommand{\boxend}{\end{tcolorbox}}
+
+\begin{document}
+\small
+
+% PAGE 1: probability, conditioning, random variables, indicators
+\begin{multicols*}{3}
+\vspace*{-1em}
+
+\boxstart{L1 — How to attack a probability question}
+\begin{enumerate}
+  \item Define the experiment and sample space so outcomes are equally likely (if using counting).
+  \item Translate the wording into events; write the complement for ``at least one'' or ``none''.
+  \item Decide whether stages are independent, conditional, with/without replacement, or disjoint.
+  \item Count by stages, or draw a probability tree and multiply along paths.
+  \item Add disjoint cases; check that all cases form a partition and probabilities sum to 1.
+\end{enumerate}
+\textbf{Counting patterns:} choose the pattern first, then choose values, then arrange positions. For repeated values, divide by the factorials of identical groups. If a choice is made as a set, do not treat it as ordered.
+
+\smallskip
+\textbf{Sanity checks:} probabilities lie in $[0,1]$; a partition counts every outcome once; a conditional probability is computed inside the stated information; ``at least one'' is often easiest by complement.
+\boxend
+
+\boxstart{L1 — Collision / birthday workflow}
+For $k$ independent assignments into $m$ equally likely slots:
+\[
+P(\text{no collision})=\prod_{i=0}^{k-1}\frac{m-i}{m},
+\qquad P(\ge1\text{ collision})=1-P(\text{none}).
+\]
+Use the exact product for small values; approximate by $1-e^{-k(k-1)/(2m)}$ when appropriate. A collision among any pair needs about $\sqrt m$ trials; matching one fixed target needs order $m$ trials. Do not confuse these questions.
+\boxend
+
+\boxstart{L2 — Conditioning and Bayes: path method}
+\begin{itemize}
+  \item Draw one path for each mutually exclusive cause and evidence combination.
+  \item Assign each path its prior/previous probability times the next conditional probability.
+  \item Add all paths producing the observed evidence.
+  \item Posterior for a cause $=$ its evidence-path weight divided by the total evidence weight.
+\end{itemize}
+\[
+\text{posterior odds}=\text{prior odds}\times\text{likelihood ratio}.
+\]
+\warn{Base rates matter: sensitivity is not $P(\text{cause}\mid\text{positive})$.}
+
+\textbf{Conditional independence:} $A\perp B\mid D$ means factorisation only after fixing $D$. It does not imply $A\perp B$ overall; different causes can induce marginal dependence.
+\boxend
+
+\boxstart{L2 — Independence traps}
+\begin{itemize}
+  \item Independent means learning one event does not change the other’s probability.
+  \item Disjoint positive-probability events are dependent, not independent.
+  \item For random variables, check both factorisation of the joint function and product support. A factorised expression on a restricted support is not enough.
+  \item \textbf{Pairwise independence:} every pair factors. 
+  \item \textbf{Mutual independence:} every finite subcollection factors; mutual implies pairwise, but not conversely.
+  \item \textbf{Conditional independence:} $X\perp Y\mid Z$ means the factorisation holds after fixing $Z=z$; it may fail marginally because mixing over $Z$ induces dependence.
+\end{itemize}
+\textbf{XOR warning:} fair independent $X,K$ and $C=X\oplus K$ give pairwise independence but not mutual independence. \textbf{Naive Bayes:} within each fixed class, multiply feature likelihoods; multiply by the class prior; normalise over classes.
+\boxend
+
+\boxstart{L3 — Random-variable interpretation}
+A random variable maps outcomes to numbers. Always identify its support and what is being counted (e.g. failures before success versus trials including success).
+
+\textbf{PMF:} masses must be nonnegative and sum to 1. \quad\\
+\textbf{PDF:} nonnegative, total area 1; density height is not a probability.\\
+\textbf{CDF:} nondecreasing, right-continuous, limits $0$ and $1$. For a discrete variable, jumps are point masses; for a continuous variable, interval endpoints do not matter.
+
+\textbf{Unknown constant workflow:}
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=0pt]
+  \item Identify the support, i.e. determine all values that the random variable can take, like a domain.
+  \item Normalise: use $\sum_x f_X(x)=1$ for a PMF, or $\int f_X(x)\,dx=1$ for a PDF.
+  \item Substitute the constant back into the PMF/PDF.
+  \item Sum or integrate the requested event; check nonnegativity and total mass/area $1$.
+\end{enumerate}
+\textbf{Example:} if $f_X(x)=cx$ for $0<x<1$,
+\[
+\int_0^1cx\,dx=1\ \Rightarrow\ c=2,
+\qquad P(X\le1/2)=\int_0^{1/2}2x\,dx=\frac14.
+\]
+\boxend
+
+\boxstart{L3 — Indicators and symmetry}
+For an event $A$, $I_A=\ind{A}$ is 1 if $A$ occurs and 0 otherwise. For a count $N=\sum_i I_i$,
+\[
+E(N)=\sum_iP(A_i),\qquad
+V(N)=\sum_iV(I_i)+2\sum_{i<j}\operatorname{Cov}(I_i,I_j).
+\]
+Use indicators when the full PMF is awkward. For symmetric positions, compute one position’s probability and multiply. For dependent indicators, determine joint probabilities for pairs rather than assuming independence.
+
+\textbf{Examples:} record count in a random permutation; descents/runs; number of occupied boxes; number of successful transmissions.
+\boxend
+
+\boxstart{L3 — Expectation tricks}
+\begin{itemize}
+  \item Use $E[g(X)]$ directly when the question asks for a transformed quantity; do not first find the distribution of $g(X)$ unless needed.
+  \item Linearity works without independence.
+  \item Tail-sum method: for nonnegative integer $X$, $E(X)=\sum_{k\ge1}P(X\ge k)$; for nonnegative continuous $X$, $E(X)=\int_0^\infty P(X>t)\,dt$.
+  \item Variance needs second moments or covariances; unlike expectation, it is not generally linear.
+\end{itemize}
+\textbf{Inverse-CDF generation:} if $U\sim U(0,1)$ and $F$ is continuous and increasing, set $X=F^{-1}(U)$. Then
+\[
+P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x),
+\]
+so $X$ has the target CDF (and PDF $f_X=F'$ where differentiable). For a non-strict CDF use the generalised inverse $F^{-1}(u)=\inf\{x:F(x)\ge u\}$.
+\boxend
+
+\boxstart{L3 — Finite binary counter: tail-sum method}
+Choose an $m$-bit counter state uniformly, add 1 with wraparound, and let $X$ be the number of flipped bits. At least $k$ bits flip exactly when the last $k-1$ bits are all 1:
+\[
+P(X\ge k)=2^{-(k-1)},\qquad k=1,\ldots,m.
+\]
+Using the integer tail-sum formula,
+\[
+E(X)=\sum_{k=1}^mP(X\ge k)
+     =1+\frac12+\cdots+\frac1{2^{m-1}}
+     =2-2^{-m}.
+\]
+This is a standard pattern: find simple tail events instead of constructing the full PMF.
+\boxend
+
+\boxstart{L3 — Inverse-CDF example: Pareto}
+For $f_X(x)=2/x^3$ on $x\ge1$,
+\[
+F_X(x)=1-\frac1{x^2},\qquad U=F_X(X)
+\quad\Longrightarrow\quad
+X=F_X^{-1}(U)=\frac1{\sqrt{1-U}}.
+\]
+Derive the CDF of the generated value to verify the simulation; do not only compare the shape of a histogram. Here $E(X)=2$ while the median is $\sqrt2$, illustrating the effect of a heavy upper tail.
+\boxend
+
+\boxstart{L3 — Complete collection / coupon collector}
+For $d$ equally likely independent designs, let $W_j$ be the number of boxes needed to move from $j-1$ collected designs to $j$. The next box is new with probability
+\[
+p_j=\frac{d-j+1}{d},\qquad W_j\sim\operatorname{Geom}(p_j),
+\qquad E(W_j)=\frac1{p_j}=\frac d{d-j+1}.
+\]
+Since $T=\sum_{j=1}^dW_j$, linearity gives
+\[
+E(T)=d\sum_{r=1}^d\frac1r=dH_d.
+\]
+This assumes equal design probabilities; a rare special design can dominate the waiting time and invalidate $dH_d$.
+\boxend
+
+\boxstart{L1 — Lecture pattern: counting a partition}
+For a five-digit string over $\{0,\ldots,9\}$, classify by repeat pattern before counting. For example,
+\[
+\begin{array}{c|c}
+\text{pattern}&\text{counting idea}\\ \hline
+\text{all distinct}&P(10,5)\\
+\text{one pair}&\binom52\,10\,P(9,3)\\
+\text{two pairs}&\binom52\binom32\binom{10}{2}\,P(8,1)/2!\\
+\text{three of a kind}&\binom53\,10\,\binom92\,2!\\
+\end{array}
+\]
+The exact remaining patterns follow the same principle. Check that the mutually exclusive pattern counts sum to $10^5$. The division by $2!$ prevents ordering identical groups twice.
+\boxend
+
+\boxstart{L2 — Lecture pattern: fair extraction}
+For iid biased bits with $P(1)=p$, pair consecutive bits:
+\[
+01\mapsto0,\qquad10\mapsto1,\qquad00,11\mapsto\text{discard}.
+\]
+The accepted outputs are fair because $P(01)=P(10)=p(1-p)$. This fails if the two bits are not identically distributed or are dependent. Equal pairs can be recycled recursively by encoding $00$ and $11$ as a new biased stream.
+\boxend
+
+\boxstart{L2 — Uniform fixed-size streaming sample}
+To choose exactly $n$ of $N$ records uniformly while reading them once, keep state $(t,m)$ = (records remaining, selections still needed):
+\begin{enumerate}
+  \item keep the next record with probability $m/t$;
+  \item if kept, set $m\leftarrow m-1$; always set $t\leftarrow t-1$;
+  \item stop when $m=0$; if $m=t$, keep every remaining record.
+\end{enumerate}
+At every state, $P(\text{keep})=m/t$ and $P(\text{skip})=(t-m)/t$. Multiplying path probabilities shows every $n$-subset has probability $1/\binom Nn$.
+\boxend
+
+\boxstart{L1 — Uniform shuffle: Fisher--Yates}
+For $i=n-1,n-2,\ldots,1$, choose $j$ uniformly from $\{0,\ldots,i\}$ and swap positions $i$ and $j$. The choice counts are $n(n-1)\cdots2=n!$, and each choice sequence maps bijectively to one permutation, so every output has probability $1/n!$.
+
+\warn{Pitfall:} choosing $j$ uniformly from the full range $\{0,\ldots,n-1\}$ at every step gives $n^n$ equally likely choice sequences, which generally do not map evenly to the $n!$ permutations.
+\boxend
+
+\boxstart{L1 — Union bound vs inclusion--exclusion}
+For events $A_1,\ldots,A_n$,
+\[
+P\!\left(\bigcup_iA_i\right)\le\sum_iP(A_i).
+\]
+The general inclusion--exclusion pattern is
+\[
+P\!\left(\bigcup_{i=1}^nA_i\right)
+=\sum_{k=1}^n(-1)^{k+1}
+\sum_{i_1<\cdots<i_k}
+P(A_{i_1}\cap\cdots\cap A_{i_k}),
+\]
+that is, add singles, subtract pairs, add triples, and continue alternating. The bound is useful when the right side is small and intersections are rare; it is loose when events overlap heavily.
+
+For a correct shuffle, let $A_i$ mean item $i$ stays fixed. For any specified set of $k$ items, the remaining $n-k$ items can be permuted freely, so
+\[
+P(A_{i_1}\cap\cdots\cap A_{i_k})
+=\frac{(n-k)!}{n!}.
+\]
+There are $\binom nk$ choices of the $k$ fixed items. Hence the complete $k$-event contribution is
+\[
+\binom nk\frac{(n-k)!}{n!}=\frac1{k!}.
+\]
+Therefore the exact shuffle-test failure probability is
+\[
+P(\text{some fixed point})=1-\frac1{2!}+\frac1{3!}-\cdots+\frac{(-1)^{n+1}}{n!}\approx1-e^{-1}.
+\]
+The union bound alone only gives $P(\cup_iA_i)\le n(1/n)=1$.
+\boxend
+
+\boxstart{L3 — Record indicators}
+For a uniformly random permutation, $R_i=\ind{\text{position $i$ is larger than all earlier positions}}$. The largest of the first $i$ values is equally likely to be in any position, so $P(R_i=1)=1/i$. Therefore, for $M=\sum_{i=1}^nR_i$,
+\[
+E(M)=H_n=\sum_{i=1}^n\frac1i.
+\]
+The lecture also shows $R_i,R_j$ are pairwise independent for $i<j$, giving $V(M)=\sum_i(1/i)(1-1/i)$.
+\boxend
+
+\boxstart{L1–L3 — Common wording translations}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+at least one & use the complement of none\\
+exactly $k$ & identify the $k$ successes and all remaining failures\\
+first success on trial $k$ & first $k-1$ fail, then success\\
+$k$th success on trial $n$ & first $n-1$ contain $k-1$ successes, then success\\
+given / among & restrict to the conditioning event and renormalise\\
+rate $r$ for time $t$ & expected count is $rt$\\
+\end{tabularx}
+\boxend
+
+\end{multicols*}
+
+\newpage
+
+% PAGE 2: joint distributions, dependence, models, approximations, simulation
+\begin{multicols*}{3}
+\vspace*{-1em}
+
+\boxstart{L4 — Joint-distribution workflow}
+\begin{enumerate}
+  \item Draw or describe the support before integrating or summing.
+  \item Normalise the joint function over the support.
+  \item Marginalise by summing/integrating out the unwanted coordinate.
+  \item Obtain a conditional distribution by dividing the joint function by the relevant marginal and renormalising on the remaining support.
+  \item Compute events as sums/areas over the correct region, not rectangular bounds unless the support is rectangular.
+\end{enumerate}
+\textbf{Support warning:} a formula can factor but variables still be dependent if the support couples $x$ and $y$ (triangle, diagonal, wedge, fixed total, etc.).
+\boxend
+
+\boxstart{L4 — Dependence diagnostics}
+\begin{itemize}
+  \item Independence: joint $=$ product of marginals everywhere on a product support.
+  \item Independence $\Rightarrow$ zero covariance, but zero covariance $\not\Rightarrow$ independence.
+  \item Covariance measures linear association, not arbitrary dependence or causation.
+  \item Fixed-size sampling creates negative dependence: if one item is selected, another is slightly less likely to be selected.
+\end{itemize}
+\textbf{Counterexample pattern:} let $W$ be symmetric around 0 and set $Y=W^2$. Then covariance can be zero even though $Y$ is completely determined by $W$.
+\boxend
+
+\boxstart{L4 — Joint-table exam workflow}
+For a discrete joint table: sum columns/rows to get marginals, then divide the relevant row/column by its marginal to get a conditional distribution. For example,
+\[
+P(Y=y\mid X=x)=\frac{P(X=x,Y=y)}{P(X=x)},
+\qquad
+E(Y\mid X=x)=\sum_y yP(Y=y\mid X=x).
+\]
+To test independence, compare every cell with the product of its marginals. If independent, conditioning does not change the other variable’s distribution and $E(Y\mid X=x)=E(Y)$.
+\boxend
+
+\boxstart{Additional tutorial -- Q4: Poisson split given the total}
+If $X_1\sim\operatorname{Poisson}(\lambda)$ and $X_2\sim\operatorname{Poisson}(\mu)$ are independent, set $S=X_1+X_2$. Given $S=n$, $X_1$ can only be $0,1,\ldots,n$. For $x$ in this range,
+\[
+\begin{aligned}
+P(X_1=x\mid S=n)
+&=\frac{P(X_1=x,\,X_2=n-x)}{P(S=n)}\\
+&=\frac{e^{-\lambda}\lambda^x/x!\;e^{-\mu}\mu^{n-x}/(n-x)!}
+        {e^{-(\lambda+\mu)}(\lambda+\mu)^n/n!}\\
+&=\frac{n!}{x!(n-x)!}\frac{\lambda^x\mu^{n-x}}
+        {(\lambda+\mu)^n}\\
+&=\binom nx\left(\frac{\lambda}{\lambda+\mu}\right)^x
+  \left(\frac{\mu}{\lambda+\mu}\right)^{n-x}.
+\end{aligned}
+\]
+So $X_1\mid(S=n)\sim\operatorname{Bin}\!\left(n,\frac{\lambda}{\lambda+\mu}\right)$ and
+\[
+E(X_1\mid S=n)=n\frac{\lambda}{\lambda+\mu}.
+\]
+\textbf{Tutorial 5:} $\lambda=2,\mu=3,n=10$ gives $\operatorname{Bin}(10,2/5)$ and answer $10(2/5)=4$.
+\boxend
+
+\boxstart{L4 — Runs in a random permutation}
+For continuous distinct values $A_1,\ldots,A_n$, let $D_i=\ind{A_i>A_{i+1}}$. A run starts at position 1 and after every descent:
+\[
+R=1+\sum_{i=1}^{n-1}D_i.
+\]
+Each $D_i$ has probability $1/2$. Non-adjacent descents are independent, while
+\[
+P(D_i=D_{i+1}=1)=\frac16,qquad
+\operatorname{Cov}(D_i,D_{i+1})=\frac16-\frac14=-\frac1{12}.
+\]
+Therefore, for $n\ge2$,
+\[
+E(R)=\frac{n+1}{2},\qquad V(R)=\frac{2n-1}{12}.
+\]
+\boxend
+
+\boxstart{L2/L4 — Fixed-size sampling dependence}
+If exactly $n$ of $N$ records are selected uniformly and $I_i$ indicates that record $i$ is included,
+\[
+P(I_i=1)=\frac nN,\qquad
+P(I_i=1,I_j=1)=\frac{n(n-1)}{N(N-1)}\quad(i\ne j).
+\]
+Thus selected indicators are negatively correlated: selecting one consumes one of the fixed slots. This is a standard example where marginal probabilities alone hide dependence.
+\boxend
+
+\boxstart{L5 — Reservoir sampling}
+To maintain a uniform sample of $k$ records after $i>k$ arrivals: draw $J_i$ uniformly from $\{1,\ldots,i\}$; if $J_i\le k$, replace slot $J_i$ by record $i$, otherwise do nothing. The new record enters with probability $k/i$.
+
+For replacements from indices $m+1$ through $n$, $R=\sum I_i$ has independent decisions with
+\[
+E(R)=k\sum_{i=m+1}^n\frac1i,qquad
+V(R)=E(R)-k^2\sum_{i=m+1}^n\frac1{i^2}.
+\]
+The decisions are independent; the reservoir contents are not independent observations.
+\boxend
+
+\boxstart{L5 — Choosing a discrete model}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+Bernoulli & one success/failure trial\\
+Binomial & number of successes in fixed $n$ iid trials\\
+Geometric & trials through the first success; memoryless waiting time\\
+Negative binomial & trials through the $k$th success\\
+Poisson & event count in a fixed interval/region with constant rate\\
+Poisson-binomial & sum of independent Bernoulli variables with unequal probabilities\\
+\end{tabularx}
+\smallskip
+\textbf{Checklist:} fixed or random number of trials? identical success probability? independence? count or waiting time? If a rate is stated, rescale it to the observation window.
+\boxend
+
+\boxstart{L6 — Choosing a continuous model}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+Uniform & every point in an interval equally likely; use length ratios\\
+Exponential & nonnegative waiting time with constant hazard / Poisson interarrival\\
+Normal & symmetric measurement/noise model; standardise before using $\Phi$\\
+\end{tabularx}
+\smallskip
+\textbf{Memorylessness:} exponential waiting has the same residual distribution after any elapsed time. Uniform and general distributions do not; condition and renormalise their remaining support.
+\boxend
+
+\boxstart{L6 — Conditional survival templates}
+For a nonnegative duration $X$, translate verbal information into a survival event before calculating.\
+\textbf{Uniform:} conditioning on $X>s$ truncates the interval; the remaining time is uniform on the shortened interval.\
+\textbf{Exponential:} conditioning on $X>s$ leaves the residual time distributed as a fresh exponential variable.\
+\textbf{General distribution:} use
+\[
+P(X>s+t\mid X>s)=\frac{P(X>s+t)}{P(X>s)}.
+\]
+Do not invoke memorylessness for uniform, normal, Pareto, or arbitrary distributions.
+\boxend
+
+\boxstart{L6 — Waiting vs restarting}
+After surviving to time $s$, compare the expected remaining time $r(s)=E(X-s\mid X>s)$ with a fresh attempt mean $E(X)$. Restarting is better when $r(s)>E(X)$ (assuming no restart cost and an independent fresh attempt).
+
+\textbf{Pareto lecture example:} if $f_X(x)=2/x^3$ for $x\ge1$, then $P(X>s)=1/s^2$ and
+\[
+E(X\mid X>s)=\frac{\int_s^\infty x(2/x^3)\,dx}{1/s^2}=2s,
+\qquad r(s)=2s-s=s.
+\]
+Since $E(X)=2$, continue for $s\le2$ and restart for $s>2$.
+For a timeout $T>1$, the Pareto lecture example gives
+\[
+m(T)=\frac{2-1/T}{1-1/T^2},\qquad
+m'(T)=0\Longrightarrow T=\sqrt{2+\sqrt3}\approx3.73.
+\]
+\boxend
+
+\boxstart{L6 — Repeated timeout identity}
+Assume each unfinished attempt is abandoned at timeout $T$, then a fresh independent attempt starts immediately; no restart cost. If $m(T)$ is the expected total elapsed time,
+\[
+m(T)=P(X\le T)E(X\mid X\le T)+P(X>T)T+P(X>T)m(T),
+\]
+so
+\[
+\boxed{m(T)=\frac{E[\min(X,T)]}{P(X\le T)}}.
+\]
+For $X\sim\operatorname{Exp}(\lambda)$, $E[\min(X,T)]=(1-e^{-\lambda T})/\lambda$, hence $m(T)=1/\lambda$: repeated timeouts do not change the expected completion time.
+\boxend
+
+\boxstart{L5/L6 — Approximation decision rules}
+\textbf{Binomial $\to$ normal:} check both expected successes and failures are sufficiently large; use $Y\sim N(np,npq)$ and a continuity correction.
+\begin{itemize}
+  \item $P(X=k)$ becomes $P(k-0.5<Y<k+0.5)$.
+  \item $P(X\le c)$ becomes $P(Y<c+0.5)$; $P(X\ge c)$ becomes $P(Y>c-0.5)$.
+\end{itemize}
+\textbf{Binomial / Poisson-binomial $\to$ Poisson:} individual probabilities should be small; use mean $\lambda=\sum p_i$ (or $np$). Check whether the requested tail is sensitive to approximation error.
+\boxend
+
+\boxstart{L6 — Normal calculation template}
+For $X\sim N(\mu,\sigma^2)$, translate every bound using $Z=(X-\mu)/\sigma$ before using the supplied table:
+\[
+P(a<X<b)=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sigma}\right).
+\]
+Use symmetry $\Phi(-z)=1-\Phi(z)$. For a central probability,
+\[
+P(|Z|<z)=2\Phi(z)-1.
+\]
+For a binomial count, apply continuity correction first, then standardise the corrected endpoints.
+\boxend
+
+\boxstart{L5/L6 — Poisson-process applications}
+For rate $r$ per unit time, count events in duration $t$ using parameter $rt$; counts in disjoint intervals are independent. Interarrival times are iid exponential with rate $r$.
+
+\textbf{Rate scaling:} per minute $\to$ multiply by minutes; per hour $\to$ multiply by hours. For multiple independent streams, add rates. For ``at least one'', use the zero-count complement.
+
+\textbf{Packet retransmission template:} if one attempt succeeds with probability $s$, attempts through one success are geometric with mean $1/s$. For $k$ accepted packets, total attempts is negative binomial; multiply expected attempts by the packet size to obtain expected transmitted bits.
+\boxend
+
+\boxstart{L5 — Nonlinear expected-value template}
+If a quantity depends nonlinearly on a random count, substitute moments rather than plugging in the mean:
+\[
+E(a t-cX^2)=a t-cE(X^2)
+                  =a t-c\{V(X)+[E(X)]^2\}.
+\]
+For $X\sim\operatorname{Poisson}(rt)$, this becomes
+\[
+E(a t-cX^2)=a t-c\{rt+(rt)^2\}.
+\]
+Then optimise the resulting deterministic function in $t$ and check it is a maximum. This is the method behind Tutorial 5 Question 3.
+\boxend
+
+\boxstart{L6 — Simulation recipes from lecture}
+\textbf{Uniform point in unit disk:} draw independent $U,V\sim U(0,1)$; use $R=\sqrt U$, $\Theta=2\pi V$, then $(X,Y)=(R\cos\Theta,R\sin\Theta)$. Using $R=U$ is not uniform in area.
+
+\textbf{Independent Gaussian coordinates:} generate independent $U,V\sim U(0,1)$ and set
+\[
+R=\sqrt{-2\ln U},\quad\Theta=2\pi V,\quad
+Z_1=R\cos\Theta,\quad Z_2=R\sin\Theta.
+\]
+Then $Z_1,Z_2$ are independent $N(0,1)$; transform $X=\mu+\sigma Z$ for $N(\mu,\sigma^2)$.
+
+\textbf{Verification habit:} identify the target CDF/density, derive the distribution of the generated radius/transform, and check independence of inputs.
+\boxend
+
+\boxstart{L1–L6 — Exam traps and final checks}
+\begin{itemize}
+  \item Do not use a distribution before checking its assumptions.
+  \item Do not confuse a density with a probability or a CDF with a PMF.
+  \item Do not omit a conditioning event from the denominator.
+  \item Do not assume uncorrelated means independent.
+  \item Do not forget support restrictions after marginalising or conditioning.
+  \item For integer-valued tails, translate $>$, $\ge$, $<$, and $\le$ carefully before using a table.
+  \item For normal approximations, standardise with the correct variance and apply the continuity correction once.
+\end{itemize}
+\textbf{Last pass:} units, support, probability range, edge cases, and whether all cases were counted exactly once.
+\boxend
+
+\end{multicols*}
+\end{document}

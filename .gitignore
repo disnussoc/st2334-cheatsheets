@@ -1,0 +1,12 @@
+# course content
+resources/
+
+# reference cheatsheet for formatting
+cs2040s-finals-cheatsheet.tex
+
+# latex build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
