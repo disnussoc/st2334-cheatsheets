@@ -366,7 +366,7 @@
 	The decisions are independent; the reservoir contents are not independent observations.
 	\boxend
 
-	\boxstart{L5 — Choosing a discrete model}
+\boxstart{L5 — Choosing a discrete model}
 	\begin{tabularx}{\linewidth}{@{}lX@{}}
 		Bernoulli         & one success/failure trial                                         \\
 		Binomial          & number of successes in fixed $n$ iid trials                       \\
@@ -376,10 +376,27 @@
 		Poisson-binomial  & sum of independent Bernoulli variables with unequal probabilities \\
 	\end{tabularx}
 	\smallskip
-	\textbf{Checklist:} fixed or random number of trials? identical success probability? independence? count or waiting time? If a rate is stated, rescale it to the observation window.
-	\boxend
+\textbf{Checklist:} fixed or random number of trials? identical success probability? independence? count or waiting time? If a rate is stated, rescale it to the observation window.
+\boxend
 
-	\boxstart{L6 — Choosing a continuous model}
+\boxstart{L5 — Poisson-binomial distribution}
+If $I_1,\ldots,I_n$ are independent Bernoulli variables with possibly unequal success probabilities $p_i$, then
+\[
+R=\sum_{i=1}^n I_i,\qquad
+\lambda=E(R)=\sum_i p_i,
+\qquad
+V(R)=\sum_i p_i(1-p_i)=\lambda-\sum_i p_i^2.
+\]
+This is Poisson-binomial, not ordinary binomial unless all $p_i$ are equal. For $Z\sim\operatorname{Poisson}(\lambda)$ and any set $A$ of nonnegative integers,
+\[
+\left|P(R\in A)-P(Z\in A)\right|
+\le \frac{\sum_i p_i^2}{\lambda}
+\le \max_i p_i.
+\]
+Thus the Poisson approximation is strongest when every individual success probability is small; the largest $p_i$ controls the simple error bound.
+\boxend
+
+\boxstart{L6 — Choosing a continuous model}
 	\begin{tabularx}{\linewidth}{@{}lX@{}}
 		Uniform     & every point in an interval equally likely; use length ratios         \\
 		Exponential & nonnegative waiting time with constant hazard / Poisson interarrival \\
