@@ -9,9 +9,12 @@
   colback=white,
   subtitle style={colback=gray!15,fontupper=\scriptsize\bfseries},
   left=1pt,right=1pt,top=1pt,bottom=1pt,
-  breakable,
   boxrule=0.35pt,
   nobeforeafter,
+  % multicol compatibility
+  breakable, height fixed for=first,
+  pad at break*=0pt, pad before break*=0pt, pad after break=0pt,
+  break at=-\baselineskip/0pt
 }
 
 \usepackage{parskip}
