@@ -9,9 +9,12 @@
   colback=white,
   subtitle style={colback=gray!15,fontupper=\scriptsize\bfseries},
   left=1pt,right=1pt,top=1pt,bottom=1pt,
-  breakable,
   boxrule=0.35pt,
   nobeforeafter,
+  % multicol compatibility
+  breakable, height fixed for=first,
+  pad at break*=0pt, pad before break*=0pt, pad after break=0pt,
+  break at=-\baselineskip/0pt
 }
 
 \usepackage{parskip}
@@ -73,6 +76,56 @@
 	Use the exact product for small values; approximate by $1-e^{-k(k-1)/(2m)}$ when appropriate. A collision among any pair needs about $\sqrt m$ trials; matching one fixed target needs order $m$ trials. Do not confuse these questions.
 	\boxend
 
+	\boxstart{L1 — Lecture pattern: counting a partition}
+	For a five-digit string over $\{0,\ldots,9\}$, classify by repeat pattern before counting. For example,
+	\[
+		\begin{array}{c|c}
+			\text{pattern}         & \text{counting idea}                     \\ \hline
+			\text{all distinct}    & P(10,5)                                  \\
+			\text{one pair}        & \binom52\,10\,P(9,3)                     \\
+			\text{two pairs}       & \binom52\binom32\binom{10}{2}\,P(8,1)/2! \\
+			\text{three of a kind} & \binom53\,10\,\binom92\,2!               \\
+		\end{array}
+	\]
+	The exact remaining patterns follow the same principle. Check that the mutually exclusive pattern counts sum to $10^5$. The division by $2!$ prevents ordering identical groups twice.
+	\boxend
+
+	\boxstart{L1 — Uniform shuffle: Fisher--Yates}
+	For $i=n-1,n-2,\ldots,1$, choose $j$ uniformly from $\{0,\ldots,i\}$ and swap positions $i$ and $j$. The choice counts are $n(n-1)\cdots2=n!$, and each choice sequence maps bijectively to one permutation, so every output has probability $1/n!$.
+
+	\warn{Pitfall:} choosing $j$ uniformly from the full range $\{0,\ldots,n-1\}$ at every step gives $n^n$ equally likely choice sequences, which generally do not map evenly to the $n!$ permutations.
+	\boxend
+
+	\boxstart{L1 — Union bound vs inclusion--exclusion}
+	For events $A_1,\ldots,A_n$,
+	\[
+		P\!\left(\bigcup_iA_i\right)\le\sum_iP(A_i).
+	\]
+	The general inclusion--exclusion pattern is
+	\[
+		P\!\left(\bigcup_{i=1}^nA_i\right)
+		=\sum_{k=1}^n(-1)^{k+1}
+		\sum_{i_1<\cdots<i_k}
+		P(A_{i_1}\cap\cdots\cap A_{i_k}),
+	\]
+	that is, add singles, subtract pairs, add triples, and continue alternating. The bound is useful when the right side is small and intersections are rare; it is loose when events overlap heavily.
+
+	For a correct shuffle, let $A_i$ mean item $i$ stays fixed. For any specified set of $k$ items, the remaining $n-k$ items can be permuted freely, so
+	\[
+		P(A_{i_1}\cap\cdots\cap A_{i_k})
+		=\frac{(n-k)!}{n!}.
+	\]
+	There are $\binom nk$ choices of the $k$ fixed items. Hence the complete $k$-event contribution is
+	\[
+		\binom nk\frac{(n-k)!}{n!}=\frac1{k!}.
+	\]
+	Therefore the exact shuffle-test failure probability is
+	\[
+		P(\text{some fixed point})=1-\frac1{2!}+\frac1{3!}-\cdots+\frac{(-1)^{n+1}}{n!}\approx1-e^{-1}.
+	\]
+	The union bound alone only gives $P(\cup_iA_i)\le n(1/n)=1$.
+	\boxend
+
 	\boxstart{L2 — Conditioning and Bayes: path method}
 	\begin{itemize}
 		\item Draw one path for each mutually exclusive cause and evidence combination.
@@ -98,6 +151,24 @@
 		\item \textbf{Conditional independence:} $X\perp Y\mid Z$ means the factorisation holds after fixing $Z=z$; it may fail marginally because mixing over $Z$ induces dependence.
 	\end{itemize}
 	\textbf{XOR warning:} fair independent $X,K$ and $C=X\oplus K$ give pairwise independence but not mutual independence. \textbf{Naive Bayes:} within each fixed class, multiply feature likelihoods; multiply by the class prior; normalise over classes.
+	\boxend
+
+	\boxstart{L2 — Lecture pattern: fair extraction}
+	For iid biased bits with $P(1)=p$, pair consecutive bits:
+	\[
+		01\mapsto0,\qquad10\mapsto1,\qquad00,11\mapsto\text{discard}.
+	\]
+	The accepted outputs are fair because $P(01)=P(10)=p(1-p)$. This fails if the two bits are not identically distributed or are dependent. Equal pairs can be recycled recursively by encoding $00$ and $11$ as a new biased stream.
+	\boxend
+
+	\boxstart{L2 — Uniform fixed-size streaming sample}
+	To choose exactly $n$ of $N$ records uniformly while reading them once, keep state $(t,m)$ = (records remaining, selections still needed):
+	\begin{enumerate}
+		\item keep the next record with probability $m/t$;
+		\item if kept, set $m\leftarrow m-1$; always set $t\leftarrow t-1$;
+		\item stop when $m=0$; if $m=t$, keep every remaining record.
+	\end{enumerate}
+	At every state, $P(\text{keep})=m/t$ and $P(\text{skip})=(t-m)/t$. Multiplying path probabilities shows every $n$-subset has probability $1/\binom Nn$.
 	\boxend
 
 	\boxstart{L3 — Random-variable interpretation}
@@ -181,74 +252,6 @@
 		E(T)=d\sum_{r=1}^d\frac1r=dH_d.
 	\]
 	This assumes equal design probabilities; a rare special design can dominate the waiting time and invalidate $dH_d$.
-	\boxend
-
-	\boxstart{L1 — Lecture pattern: counting a partition}
-	For a five-digit string over $\{0,\ldots,9\}$, classify by repeat pattern before counting. For example,
-	\[
-		\begin{array}{c|c}
-			\text{pattern}         & \text{counting idea}                     \\ \hline
-			\text{all distinct}    & P(10,5)                                  \\
-			\text{one pair}        & \binom52\,10\,P(9,3)                     \\
-			\text{two pairs}       & \binom52\binom32\binom{10}{2}\,P(8,1)/2! \\
-			\text{three of a kind} & \binom53\,10\,\binom92\,2!               \\
-		\end{array}
-	\]
-	The exact remaining patterns follow the same principle. Check that the mutually exclusive pattern counts sum to $10^5$. The division by $2!$ prevents ordering identical groups twice.
-	\boxend
-
-	\boxstart{L2 — Lecture pattern: fair extraction}
-	For iid biased bits with $P(1)=p$, pair consecutive bits:
-	\[
-		01\mapsto0,\qquad10\mapsto1,\qquad00,11\mapsto\text{discard}.
-	\]
-	The accepted outputs are fair because $P(01)=P(10)=p(1-p)$. This fails if the two bits are not identically distributed or are dependent. Equal pairs can be recycled recursively by encoding $00$ and $11$ as a new biased stream.
-	\boxend
-
-	\boxstart{L2 — Uniform fixed-size streaming sample}
-	To choose exactly $n$ of $N$ records uniformly while reading them once, keep state $(t,m)$ = (records remaining, selections still needed):
-	\begin{enumerate}
-		\item keep the next record with probability $m/t$;
-		\item if kept, set $m\leftarrow m-1$; always set $t\leftarrow t-1$;
-		\item stop when $m=0$; if $m=t$, keep every remaining record.
-	\end{enumerate}
-	At every state, $P(\text{keep})=m/t$ and $P(\text{skip})=(t-m)/t$. Multiplying path probabilities shows every $n$-subset has probability $1/\binom Nn$.
-	\boxend
-
-	\boxstart{L1 — Uniform shuffle: Fisher--Yates}
-	For $i=n-1,n-2,\ldots,1$, choose $j$ uniformly from $\{0,\ldots,i\}$ and swap positions $i$ and $j$. The choice counts are $n(n-1)\cdots2=n!$, and each choice sequence maps bijectively to one permutation, so every output has probability $1/n!$.
-
-	\warn{Pitfall:} choosing $j$ uniformly from the full range $\{0,\ldots,n-1\}$ at every step gives $n^n$ equally likely choice sequences, which generally do not map evenly to the $n!$ permutations.
-	\boxend
-
-	\boxstart{L1 — Union bound vs inclusion--exclusion}
-	For events $A_1,\ldots,A_n$,
-	\[
-		P\!\left(\bigcup_iA_i\right)\le\sum_iP(A_i).
-	\]
-	The general inclusion--exclusion pattern is
-	\[
-		P\!\left(\bigcup_{i=1}^nA_i\right)
-		=\sum_{k=1}^n(-1)^{k+1}
-		\sum_{i_1<\cdots<i_k}
-		P(A_{i_1}\cap\cdots\cap A_{i_k}),
-	\]
-	that is, add singles, subtract pairs, add triples, and continue alternating. The bound is useful when the right side is small and intersections are rare; it is loose when events overlap heavily.
-
-	For a correct shuffle, let $A_i$ mean item $i$ stays fixed. For any specified set of $k$ items, the remaining $n-k$ items can be permuted freely, so
-	\[
-		P(A_{i_1}\cap\cdots\cap A_{i_k})
-		=\frac{(n-k)!}{n!}.
-	\]
-	There are $\binom nk$ choices of the $k$ fixed items. Hence the complete $k$-event contribution is
-	\[
-		\binom nk\frac{(n-k)!}{n!}=\frac1{k!}.
-	\]
-	Therefore the exact shuffle-test failure probability is
-	\[
-		P(\text{some fixed point})=1-\frac1{2!}+\frac1{3!}-\cdots+\frac{(-1)^{n+1}}{n!}\approx1-e^{-1}.
-	\]
-	The union bound alone only gives $P(\cup_iA_i)\le n(1/n)=1$.
 	\boxend
 
 	\boxstart{L3 — Record indicators}
@@ -366,7 +369,7 @@
 	The decisions are independent; the reservoir contents are not independent observations.
 	\boxend
 
-\boxstart{L5 — Choosing a discrete model}
+	\boxstart{L5 — Choosing a discrete model}
 	\begin{tabularx}{\linewidth}{@{}lX@{}}
 		Bernoulli         & one success/failure trial                                         \\
 		Binomial          & number of successes in fixed $n$ iid trials                       \\
@@ -376,27 +379,40 @@
 		Poisson-binomial  & sum of independent Bernoulli variables with unequal probabilities \\
 	\end{tabularx}
 	\smallskip
-\textbf{Checklist:} fixed or random number of trials? identical success probability? independence? count or waiting time? If a rate is stated, rescale it to the observation window.
-\boxend
+	\textbf{Checklist:} fixed or random number of trials? identical success probability? independence? count or waiting time? If a rate is stated, rescale it to the observation window.
+	\boxend
 
-\boxstart{L5 — Poisson-binomial distribution}
-If $I_1,\ldots,I_n$ are independent Bernoulli variables with possibly unequal success probabilities $p_i$, then
-\[
-R=\sum_{i=1}^n I_i,\qquad
-\lambda=E(R)=\sum_i p_i,
-\qquad
-V(R)=\sum_i p_i(1-p_i)=\lambda-\sum_i p_i^2.
-\]
-This is Poisson-binomial, not ordinary binomial unless all $p_i$ are equal. For $Z\sim\operatorname{Poisson}(\lambda)$ and any set $A$ of nonnegative integers,
-\[
-\left|P(R\in A)-P(Z\in A)\right|
-\le \frac{\sum_i p_i^2}{\lambda}
-\le \max_i p_i.
-\]
-Thus the Poisson approximation is strongest when every individual success probability is small; the largest $p_i$ controls the simple error bound.
-\boxend
+	\boxstart{L5 — Poisson-binomial distribution}
+	If $I_1,\ldots,I_n$ are independent Bernoulli variables with possibly unequal success probabilities $p_i$, then
+	\[
+		R=\sum_{i=1}^n I_i,\qquad
+		\lambda=E(R)=\sum_i p_i,
+		\qquad
+		V(R)=\sum_i p_i(1-p_i)=\lambda-\sum_i p_i^2.
+	\]
+	This is Poisson-binomial, not ordinary binomial unless all $p_i$ are equal. For $Z\sim\operatorname{Poisson}(\lambda)$ and any set $A$ of nonnegative integers,
+	\[
+		\left|P(R\in A)-P(Z\in A)\right|
+		\le \frac{\sum_i p_i^2}{\lambda}
+		\le \max_i p_i.
+	\]
+	Thus the Poisson approximation is strongest when every individual success probability is small; the largest $p_i$ controls the simple error bound.
+	\boxend
 
-\boxstart{L6 — Choosing a continuous model}
+	\boxstart{L5 — Nonlinear expected-value template}
+	If a quantity depends nonlinearly on a random count, substitute moments rather than plugging in the mean:
+	\[
+		E(a t-cX^2)=a t-cE(X^2)
+		=a t-c\{V(X)+[E(X)]^2\}.
+	\]
+	For $X\sim\operatorname{Poisson}(rt)$, this becomes
+	\[
+		E(a t-cX^2)=a t-c\{rt+(rt)^2\}.
+	\]
+	Then optimise the resulting deterministic function in $t$ and check it is a maximum. This is the method behind Tutorial 5 Question 3.
+	\boxend
+
+	\boxstart{L6 — Choosing a continuous model}
 	\begin{tabularx}{\linewidth}{@{}lX@{}}
 		Uniform     & every point in an interval equally likely; use length ratios         \\
 		Exponential & nonnegative waiting time with constant hazard / Poisson interarrival \\
@@ -472,19 +488,6 @@ Thus the Poisson approximation is strongest when every individual success probab
 	\textbf{Rate scaling:} per minute $\to$ multiply by minutes; per hour $\to$ multiply by hours. For multiple independent streams, add rates. For ``at least one'', use the zero-count complement.
 
 	\textbf{Packet retransmission template:} if one attempt succeeds with probability $s$, attempts through one success are geometric with mean $1/s$. For $k$ accepted packets, total attempts is negative binomial; multiply expected attempts by the packet size to obtain expected transmitted bits.
-	\boxend
-
-	\boxstart{L5 — Nonlinear expected-value template}
-	If a quantity depends nonlinearly on a random count, substitute moments rather than plugging in the mean:
-	\[
-		E(a t-cX^2)=a t-cE(X^2)
-		=a t-c\{V(X)+[E(X)]^2\}.
-	\]
-	For $X\sim\operatorname{Poisson}(rt)$, this becomes
-	\[
-		E(a t-cX^2)=a t-c\{rt+(rt)^2\}.
-	\]
-	Then optimise the resulting deterministic function in $t$ and check it is a maximum. This is the method behind Tutorial 5 Question 3.
 	\boxend
 
 	\boxstart{L6 — Simulation recipes from lecture}
