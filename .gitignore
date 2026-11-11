@@ -10,3 +10,7 @@ cs2040s-finals-cheatsheet.tex
 *.fls
 *.log
 *.synctex.gz
+*.synctex(busy)
+
+# my build pdf
+/b.pdf
