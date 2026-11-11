@@ -316,12 +316,12 @@
 		Given $F_1 \sim F(m, n)$, $F_2 = \dfrac{1}{F_1} \sim F(n, m)$
 
 		\begin{align*}
-			 & P(F_1 > F(m, n; \alpha)) = \alpha                                 \\
-			 & \Rightarrow P(\frac{1}{F_1} < \frac{1}{F(m, n; \alpha)}) = \alpha \\
-			 & \Rightarrow P(F_2 < \frac{1}{F(m, n; \alpha)}) = \alpha           \\
-			 & \Rightarrow 1 - P(F_2 > \frac{1}{F(m, n; \alpha)}) = \alpha       \\
-			 & \Rightarrow P(F_2 > \frac{1}{F(m, n; \alpha)}) = 1 - \alpha       \\
-			 & \Rightarrow F(n, m; 1 - \alpha) = \frac{1}{F(m, n; \alpha)}
+			 & P(F_1 > F(m, n; \alpha)) = \alpha                                                     \\
+			 & \Rightarrow P(\frac{1}{F_1} < \frac{1}{F(m, n; \alpha)}) = \alpha                     \\
+			 & \Rightarrow P(F_2 < \frac{1}{F(m, n; \alpha)}) = \alpha                               \\
+			 & \Rightarrow 1 - P(F_2 > \frac{1}{F(m, n; \alpha)}) = \alpha                           \\
+			 & \Rightarrow P(F_2 > \frac{1}{F(m, n; \alpha)}) = 1 - \alpha                           \\
+			 & \Rightarrow\!\hlfancymath{lightgray}{F(n, m; 1 - \alpha) = \frac{1}{F(m, n; \alpha)}}
 		\end{align*}
 
 		$m \to \infty,\ n\to \infty \Rightarrow F(m,n) \to 1$ \\
@@ -454,7 +454,7 @@
 				   z_{\alpha/2}\,s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
 		\end{tblr}
 
-		where $s_p^2= \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$ is a pooled estimate of the variance
+		where \hlfancytall{lightgray}{$s_p^2= \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$} is a pooled estimate of the variance
 
 		Dependent two-sample: single sample of paired differences \hlfancy{lightgray}{$D_i = X_i - Y_i$}
 		\begin{tblr}{
@@ -479,9 +479,9 @@
 				   \overline d\pm z_{\alpha/2}\frac{s_D}{\sqrt n}$
 		\end{tblr}
 		\begin{align*}
-			\overline{D} & = \dfrac{\sum(X_i - Y_i)}{n}                \\
-			             & = \dfrac{\sum X_i}{n} - \dfrac{\sum Y_i}{n} \\
-			             & = \overline{X} - \overline{Y{}}
+			\hlfancymath{lightgray}{\overline{D}} & = \dfrac{\sum(X_i - Y_i)}{n}                              \\
+			                                      & = \dfrac{\sum X_i}{n} - \dfrac{\sum Y_i}{n}               \\
+			                                      & \hlfancymath{lightgray}{ = \overline{X} - \overline{Y{}}}
 		\end{align*}
 
 		Hypothesis testing: \\
