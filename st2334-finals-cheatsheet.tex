@@ -1,0 +1,543 @@
+\documentclass[10pt]{article}
+\lineskip=0pt
+
+% Formatting follows st2334-midterms-cheatsheet.tex.
+\usepackage[skins,breakable,raster]{tcolorbox}
+\tcbsetforeverylayer{
+  skin=enhanced jigsaw,
+  fonttitle=\bfseries\small,
+  parbox=false,
+  colback=white,
+  subtitle style={colback=gray!15,fontupper=\scriptsize\bfseries},
+  left=1pt,right=1pt,top=1pt,bottom=1pt,
+  boxrule=0.35pt,
+  nobeforeafter,
+  breakable, height fixed for=first,
+  pad at break*=0pt, pad before break*=0pt, pad after break=0pt,
+  break at=-\baselineskip/0pt
+}
+\usepackage{parskip}
+\setlength\parskip{0pt}
+\usepackage{multicol}
+\usepackage{geometry}
+\newgeometry{noheadfoot=true,tmargin=5pt,bmargin=5pt,hmargin=5pt}
+\geometry{paperheight=297mm,paperwidth=420mm}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb,mathtools}
+\usepackage[inline]{enumitem}
+\usepackage{tabularx}
+\usepackage{tabularray}
+\usepackage{graphicx}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{2pt}
+\setlist{leftmargin=*,labelsep=2pt,itemsep=0pt,topsep=0pt,parsep=0pt}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\newcommand{\warn}[1]{\textbf{\color{red!65!black}#1}}
+\newcommand{\key}[1]{\textbf{#1}}
+\newcommand{\ind}[1]{\mathbf 1_{\{#1\}}}
+\newcommand{\boxstart}[1]{\begin{tcolorbox}[title={#1},sharp corners]}
+\newcommand{\boxend}{\end{tcolorbox}}
+
+% Sources: lecture notes Ch. 1--7; slides Weeks 1--6 and 8--12;
+% Week 8 quiz; Tutorials 8--9. FormulaSheet_Tables.pdf is the companion.
+% Supplied PMFs/PDFs, moments, CI/test tables and numerical tables are omitted.
+% Short substitutions below illustrate methods rather than repeat those tables.
+\begin{document}
+\small
+% Font-size commands reset display spacing; apply the template's compact
+% spacing after \small so it takes effect at the unchanged 9pt body size.
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% PAGE 1 / COLUMN 1: counting and conditional probability.
+\begin{multicols*}{3}
+\vspace*{-1em}
+\boxstart{ST2334 Finals --- Ch. 1--4: Probability}
+\textbf{Companion: FormulaSheet\_Tables.pdf (FS).} FS p.\,1 supplies basic probability, moments, distributions and approximations; p.\,2 supplies mean CI/test formulas; subsequent pages contain tables. Here: methods, missing results and exam traps. Chapter numbers follow the notes, not lecture weeks.
+\boxend
+
+\boxstart{Ch. 1 --- Counting: set up before calculating}
+\begin{enumerate}
+\item Define equally likely outcomes; decide whether order matters and whether replacement is allowed.
+\item Split into disjoint cases. For ``at least one'', count the complement; for restrictions, count all minus forbidden.
+\item Choose groups/values, then positions. Divide only for ordering counted more than once; check the total against the sample space.
+\end{enumerate}
+\textbf{Five-digit strings (leading zero allowed):} repeated-digit patterns give the following counts out of $10^5$:
+\[
+\begin{array}{c|r@{\qquad}c|r}
+1+1+1+1+1&30240&2+1+1+1&50400\\
+2+2+1&10800&3+1+1&7200\\
+3+2&900&4+1&450\\
+5&10&&
+\end{array}
+\]
+E.g. two pairs: $\binom{10}{2}\,8\,5!/(2!2!)=10800$. The two pair values were already chosen as an unordered set: no extra $2!$ division. For alternating $n$ distinct people of each of two types in a line: $2(n!)^2$.
+\boxend
+
+\boxstart{Ch. 1 --- Collisions and identifier length}
+For $k$ iid assignments into $m$ equally likely slots, $k\le m$,
+\[
+P(\text{collision})=1-\prod_{i=0}^{k-1}(1-i/m)
+\approx1-e^{-k(k-1)/(2m)}.
+\]
+For $k>m$, collision is certain. Any-pair collision needs order $\sqrt m$ draws; hitting one fixed target needs order $m$.
+\textbf{Guaranteed bound:} $P(\text{collision})\le\binom{k}{2}/m$; for alphabet size $b$ and length $\ell$, choose $b^\ell\ge\binom{k}{2}/\varepsilon$ to bound risk by $\varepsilon$. Round $\ell$ up. The exponential approximation is useful when $k/m$ is small.
+\boxend
+
+\boxstart{Ch. 1 --- Uniform shuffle and fixed points}
+\textbf{Fisher--Yates:} at $i=n-1,\ldots,1$, choose $j$ uniformly from $0,\ldots,i$ and swap. The $n!$ equally likely choice sequences correspond to the $n!$ permutations. Choosing from the full range at each step is generally biased.
+
+For $A_i=$ ``item $i$ stays fixed'', an intersection of $r$ specified events has probability $(n-r)!/n!$. Inclusion--exclusion gives
+\[
+P(\text{some fixed point})=\sum_{r=1}^n\frac{(-1)^{r+1}}{r!}
+\longrightarrow1-e^{-1}.
+\]
+A correct shuffle need not move every item. General inclusion--exclusion alternates sums of single events, pair intersections, triples, etc.
+\boxend
+
+\boxstart{Ch. 1 --- Bayes, paths and repeated evidence}
+\begin{enumerate}
+\item List mutually exclusive causes $H_i$ and their priors.
+\item Compute each weight $w_i=P(H_i)P(E\mid H_i)$.
+\item Normalise: posterior for $H_i$ is $w_i/\sum_jw_j$.
+\end{enumerate}
+\textbf{Several observations:} multiply their likelihoods only if they are conditionally independent \emph{given the cause}. In naive Bayes, use a likelihood for each present \emph{and absent} feature within each class. Sensitivity is not the posterior probability of disease.
+\[
+\text{posterior odds}=\text{prior odds}\times\text{likelihood ratio}.
+\]
+For a tree, multiply along paths and add the paths consistent with the evidence. Mixing different causes can create marginal dependence even when observations are conditionally independent.
+\boxend
+
+\boxstart{Ch. 1 --- Independence and fair-bit extraction}
+\textbf{Pairwise} checks each pair; \textbf{mutual} checks every subcollection. If independent fair bits $X,K$ give $C=X\oplus K$, every pair is independent, but the triple is not. Reusing $K$ leaks $C_1\oplus C_2=X_1\oplus X_2$.
+
+\textbf{Fair extractor:} iid biased bits, $P(1)=p$: map $01\to0$, $10\to1$, discard $00,11$. Both accepted pairs have probability $p(1-p)$; acceptance probability is $2p(1-p)$. For $0<p<1$, expected input bits per output bit is $1/[p(1-p)]$. Unequal biases or dependence can invalidate fairness.
+\boxend
+
+\boxstart{Ch. 1/5 --- Fixed-size sampling without replacement}
+\textbf{Algorithm S:} with $t$ records remaining and $m$ still needed, keep the next with probability $m/t$; decrement $m$ if kept and always decrement $t$. Every complete $n$-subset has the same probability.
+
+\textbf{Hypergeometric counting:} among $N$ objects, $K$ marked; choose $n$ without replacement. The count $X$ of marked objects has
+\[
+P(X=x)=\frac{\binom Kx\binom{N-K}{n-x}}{\binom Nn},\quad
+\max(0,n-N+K)\le x\le\min(n,K).
+\]
+Use $E(X)=nK/N$. Do not model these dependent draws as binomial trials. Example: $N=18,K=5,n=4$ gives $P(X=2)=13/51$.
+\boxend
+
+\columnbreak
+% PAGE 1 / COLUMN 2: random variables and dependence.
+\boxstart{Ch. 2 --- PMF/PDF/CDF question workflow}
+\begin{enumerate}
+\item Write the support; normalise there to find any constant.
+\item Find the CDF below/inside/above support, using only allowed values.
+\item Discrete endpoints matter; continuous endpoints have probability zero.
+\item For a quantile, solve the CDF condition; for discrete $X$, take the smallest $x$ with $F(x)\ge p$.
+\end{enumerate}
+Density height may exceed 1. Finite mean need not imply finite variance: $f(x)=2/x^3$, $x\ge1$, has mean 2 but infinite second moment.
+\boxend
+
+\boxstart{Ch. 2 --- Transformations, extrema and simulation}
+\textbf{CDF method:} find the new support, express $\{g(X)\le y\}$ in terms of $X$, then calculate its probability. Differentiate if needed. Non-monotone maps may need several intervals.
+For a differentiable one-to-one map,
+\[
+f_Y(y)=f_X(g^{-1}(y))\left|\frac{d}{dy}g^{-1}(y)\right|.
+\]
+For iid $X_1,\ldots,X_n$ with CDF $F$,
+\[
+P(\max X_i\le x)=F(x)^n,\quad
+P(\min X_i>x)=[1-F(x)]^n.
+\]
+\textbf{Inverse CDF:} draw $U\sim U(0,1)$ and set $X=F^{-1}(U)$. Example: $F(x)=1-x^{-2}$ on $x\ge1$ gives $X=(1-U)^{-1/2}$. Verify by computing the generated CDF. For jumps use $F^{-1}(u)=\inf\{x:F(x)\ge u\}$.
+\boxend
+
+\boxstart{Ch. 2 --- Expectations: choose an easy representation}
+\textbf{Transformed quantity:} evaluate $E[g(X)]$ directly using FS; generally $E[g(X)]\ne g(E[X])$. For quadratic cost, use $E(X^2)=V(X)+[E(X)]^2$ before optimising.
+
+\textbf{Indicators:} write a count as $N=\sum I_i$; sum single-event probabilities for its mean. For variance, add all individual variances and twice every pair covariance; compute each covariance from $P(A_i\cap A_j)-P(A_i)P(A_j)$.
+
+\textbf{Tail method:} use the integer tail-sum in FS when $P(X\ge k)$ is easier than the PMF. For continuous nonnegative $X$,
+\[
+E(X)=\int_0^\infty P(X>t)\,dt,\quad
+E[\min(X,T)]=\int_0^T P(X>t)\,dt.
+\]
+For a uniformly chosen $m$-bit counter with wraparound, $P(\text{flips}\ge k)=2^{-(k-1)}$, $1\le k\le m$, so the mean is $2-2^{1-m}$ (check $m=1$).
+\boxend
+
+\boxstart{Ch. 2 --- Records and coupon collection}
+\textbf{Records in a uniform random permutation:} record indicator $I_i$ has probability $1/i$. Pairwise independence yields
+\[
+E(R)=H_n,\qquad V(R)=\sum_{i=1}^n(1/i-1/i^2),\quad H_n=\sum_{i=1}^n1/i.
+\]
+\textbf{Coupon collector:} with $d$ equally likely designs, wait for the next new type after $j$ collected: success probability $(d-j)/d$. Sum the geometric means to obtain $E(T)=dH_d$. Unequal design probabilities invalidate this shortcut.
+
+\boxend
+
+\boxstart{Ch. 3 --- Joint support, marginals and conditionals}
+Draw the region first. Normalise; integrate/sum out the unwanted coordinate for a marginal. Divide by the conditioning marginal where positive. Compute conditional means using the conditional density.
+
+\textbf{Triangle example:} $f(x,y)=c$ on $0<x<y<1$ gives $c=2$, $f_X(x)=2(1-x)$ and $f_Y(y)=2y$. Thus $X\mid Y=y$ is uniform on $(0,y)$ and $E(X\mid Y=y)=y/2$.
+
+An event such as $X+Y<a$ adds a boundary; split integrals where limits change. Independence requires factorisation including the support: a constant density on a triangle does \emph{not} imply independence.
+\boxend
+
+\boxstart{Ch. 3 --- Dependence patterns and checks}
+Zero covariance need not mean independence: symmetric $X$ and $Y=X^2$ provide a counterexample (assuming the required moments exist).
+
+\textbf{Fixed-size sample:} if exactly $n$ of $N$ records are chosen, for distinct inclusion indicators,
+\[
+P(I_i=I_j=1)=\frac{n(n-1)}{N(N-1)},\quad
+\operatorname{Cov}(I_i,I_j)=-\frac{n(N-n)}{N^2(N-1)}.
+\]
+Their sum is fixed, so its variance is 0: a useful covariance check.
+
+\textbf{Runs in a random permutation:} $R=1+\sum_{i=1}^{n-1}\ind{A_i>A_{i+1}}$. Each descent has probability $1/2$; adjacent descents have joint probability $1/6$ and covariance $-1/12$; non-adjacent ones are independent. For $n\ge2$,
+\[
+E(R)=\frac{n+1}{2},\qquad V(R)=\frac{n+1}{12}.
+\]
+\boxend
+
+\boxstart{Ch. 3/4 --- Independent Poissons given their sum}
+If $X\sim\mathrm{Pois}(\lambda)$ and $Y\sim\mathrm{Pois}(\mu)$ are independent,
+\[
+X\mid(X+Y=n)\sim\mathrm{Bin}\left(n,\frac{\lambda}{\lambda+\mu}\right).
+\]
+Derive by $P(X=x,Y=n-x)/P(X+Y=n)$, $0\le x\le n$. Conditioning on the total makes the components dependent. For rates 2 and 3 and total 10, the conditional mean of the first is $10(2/5)=4$.
+\boxend
+
+\columnbreak
+% PAGE 1 / COLUMN 3: special models and lecture applications.
+\boxstart{Ch. 4 --- Choose the model from the experiment}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+Bernoulli / binomial & One trial / successes in fixed $n$ iid trials.\\
+Geometric / neg. bin. & Trials \emph{including} the first / $k$th success.\\
+Poisson & Count over fixed time/space; scale rate to that window.\\
+Poisson-binomial & Independent Bernoulli sum with unequal $p_i$.\\
+Hypergeometric & Marked count sampled without replacement.\\
+Uniform & Constant density over an interval; length ratios.\\
+Exponential & Waiting time at a constant rate.\\
+Normal & Symmetric continuous measurements; variance is the second parameter.
+\end{tabularx}
+\textbf{Check:} fixed count or stopping time? independence? equal success probabilities? For ``$k$th success on trial $r$'', the first $r-1$ trials contain exactly $k-1$ successes and trial $r$ succeeds. Convert failures-only counts to the FS trials-including-success convention.
+\boxend
+
+\boxstart{Ch. 4 --- Approximations and tail wording}
+\textbf{Normal approximation:} both expected successes and failures must be sufficiently large; large $n$ alone is insufficient. \textbf{Poisson approximation:} individual success probabilities should be small; sum them for the parameter (see FS).
+
+For integer-valued $X$, first convert strict bounds: $X>k$ means $X\ge k+1$; $X<k$ means $X\le k-1$. Then use the FS continuity correction \emph{once}, before standardising. Never continuity-correct a genuinely continuous measurement.
+
+Standardise with the \emph{SD}, not variance; $P(|Z|>c)$ has two tails. For inverse questions, convert to the table's tail convention before solving for the threshold.
+\boxend
+
+\boxstart{Ch. 4 --- Survival and remaining lifetime}
+For $s$ with $P(X>s)>0$, use the remaining support:
+\[
+P(X>s+t\mid X>s)=\frac{P(X>s+t)}{P(X>s)},\quad t\ge0.
+\]
+\textbf{Uniform $U(0,b)$:} given $X>s$ with $0\le s<b$, residual time is $U(0,b-s)$ with mean $(b-s)/2$.
+\textbf{Exponential:} residual time has the original distribution.
+\textbf{Pareto $f(x)=2/x^3$, $x\ge1$:} for $s\ge1$, conditional mean is $2s$, so mean remaining time is $s$. For $0\le s<1$, it is $2-s$.
+
+\textbf{One fresh attempt versus continuing:} compare $r(s)=E(X-s\mid X>s)$ with $E(X)$, assuming no restart cost and an independent fresh draw. In this Pareto example, restarting once is better for $s>2$.
+\boxend
+
+\boxstart{Ch. 4 --- Repeated timeouts: renewal equation}
+If every attempt is stopped at $T$ and restarted independently without cost, with $P(X\le T)>0$,
+\[
+m(T)=E[\min(X,T)]+P(X>T)m(T)
+\quad\Rightarrow\quad m(T)=\frac{E[\min(X,T)]}{P(X\le T)}.
+\]
+Exponential timeouts leave the mean unchanged. For the Pareto above, $T>1$,
+\[
+m(T)=\frac{2-1/T}{1-1/T^2},\qquad T_{\rm opt}=2+\sqrt3\approx3.732.
+\]
+Derive by differentiating and checking the domain/boundaries. The optimal repeated-timeout policy is a different question from comparing the residual mean with one fresh attempt.
+\boxend
+
+\boxstart{Ch. 4 --- Packet retransmission and optimisation}
+For independent bit-error probability $p$, a packet of $\ell$ bits succeeds with $s=(1-p)^\ell$. Attempts through success have geometric mean $1/s$; through $k$ successes, negative-binomial mean $k/s$.
+
+With $h$ header bits and payload $\ell-h$, expected transmitted bits per useful bit are
+\[
+C(\ell)=\frac{\ell}{(\ell-h)(1-p)^\ell},\qquad \ell>h.
+\]
+Let $a=-\ln(1-p)>0$. Solve $(\log C)'=1/\ell-1/(\ell-h)+a=0$: $\ell_*=(h+\sqrt{h^2+4h/a})/2$. Check feasible neighbouring integers and constraints. For $p\ll1$, $a\approx p$.
+\boxend
+
+\boxstart{Ch. 4/5 --- Reservoir sampling and replacement counts}
+Keep a uniform reservoir of $k$ records. On arrival $i>k$, draw $J_i$ uniformly in $1,\ldots,i$; replace slot $J_i$ iff $J_i\le k$. Each record is included with probability $k/i$ after $i$ arrivals.
+
+For arrivals $m+1,\ldots,n$, $m\ge k$, replacement decisions are independent Bernoulli$(k/i)$. Thus
+\[
+E(R)=k\sum_{i=m+1}^n\frac1i,\qquad
+V(R)=E(R)-k^2\sum_{i=m+1}^n\frac1{i^2}.
+\]
+For large $m$, $E(R)\approx k\log(n/m)$; during a doubling, approximately $k\log2$. Apply the FS Poisson-binomial bound if using a Poisson approximation. Reservoir contents themselves are dependent.
+\boxend
+
+\boxstart{Ch. 4 --- Disk, Gaussian and first-digit simulation}
+Use independent $U,V\sim U(0,1)$ throughout.
+\textbf{Uniform disk:} $R=\sqrt U$, $\Theta=2\pi V$; output $(R\cos\Theta,R\sin\Theta)$. Uniform radius overweights the centre because area grows as $r^2$.
+
+\textbf{Box--Muller:} instead take $R=\sqrt{-2\ln U}$ with the same angle. The two coordinates are independent $N(0,1)$; rescale each by $\mu+\sigma Z$ as required.
+
+\textbf{Benford:} when the fractional part of $\log_{10}X$ is uniform on $[0,1)$, first digit $D$ satisfies
+\[
+P(D=d)=\log_{10}(1+1/d),\qquad d=1,\ldots,9.
+\]
+Translate digit $d$ to fractional log in $[\log_{10}d,\log_{10}(d+1))$. This uniform-log condition is an assumption, not a rule for every dataset.
+\boxend
+\end{multicols*}
+
+\newpage
+% PAGE 2 / COLUMN 1: sampling and reference distributions.
+\begin{multicols*}{3}
+\vspace*{-1em}
+\boxstart{ST2334 Finals --- Ch. 5--7: Statistics}
+\textbf{Notation:} population parameters $\mu,\sigma^2$ are fixed; sample statistics $\bar X,S^2$ are random; observed values $\bar x,s^2$ are numbers. FS p.\,2 gives CI/test formulas for means. Use this page to choose and apply them. Here $q_\alpha$ always denotes an \emph{upper-tail} critical value.
+\boxend
+
+\boxstart{Ch. 5 --- Sampling, statistics and standard error}
+\textbf{SRS without replacement:} every size-$n$ subset of a finite population is equally likely; equal individual inclusion probabilities alone are insufficient. Draws are dependent. \textbf{Iid sample:} independent draws from the same distribution, as with uniform sampling with replacement.
+
+A statistic is a function of observations, with no unknown parameters. Its sampling distribution describes variation across repeated samples. Random sampling/randomisation supports inference; large sample size cannot remove selection bias.
+\[
+\bar X=\frac1n\sum_iX_i,\qquad
+S^2=\frac{\sum_i(X_i-\bar X)^2}{n-1}
+=\frac{\sum_iX_i^2-n\bar X^2}{n-1}.
+\]
+For iid observations with finite variance,
+\[
+E(\bar X)=\mu,\quad V(\bar X)=\sigma^2/n,\quad
+\operatorname{SE}(\bar X)=\sigma/\sqrt n.
+\]
+Use $s/\sqrt n$ to \emph{estimate} the SE when $\sigma$ is unknown. SD measures spread of individual data; SE measures spread of an estimator. Halving SE requires four times as many observations.
+\boxend
+
+\boxstart{Ch. 5 --- LLN versus CLT; exact versus approximate}
+\textbf{LLN:} $P(|\bar X_n-\mu|>\varepsilon)\to0$ for each $\varepsilon>0$: averages concentrate around $\mu$. It does not claim a normal shape.
+
+\textbf{CLT:} for iid data with $0<\sigma^2<\infty$,
+\[
+\frac{\bar X-\mu}{\sigma/\sqrt n}\xrightarrow{d}N(0,1),\quad
+\bar X\approx N(\mu,\sigma^2/n),\quad
+\sum_iX_i\approx N(n\mu,n\sigma^2).
+\]
+Normal populations make the last two distributions \emph{exact} for every $n$. Otherwise the course's $n\ge30$ rule is approximate: skewness/heavy tails can require larger samples. CLT does not make the original observations normal, nor justify infinite-variance or dependent iid formulas.
+
+\textbf{Chebyshev check:} $P(|\bar X-\mu|\ge\varepsilon)\le\sigma^2/(n\varepsilon^2)$ for iid finite-variance data, giving an LLN proof without normality.
+\boxend
+
+\boxstart{Ch. 5 --- CLT probabilities and sample-size questions}
+\begin{enumerate}
+\item Identify the target: one observation, a sample \emph{mean}, or a \emph{sum}.
+\item Write its mean and variance; take the square root for its SD.
+\item Standardise every bound; subtract CDF values for intervals.
+\item For an unknown $n$, choose the correct tail quantile, solve the inequality, then round up and check the integer.
+\end{enumerate}
+\textbf{Example:} $\mu=120,\sigma=24,n=64$ gives SE $3$, so $P(\bar X>126)\approx P(Z>2)=0.0228$.
+
+\textbf{One-sided design:} $\mu=80,\sigma=24$; require $P(\bar X>86)\le0.05$. Then $\sqrt n/4\ge z_{0.05}=1.645$, giving $n\ge43.2964$, hence $44$. Use $z_{\alpha}$ for one tail, $z_{\alpha/2}$ for central coverage.
+\boxend
+
+\boxstart{Ch. 5 --- Chi-squared and sample-variance events}
+Independent $Z_i\sim N(0,1)$ give $U=\sum_{i=1}^\nu Z_i^2\sim\chi^2_\nu$; $E(U)=\nu$, $V(U)=2\nu$. Independent chi-squared variables add their degrees of freedom. Support is positive; the distribution is not symmetric.
+
+For an iid \textbf{normal} sample,
+\[
+Q=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1};\qquad \bar X\text{ and }S^2\text{ are independent}.
+\]
+For $P(S^2>c)=\alpha$, set
+$c=\sigma^2\chi^2_{n-1,\alpha}/(n-1)$.
+For $P(S^2<c)=p$, replace the upper-tail index by $1-p$. For $S$ rather than $S^2$, square a positive cutoff first.
+
+\textbf{Example:} $n=6,\sigma^2=4$; $P(S^2>c)=0.05$ gives $c=4(11.07)/5=8.856$.
+\warn{$\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$ needs normality; $E(S^2)=\sigma^2$ does not.}
+\boxend
+
+\boxstart{Ch. 5 --- Student's t and central probabilities}
+For independent $Z\sim N(0,1)$ and $U\sim\chi^2_\nu$,
+\[
+T=Z/\sqrt{U/\nu}\sim t_\nu.
+\]
+The distribution is symmetric, has heavier tails than normal, and approaches normal as $\nu$ grows. For normal samples, replacing $\sigma$ by $S$ in the standardised mean gives exact $t_{n-1}$ (see FS).
+
+\textbf{Transform an event:} if $n=25$, then $|\bar X-\mu|<cS$ becomes $|T|<5c$. For central probability $0.95$, $5c=t_{24,0.025}=2.064$, so $c=0.4128$.
+\boxend
+
+\boxstart{Ch. 5 --- F ratios: scaling, order and reciprocals}
+For independent $U\sim\chi^2_a,V\sim\chi^2_b$, $F=(U/a)/(V/b)\sim F_{a,b}$. For independent normal samples,
+\[
+\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\sim F_{n_1-1,n_2-1}.
+\]
+Thus $S_1^2/S_2^2>c$ becomes $F>c\sigma_2^2/\sigma_1^2$. It is an unscaled F ratio only when the population variances are equal. Numerator df comes first.
+\[
+1/F_{a,b}\sim F_{b,a},\qquad
+F_{a,b;1-\alpha}=1/F_{b,a;\alpha}.
+\]
+Reciprocation reverses the inequality \emph{and} swaps df: $P(F_{8,15}>4/3)=P(F_{15,8}<3/4)$. Do not use symmetric-tail shortcuts for F or chi-squared.
+\boxend
+
+\columnbreak
+% PAGE 2 / COLUMN 2: estimation and confidence intervals.
+\boxstart{Ch. 6 --- Point estimates, bias and efficiency}
+An \textbf{estimator} is a statistic; an \textbf{estimate} is its observed value. To test unbiasedness, compute $E_\theta(T)$ and compare with the \emph{target parameter}, not necessarily $\mu$. If $E(T)=a\theta$, $T/a$ is unbiased when $a\ne0$ is known.
+
+Examples: for $U(0,\theta)$, $\bar X$ estimates $\theta/2$, so $2\bar X$ is unbiased for $\theta$. For Binomial$(m,p)$ data with known $m$, $\bar X/m$ is unbiased for $p$. Among unbiased estimators of the same target, compare variances; lower is better. Unbiasedness does not imply small sampling error.
+\boxend
+
+\boxstart{Ch. 5/6 --- Why the sample variance uses $n-1$}
+For iid data with mean $\mu$ and finite variance $\sigma^2$,
+\[
+\sum_i(X_i-\bar X)^2=\sum_i(X_i-\mu)^2-n(\bar X-\mu)^2.
+\]
+Take expectations: $n\sigma^2-n(\sigma^2/n)=(n-1)\sigma^2$, hence $E(S^2)=\sigma^2$. Dividing by $n$ instead produces bias factor $(n-1)/n$.
+
+This proof needs no normality. $S^2$ unbiased for $\sigma^2$ does \emph{not} make $S$ unbiased for $\sigma$: expectations do not generally commute with square roots.
+\boxend
+
+\boxstart{Ch. 6 --- Uniform extrema: tutorial estimator toolkit}
+For iid $U(0,b)$ data, let $L=\min X_i$, $M=\max X_i$. For $0<x<b$,
+\[
+F_M(x)=(x/b)^n,\quad P(L>x)=(1-x/b)^n,
+\]
+\[
+E(M)=\frac{nb}{n+1},\quad E(L)=\frac{b}{n+1},\quad
+V(M)=V(L)=\frac{nb^2}{(n+1)^2(n+2)}.
+\]
+Derive densities by differentiation and integrate for moments. For $b=\theta$, $(n+1)M/n$ is unbiased with variance $\theta^2/[n(n+2)]$; $2\bar X$ is unbiased with variance $\theta^2/(3n)$. The maximum-based estimator has smaller variance for $n>1$.
+
+\textbf{Linear combinations (Tutorial 9):} two iid $U(0,2\theta)$ observations have $\operatorname{Cov}(L,M)=\theta^2/9$. For $T=aL+bM$ (here $a,b$ are weights),
+\[
+E(T)=\tfrac{2\theta}{3}(a+2b),\quad
+V(T)=\tfrac{2\theta^2}{9}(a^2+ab+b^2).
+\]
+Unbiasedness imposes $a+2b=3/2$; substitute into the variance and minimise the quadratic. The optimum is $a=0,b=3/4$, variance $\theta^2/8$. \warn{Extrema of one sample are dependent.}
+\boxend
+
+\boxstart{Ch. 6 --- Precision and minimum sample size}
+For desired two-sided margin $e>0$ with known/planning SD $\sigma$ and normal/large-sample model,
+\[
+n_{\min}=\left\lceil\left(\frac{z_{\alpha/2}\sigma}{e}\right)^2\right\rceil.
+\]
+If given total interval width $w$, use $e=w/2$. Increasing confidence widens the interval; increasing $n$ narrows it as $1/\sqrt n$; halving the margin requires four times $n$.
+
+Unknown $\sigma$ requires a prior/pilot estimate for planning. For a small-sample t margin, the critical value itself depends on $n$: solve iteratively and check the chosen df. FS p.\,2 supplies the margin as the CI half-width.
+
+\textbf{Example:} 99\% confidence, $\sigma=3.5$, $e=0.5$: $n\ge(2.576\cdot3.5/0.5)^2=325.15$, so choose $326$.
+\boxend
+
+\boxstart{Ch. 6 --- Confidence intervals: use FS p. 2}
+\begin{enumerate}
+\item Identify the target: one mean, independent mean difference, or mean of paired differences.
+\item Check the design, known versus estimated population variances, normality, and each sample size.
+\item Choose the matching FS row and its standard error; find the upper-tail $\alpha/2$ critical value and df if needed.
+\item Compute endpoints, preserving the subtraction order and measurement units; interpret in context.
+\end{enumerate}
+\textbf{Course convention:} large means $n\ge30$; \emph{both} sizes must qualify for independent large-sample formulas. Unknown $\sigma$ with small normal samples uses t. Small non-normal samples are not covered.
+
+\textbf{Interpretation:} $100(1-\alpha)\%$ of repeated-sample intervals cover the fixed parameter. This is not a post-data probability about that parameter, nor coverage of individual observations.
+\boxend
+
+\boxstart{Ch. 6/7 --- Independent means: assumptions first}
+Use FS Section 2, preserving the order $\mu_1-\mu_2$. Known variances with normal populations give exact normal inference; large non-normal samples give an approximation.
+
+\textbf{Unknown variances:} large samples allow the unpooled normal approximation. Equal population variances justify pooling, weighted by each sample's df; use the \emph{square root} of the pooled variance for its SD. Small normal samples with equal variances use pooled t, df $n_1+n_2-2$.
+
+Sample SDs alone do not prove/refute equal population variances. Pool only when justified; FS has no small-sample unequal-variance row.
+\boxend
+
+\boxstart{Ch. 6/7 --- Paired data: analyse the differences}
+Same unit before/after or matched units $\Rightarrow$ define $D_i=X_i-Y_i$. Use FS Section 1 on this \emph{single} sample: $n$ counts pairs; small-sample df is $n-1$.
+
+Compute $s_D$ from the differences, not from the two marginal SDs. Within-pair covariance matters: $V(D)=V(X)+V(Y)-2\operatorname{Cov}(X,Y)$. Different pairs must be independent; for small samples, normality concerns the \emph{differences}.
+
+For $D=$ after $-$ before, improvement means $\mu_D>0$ for scores but $\mu_D<0$ for latency. Reversing $D$ reverses the estimate and alternative; CI $(L,U)$ becomes $(-U,-L)$.
+\boxend
+
+\columnbreak
+% PAGE 2 / COLUMN 3: hypothesis testing and exam application.
+\boxstart{Ch. 7 --- Hypothesis-test answer template}
+\begin{enumerate}
+\item Define the population parameter; state $H_0$ and directional or two-sided $H_1$ \emph{before} examining the result.
+\item State $\alpha$, the assumptions and the chosen FS statistic.
+\item Specify its distribution under $H_0$ and df where needed.
+\item Calculate the observed statistic; obtain a p-value or compare with the appropriate critical value.
+\item Reject or fail to reject $H_0$; conclude about the population in the question's wording and units.
+\end{enumerate}
+For a nonzero hypothesised difference $\delta_0$, subtract it from $\bar x-\bar y$ in the FS numerator. For paired tests use $\bar d-\delta_0$. ``Changed/different'' is two-sided; ``increased/greater'' and ``decreased/less'' specify one tail.
+\boxend
+
+\boxstart{Ch. 7 --- Rejection regions and p-values}
+Let $W$ have the continuous symmetric null distribution (standard normal or t), $G$ its CDF, $w$ the observed statistic, and $q_\gamma$ its upper-tail $\gamma$ critical value.
+\[
+\begin{array}{c|c|c}
+H_1&\text{reject when}&p\text{-value}\\\hline
+\theta>\theta_0&w>q_\alpha&1-G(w)\\
+\theta<\theta_0&w<-q_\alpha&G(w)\\
+\theta\ne\theta_0&|w|>q_{\alpha/2}&2[1-G(|w|)]
+\end{array}
+\]
+Use $z_\gamma$ for normal, $t_{\nu,\gamma}$ for t. The course rule is reject when $p<\alpha$. A statistic in the opposite direction to a one-sided alternative gives a large p-value; do not take its absolute value.
+
+\textbf{Definition:} probability \emph{under $H_0$} of a result at least as extreme in the alternative's direction(s). It is not $P(H_0\mid\text{data})$, the effect size, or the probability of a Type I error after seeing the data.
+\boxend
+
+\boxstart{Ch. 5/7 --- Reading the supplied critical-value tables}
+\begin{itemize}
+\item Normal CDF entries are left-tail areas. Critical-value tables for t, F and chi-squared use right-tail areas: read each heading.
+\item For two-sided normal/t inference, put $\alpha/2$ in \emph{each} tail. For t, select df, not sample size.
+\item If $q_{0.05}<w<q_{0.025}$ for positive $w$, the upper-tail p-value lies between $0.025$ and $0.05$; a two-sided symmetric p-value lies between $0.05$ and $0.10$.
+\item F tables: numerator df across columns, denominator df down rows. Reverse both dfs for a reciprocal.
+\item For untabulated values, report a supported bound or distribution expression. The normal limit approximates t at finite df.
+\end{itemize}
+\boxend
+
+\boxstart{Ch. 7 --- Errors, significance and power}
+\begin{tabularx}{\linewidth}{@{}lXX@{}}
+Reality & Fail to reject $H_0$ & Reject $H_0$\\\hline
+$H_0$ true & Correct & Type I error ($\alpha$)\\
+$H_0$ false & Type II error ($\beta$) & Correct (power $1-\beta$)
+\end{tabularx}
+\textbf{Power is evaluated at a specified true alternative.} Build the rejection region under $H_0$, then compute its probability under that alternative. For a known-SD right-tailed mean test, let $s_e=\sigma/\sqrt n$ and $c=\mu_0+z_\alpha s_e$. At true mean $\mu_1$,
+\[
+\beta(\mu_1)=\Phi\!\left(\frac{c-\mu_1}{s_e}\right),\qquad
+\text{power}=1-\beta(\mu_1).
+\]
+For a two-sided test with acceptance interval $[L,U]$ for $\bar X$, $\beta(\mu_1)=\Phi((U-\mu_1)/s_e)-\Phi((L-\mu_1)/s_e)$. These normal calculations are exact for normal data and approximate under CLT.
+
+At fixed effect and $n$, smaller $\alpha$ generally increases $\beta$. Larger $n$, larger effect or smaller noise generally increases power. \warn{Failing to reject is not proof of equality.}
+\boxend
+
+\boxstart{Ch. 6/7 --- Link confidence intervals to tests}
+A two-sided level-$\alpha$ test rejects exactly when the hypothesised value lies outside the matching $100(1-\alpha)\%$ CI, using the same model and SE. For differences compare with $\delta_0$ (usually 0).
+
+For $\mu_1-\mu_2$, intervals wholly above/below 0 support positive/negative differences; containing 0 does not establish equivalence. The rule does not apply unchanged to one-sided tests. Significance need not imply a practically large effect.
+\boxend
+
+\boxstart{Ch. 6/7 --- Compact worked decisions}
+\textbf{One mean, small normal sample:} $n=7$, $\bar x=10$, $s^2=0.08$. Unknown variance $\Rightarrow$ t, df $6$; for 95\% CI use $t_{6,0.025}=2.447$:
+\[
+10\pm2.447\sqrt{0.08/7}=(9.738,10.262).
+\]
+\textbf{Independent, small, normal, equal variances:} $n_1=12,n_2=10$, means $85,81$, SDs $4,5$. FS pooling gives $s_p^2=20.05$, df $20$; 90\% CI:
+\[
+4\pm1.7247\sqrt{20.05(1/12+1/10)}=(0.693,7.307).
+\]
+\textbf{Paired improvement:} $n=8$, $\bar d=24.25$, $s_D=25.39$, normal differences (after $-$ before). Test $H_0:\mu_D=0$ vs $H_1:\mu_D>0$: $t=24.25/(25.39/\sqrt8)=2.70$, df $7$. Since $2.70>t_{7,0.05}=1.895$, reject at 5\%: evidence of increased population mean.
+\boxend
+
+\boxstart{All chapters --- Final answer checks}
+\textbf{Probability:} support, endpoints, conditioning denominator, units, range $[0,1]$, and independent versus disjoint events.
+\textbf{Statistics:} population/sample SD; mean/sum SE; paired/independent; known/unknown variance; df and tail; subtract the null value; round $n$ up; conclude about the population.
+\boxend
+\end{multicols*}
+\end{document}
