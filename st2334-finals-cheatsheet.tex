@@ -359,7 +359,7 @@ For $P(S^2>c)=\alpha$, set
 $c=\sigma^2\chi^2_{n-1,\alpha}/(n-1)$.
 For $P(S^2<c)=p$, replace the upper-tail index by $1-p$. For $S$ rather than $S^2$, square a positive cutoff first.
 
-\textbf{Example:} $n=6,\sigma^2=4$; $P(S^2>c)=0.05$ gives $c=4(11.07)/5=8.856$.
+\textbf{Example:} $n=6,\sigma^2=4$; $P(S^2>c)=0.05$ gives $c=4(11.07)/5=8.856$. \\
 \warn{$\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$ needs normality; $E(S^2)=\sigma^2$ does not.}
 \boxend
 
@@ -420,7 +420,8 @@ Derive densities by differentiation and integrate for moments. For $b=\theta$, $
 E(T)=\tfrac{2\theta}{3}(a+2b),\quad
 V(T)=\tfrac{2\theta^2}{9}(a^2+ab+b^2).
 \]
-Unbiasedness imposes $a+2b=3/2$; substitute into the variance and minimise the quadratic. The optimum is $a=0,b=3/4$, variance $\theta^2/8$. \warn{Extrema of one sample are dependent.}
+Unbiasedness imposes $a+2b=3/2$; substitute into the variance and minimise the quadratic. The optimum is $a=0,b=3/4$, variance $\theta^2/8$. \\
+\warn{Extrema of one sample are dependent.}
 \boxend
 
 \boxstart{Ch. 6 --- Precision and minimum sample size}
@@ -514,7 +515,8 @@ $H_0$ false & Type II error ($\beta$) & Correct (power $1-\beta$)
 \]
 For a two-sided test with acceptance interval $[L,U]$ for $\bar X$, $\beta(\mu_1)=\Phi((U-\mu_1)/s_e)-\Phi((L-\mu_1)/s_e)$. These normal calculations are exact for normal data and approximate under CLT.
 
-At fixed effect and $n$, smaller $\alpha$ generally increases $\beta$. Larger $n$, larger effect or smaller noise generally increases power. \warn{Failing to reject is not proof of equality.}
+At fixed effect and $n$, smaller $\alpha$ generally increases $\beta$. Larger $n$, larger effect or smaller noise generally increases power. \\
+\warn{Failing to reject is not proof of equality.}
 \boxend
 
 \boxstart{Ch. 6/7 --- Link confidence intervals to tests}
