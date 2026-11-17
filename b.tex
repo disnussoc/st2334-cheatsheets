@@ -83,191 +83,295 @@
 
 \setlength\columnsep{0pt}
 
+\begin{tcolorbox}[title=Probability, width=330pt]
+	\begin{tblr}{
+			cells={mode=dmath},
+			colspec={c|c},
+			leftsep=0pt, rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
+		 &
+		{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
+
+	\end{tblr}
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	\begin{align*}
+		P(A) & = P(A \cap B) + P(A \cap B')          \\
+		     & = P(B)P(A \mid B) + P(B')P(A \mid B')
+	\end{align*}
+
+	\begin{align*}
+		P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
+		            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
+	\end{align*}
+
+	\vspace{\baselineskip}
+	Bayes Theorem: $P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
+	\begin{tblr}{
+			colspec={l|l},
+			leftsep=0pt, rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		Prior: $P(B_k)$
+		 & Posterior: $P(B_k \mid A)$
+		\\
+		Likelihood: $P(A \mid B_k)$
+		 & Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$
+	\end{tblr}
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	\begin{tblr}{
+			cells={mode=dmath},
+			colspec={c|c},
+			leftsep=0pt, rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{aligned}[t]
+			 & \text{Independent:}                       \\
+			 & P(A \cap B) = P(A)P(B)                    \\
+			 & \Leftrightarrow P(B \mid A) = P(B)        \\
+			 & \Leftrightarrow P(A \mid B) = P(A)        \\
+			 & \Rightarrow \text{not mutually exclusive}
+		\end{aligned}
+		 &
+		\begin{aligned}[t]
+			 & \text{Mutually exclusive:}                \\
+			 & A \cap B = \emptyset                      \\
+			 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
+			 & \Rightarrow \text{not independent}
+		\end{aligned}
+	\end{tblr}
+\end{tcolorbox}
+
+\newpage
+
+\begin{tcolorbox}[title=Data, width=465pt]
+	\begin{tblr}{
+			colspec={X[l]|X[l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			Discrete: \\
+			PMF: $f(x) = P(X = x)$ \\
+			CDF: $F(x) = P(X \leq x) = \displaystyle\sum_{u \leq x}{f(u)}$
+
+			Properties:
+			\begin{align*}
+				1 - F(x) & = 1 - P(X \leq x) \\
+				         & = P( X > x)
+			\end{align*}
+
+			\begin{align*}
+				F(b) - F(a) & = P(X \leq b) - P(X \leq a) \\
+				            & = P(a < X \leq b)
+			\end{align*}
+
+			\begin{align*}
+				f(x) & = P(X = x) = P(X \leq x) - P(X < x) \\
+				     & = F(x) - F(x-)
+			\end{align*}
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth}
+			Continuous: \\
+			PDF: $\displaystyle\int_a^b f(x)\dd{x} = P(a \leq X \leq b)$ \\
+			CDF: $F(x) = P(X \leq x) =  \displaystyle\int_{-\infty}^{x}f(t)\dd{t}$
+
+			Properties:
+			\begin{align*}
+				1 - F(x) & = 1 - P(X \leq x) \\
+				         & = P( X \geq x)
+			\end{align*}
+
+			\begin{align*}
+				F'(x) & = \diff{}{x}\displaystyle\int_{-\infty}^{x}f(t)\dd{t} \\
+				      & = f(x)
+			\end{align*}
+		\end{minipage}
+	\end{tblr}
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	\begin{tblr}{
+			colspec={X[4,l]|X[5,l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			Joint Discrete: \\
+			PMF: $f_{X, Y}(x, y) = P(X = x,\ Y = y)$ \\
+			CDF: $\begin{aligned}[t]
+					F_{X, Y}(x, y) & = P(X \leq x,\ Y \leq y)                                     \\
+					               & = \displaystyle\sum_{u \leq x}\sum_{v \leq y} f_{X, Y}(u, v)
+				\end{aligned}$ \\
+			Marginal: $\begin{aligned}[t]
+					f_X(x) & = P(X=x)                             \\
+					       & = \displaystyle\sum_y f_{X, Y}(x, y)
+				\end{aligned}$
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth}
+			Joint Continuous: \\
+			PDF: $\displaystyle\int\int_D f_{X, Y}(x, y)\dd{x}\dd{y} = P((x, y) \in D)$ \\
+			CDF: $\begin{aligned}[t]
+					F_{X, Y}(x, y) & = P(X \leq x,\ Y \leq y)                                                       \\
+					               & = \displaystyle\int_{-\infty}^{x}\int_{-\infty}^{y} f_{X, Y}(u, v)\dd{v}\dd{u}
+				\end{aligned}$ \\
+			Marginal: $f_X(x) = \displaystyle\int_{-\infty}^{\infty}f_{X, Y}(x, y)\dd{y}$
+		\end{minipage}
+	\end{tblr}
+
+	Conditional: $f_{Y \mid X}(y \mid x) = \dfrac{f_{X, Y}(x, y)}{f_X(x)}$, \ $f_{X \mid Y}(x \mid y) = \dfrac{f_{X, Y}(x, y)}{f_Y(y)}$ \\
+	Conditional expectation: $E(Y \mid X=x)=\begin{cases}
+			\displaystyle\sum^y y f_{Y \mid X}(y \mid x) \\[1.5ex]
+			\displaystyle\int y f_{Y \mid X}(y \mid x)\,dy
+		\end{cases}$
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	\begin{tblr}{
+			colspec={X[l]|X[l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			Independent random variables:
+			\begin{align*}
+				 & \Leftrightarrow f_{X,Y}(x,y)=f_X(x)f_Y(y)   \\
+				 & \Leftrightarrow F_{X,Y}(x,y)=F_X(x)F_Y(y)   \\
+				 & \Leftrightarrow f_{Y\mid X}(y\mid x)=f_Y(y) \\
+				 & \Leftrightarrow f_{X\mid Y}(x\mid y)=f_X(x)
+			\end{align*}
+		\end{minipage}
+		\par\vspace{0.5\baselineskip}
+		\begin{minipage}[t]{\linewidth}
+			Independence shortcut: \\
+			Support $R_{X,Y}=R_X\times R_Y$, \\
+			Discrete: PMF table must be non-zero \\
+			Continuous: Integral must be rectangular \\
+			and $f_{X,Y}(x,y)$ can be factorised into \\
+			$C \cdot g_1(x)g_2(y)$ over the support.
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth}
+			Marginals from factorisation: \\
+			$f_X(x) =
+				\begin{cases}
+					C \cdot g_1(x)\displaystyle\sum^y g_2(y) \\[1.5ex]
+					C \cdot g_1(x)\displaystyle\int g_2(y)\,dy
+				\end{cases}$
+
+			\vspace{0.8\baselineskip}
+
+			$f_Y(y) =
+				\begin{cases}
+					C \cdot g_2(y)\displaystyle\sum^x g_1(x) \\[1.5ex]
+					C \cdot g_2(y)\displaystyle\int g_1(x)\,dx
+				\end{cases}$
+		\end{minipage}
+	\end{tblr}
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	$n$-th percentile $p_n$: $\text{CDF}(p_n) = n/100$
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	\begin{tblr}{
+			colspec={X[5,l]|X[9,l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			$\mu_X = E(X) = \begin{cases}
+					\displaystyle\sum^{x}xf(x) \\[1.5ex]
+					\displaystyle\int_{x}xf(x)\dd{x}
+				\end{cases}$ \\
+			$E(g(X)) = \begin{cases}
+					\displaystyle\sum^{x}g(x)f(x) \\[1.5ex]
+					\displaystyle\int_{x}g(x)f(x)\dd{x}
+				\end{cases}$ \\
+			$E(aX + b) = aE(X) + b$ \\
+			$E(X + Y) = E(X) + E(Y)$ \\
+			$E\left(\displaystyle\sum X_i\right) = \displaystyle\sum E(X_i)$
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth}
+			\vspace*{-5ex}
+			$\begin{aligned}[t]
+				{\sigma_X}^2 = \var(X) & = E[(X - \mu_X)^2]                                 \\
+				                                          & = \begin{cases}
+					                                              \displaystyle\sum^{x}(x - \mu_X)^2f(x) \\[1.5ex]
+					                                              \displaystyle\int_{x}(x - \mu_X)^2f(x)\dd{x}
+				                                              \end{cases} \\
+				                                          & = E[X^2] - E[X]^2
+				\end{aligned}$ \\
+			$\var(g(X)) = E[g(X)^2] - E[g(X)]^2$ \\
+			$\var(aX + b) = a^2\var(X)$ \\
+			$\var(X \pm Y) = \var(X) + \var(Y) \pm 2\cov(X, Y)$ \\
+			$\var\left(\displaystyle\sum X_i\right) = \displaystyle\sum \var(X_i) + 2\displaystyle\sum_{m>n} \cov(X_m, X_n)$
+		\end{minipage}
+	\end{tblr}
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	\begin{tblr}{
+			colspec={X[l]|X[l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			$\begin{aligned}[t]
+					\cov(X,Y) & = E[(X - \mu_X)(Y - \mu_Y)]                                                                               \\
+					          & \hspace{-9ex} = \begin{cases}
+						                            \displaystyle\sum^{y}\displaystyle\sum^{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y) \\[1.5ex]
+						                            \displaystyle\int_{y}\displaystyle\int_{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y)\dd{x}\dd{y}
+					                            \end{cases} \\
+					          & \hspace{-9ex} = E[XY] - E[X]E[Y]
+				\end{aligned}$
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth}
+			$\cov(aX+c_1, bY+c_2) = ab\cov(X, Y)$ \\
+			$\cov(X,Y) = \cov(Y,X)$ \\
+			\begin{align*}
+				X \perp Y & \Rightarrow \cov(X,Y)=0                      \\
+				          & \Leftrightarrow \var(X\pm Y)=\var(X)+\var(Y)
+			\end{align*}
+			$\rho(X, Y) = \dfrac{\cov(X, Y)}{\sigma_X\sigma_Y} = \dfrac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}}$
+		\end{minipage}
+	\end{tblr}
+\end{tcolorbox}
+
+\newpage
+
+\begin{tcolorbox}[title=Data]
+	Zipf's law for the $x$-th most popular item: \\
+	PMF: $f(x) = \dfrac{c}{x},\ x\in\{1\ ..\ n\}$
+
+	\vspace{\baselineskip}
+	Benford's law for leading digits: \\
+	PMF: $f(d) = \log_{10}\left(1 + \dfrac{1}{d}\right),\ d\in\{1\ ..\ 9\}$
+\end{tcolorbox}
+
 \begin{multicols*}{5}
-	\begin{tcolorbox}[title=Probability]
-		\begin{tblr}{
-				cells={mode=dmath},
-				colspec={c|c},
-				leftsep=0pt, rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
-			 &
-			{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
-
-		\end{tblr}
-		\vspace*{1pt}\hrule\vspace*{1pt}
-
-		\begin{align*}
-			P(A) & = P(A \cap B) + P(A \cap B')          \\
-			     & = P(B)P(A \mid B) + P(B')P(A \mid B')
-		\end{align*}
-
-		\begin{align*}
-			P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
-			            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
-		\end{align*}
-
-		\vspace{\baselineskip}
-		Bayes Theorem: $P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
-		\begin{tblr}{
-				colspec={l|l},
-				leftsep=0pt, rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			Prior: $P(B_k)$
-			 & Posterior: $P(B_k \mid A)$
-			\\
-			Likelihood: $P(A \mid B_k)$
-			 & Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$
-		\end{tblr}
-
-		\vspace*{1pt}\hrule\vspace*{1pt}
-
-		\begin{tblr}{
-				cells={mode=dmath},
-				colspec={c|c},
-				leftsep=0pt, rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			\begin{aligned}[t]
-				 & \text{Independent:}                       \\
-				 & P(A \cap B) = P(A)P(B)                    \\
-				 & \Leftrightarrow P(B \mid A) = P(B)        \\
-				 & \Leftrightarrow P(A \mid B) = P(A)        \\
-				 & \Rightarrow \text{not mutually exclusive}
-			\end{aligned}
-			 &
-			\begin{aligned}[t]
-				 & \text{Mutually exclusive:}                \\
-				 & A \cap B = \emptyset                      \\
-				 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
-				 & \Rightarrow \text{not independent}
-			\end{aligned}
-		\end{tblr}
-	\end{tcolorbox}
-
-	\newcolumn
-
-	\begin{tcolorbox}[title=Data]
-		Discrete: \\
-		PMF: $f(x) = P(X = x)$ \\
-		CDF: $F(x) = P(X \leq x) = \displaystyle\sum_{u \leq x}{f(u)}$
-
-		\begin{align*}
-			1 - F(x) & = 1 - P(X \leq x) \\
-			         & = P( X > x)
-		\end{align*}
-
-		\begin{align*}
-			F(b) - F(a) & = P(X \leq b) - P(X \leq a) \\
-			            & = P(a < X \leq b)
-		\end{align*}
-
-		\begin{align*}
-			f(x) & = P(X = x) = P(X \leq x) - P(X < x) \\
-			     & = F(x) - F(x-)
-		\end{align*}
-
-		\vspace{\baselineskip}
-		Continuous: \\
-		PDF: $\displaystyle\int_a^b f(x)\dd{x} = P(a \leq X \leq b)$ \\
-		CDF: $F(x) = P(X \leq x) =  \displaystyle\int_{-\infty}^{x}f(t)\dd{t}$
-
-		\begin{align*}
-			1 - F(x) & = 1 - P(X \leq x) \\
-			         & = P( X \geq x)
-		\end{align*}
-
-		\begin{align*}
-			F'(x) & = \diff{}{x}\displaystyle\int_{-\infty}^{x}f(t)\dd{t} \\
-			      & = f(x)
-		\end{align*}
-
-		\vspace{\baselineskip}
-		Joint Discrete: \\
-		PMF: $f_{X, Y}(x, y) = P(X = x,\ Y = y) = P(X = x \cap Y = y)$ \\
-		CDF: $F_{X, Y}(x, y) = P(X \leq x,\ Y \leq y) = \displaystyle\sum_{u \leq x}\sum_{v \leq y} f_{X, Y}(u, v)$ \\
-		Marginal: $f_X(x) = P(X=x) = \displaystyle\sum_y f_{X, Y}(x, y)$
-
-		\vspace{\baselineskip}
-		Joint Continuous: \\
-		PDF: $\displaystyle\int\int_D f_{X, Y}(x, y)\dd{x}\dd{y} = P((x, y) \in D)$ \\
-		CDF: $F_{X, Y}(x, y) = P(X \leq x,\ Y \leq y) = \displaystyle\int_{-\infty}^{x}\int_{-\infty}^{y} f_{X, Y}(u, v)\dd{v}\dd{u}$ \\
-		Marginal: $f_X(x) = \displaystyle\int_{-\infty}^{\infty}f_{X, Y}(x, y)\dd{y}$
-
-		\vspace{\baselineskip}
-		Conditional: $f_{Y \mid X}(y \mid x) = \dfrac{f_{X, Y}(x, y)}{f_X(x)}$
-
-		\vspace{\baselineskip}
-		Independent random variables:
-		\begin{align*}
-			 & \Leftrightarrow f_{X,Y}(x,y)=f_X(x)f_Y(y)   \\
-			 & \Leftrightarrow F_{X,Y}(x,y)=F_X(x)F_Y(y)   \\
-			 & \Leftrightarrow f_{Y\mid X}(y\mid x)=f_Y(y) \\
-			 & \Leftrightarrow f_{X\mid Y}(x\mid y)=f_X(x)
-		\end{align*}
-
-		\vspace{\baselineskip}
-		Independence shortcut: \\
-		Support $R_{X,Y}=R_X\times R_Y$ and
-		$f_{X,Y}(x,y)=C \cdot g_1(x)g_2(y)$ over the support.
-
-		\vspace{\baselineskip}
-		Marginals from factorisation: \\
-		$f_X(x)=C \cdot g_1(x)\displaystyle\sum_{y}g_2(y)$ or $ =C \cdot g_1(x)\displaystyle\int_{y}g_2(y)\,dy$\\
-		$f_Y(y)=C \cdot g_2(y)\displaystyle\sum_{x}g_1(x)$ or $=C \cdot g_2(y)\displaystyle\int_{x}g_1(x)\,dx$
-
-		\vspace{\baselineskip}
-		$n$-th percentile $p_n$: $\text{CDF}(p_n) = n/100$
-
-		\vspace{\baselineskip}
-		$\mu_X = E(X) = \displaystyle\sum_{x}xf(x) \text{ or} =\displaystyle\int_{x}xf(x)\dd{x}$ \\
-		$E(g(X)) = \displaystyle\sum_{x}g(x)f(x) \text{ or} =\displaystyle\int_{x}g(x)f(x)\dd{x}$ \\
-		$E(aX + b) = aE(X) + b$ \\
-		$E(X + Y) = E(X) + E(Y)$ \\
-		$E\left(\displaystyle\sum X_i\right) = \displaystyle\sum E(X_i)$
-
-		\begin{align*}
-		{\sigma_X}^2 = \var(X) & = E[(X - \mu_X)^2]                                                                                \\
-		                                      & = \displaystyle\sum_{x}(x - \mu_X)^2f(x) \text{ or} =\displaystyle\int_{x}(x - \mu_X)^2f(x)\dd{x} \\
-		                                      & = E[X^2] - E[X]^2
-		\end{align*}
-		$\var(aX + b) = a^2\var(X)$ \\
-		$\var(X \pm Y) = \var(X) + \var(Y) \pm 2\cov(X, Y)$ \\
-		$\var\left(\displaystyle\sum X_i\right) = \displaystyle\sum \var(X_i) + 2\displaystyle\sum_{m>n} \cov(X_m, X_n)$
-
-		\begin{align*}
-			\cov(X,Y) & = E[(X - \mu_X)(Y - \mu_Y)]                                                                 \\
-			          & = \displaystyle\sum_{y}\displaystyle\sum_{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y)             \\
-			\text{or} & = \displaystyle\int_{y}\displaystyle\int_{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y)\dd{x}\dd{y} \\
-			          & = E[XY] - E[X]E[Y]
-		\end{align*}
-		$\cov(aX+c_1, bY+c_2) = ab\cov(X, Y)$ \\
-		$\cov(X,Y) = \cov(Y,X)$ \\
-		$\cov(X + Y, Z) = \cov(X, Z) + \cov(Y, Z)$
-		\begin{align*}
-			X \perp Y & \Rightarrow \cov(X,Y)=0                  \\
-			          & \Rightarrow \var(X\pm Y)=\var(X)+\var(Y)
-		\end{align*}
-
-		\vspace{\baselineskip}
-		$\rho(X, Y) = \dfrac{\cov(X, Y)}{\sigma_X\sigma_Y}$
-
-		\vspace{\baselineskip}
-		Zipf's law for the $x$-th most popular item: \\
-		PMF: $f(x) = \dfrac{c}{x},\ x\in\{1\ ..\ n\}$
-
-		\vspace{\baselineskip}
-		Benford's law for leading digits: \\
-		PMF: $f(d) = \log_{10}\left(1 + \dfrac{1}{d}\right),\ d\in\{1\ ..\ 9\}$
-	\end{tcolorbox}
-
-	\newcolumn
-
 	\begin{tcolorbox}[title=Data]
 		$\overline{X} = \dfrac{1}{n}\displaystyle\sum X_i$
 
