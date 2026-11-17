@@ -387,7 +387,8 @@
 
 			\vspace{\baselineskip}
 			$\mu_{\overline{X}} = E(\overline{X}) = E(X) = \mu$ \\
-			$\sigma_{\overline{X}}^2 = \var(\overline{X}) = \sigma^2/n$
+			$\sigma_{\overline{X}}^2 = \var(\overline{X}) = \sigma^2/n$ \\
+			$\mathrm{SE}(\overline{X}) = \sigma_{\overline{X}} = \sigma/\sqrt{n}$
 		\end{minipage}
 		 &
 		\begin{minipage}[t]{\linewidth}
@@ -403,18 +404,24 @@
 
 	\vspace*{1pt}\hrule\vspace*{1pt}
 	\begin{tblr}{
-			colspec={X[3, l]|X[4, l]},
+			colspec={X[4, l]|X[3, l]},
 			leftsep=0pt,
 			rightsep=0pt,
 			column{1}={rightsep=5pt},
 			column{2}={leftsep=5pt},
 		}
-		LLN: As $n$ increases, $\overline{X} \xrightarrow{p} \mu$
+		\begin{tabular}[t]{@{}l@{}}
+			CLT: As $n$ increases, $\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}} \xrightarrow{d} \N(0, 1)$ \\
+			$\overline{X} \approx \N(\mu, \sigma^2/n),\ \displaystyle\sum^n X_i \approx \N(n\mu, n\sigma^2)$
+		\end{tabular}
 		 &
-		CLT: As $n$ increases, $\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}} \xrightarrow{d} \N(0, 1)$
+		\begin{tabular}[t]{@{}l@{}}
+			LLN: As $n$ increases, $\overline{X} \xrightarrow{p} \mu$ \\[0.5em]
+			i.e. $\forall\varepsilon\ \displaystyle P\left(|\overline{X}-\mu|>\varepsilon\right)\to 0$
+		\end{tabular}
 	\end{tblr}
-	for i.i.d sample with \hlfancy{lightgray}{finite} mean and variance. \\
-	If the population is normal, then \hlfancy{lightgray}{CLT is exact} instead of just converging.
+	for i.i.d sample from \hlfancy{lightgray}{any distribution} with \hlfancy{lightgray}{finite} mean and variance. \\
+	If the population is normal, then \hlfancy{lightgray}{CLT is exact} instead of just approximation.
 
 	\tcbsubtitle{$\chi^2$ Distribution}
 	Given i.i.d. $X_i \sim \N(0, 1)$, \hlfancytall{lightgray}{$U = \displaystyle\sum^n X_i^2 \sim \chi^2(n)$} \\
