@@ -84,52 +84,70 @@
 \setlength\columnsep{0pt}
 
 \begin{multicols*}{5}
-	\begin{tcolorbox}[title=Data]
-		${^nP_k} = \dfrac{n!}{(n-k)!} = {^nC_k} \times k!$
+	\begin{tcolorbox}[title=Probability]
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
+			 &
+			{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
 
-		${^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!$
+		\end{tblr}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
 		\begin{align*}
 			P(A) & = P(A \cap B) + P(A \cap B')          \\
 			     & = P(B)P(A \mid B) + P(B')P(A \mid B')
 		\end{align*}
 
-		\vspace{\baselineskip}
-		$P(A \cup B) = P(A) + P(B) - P(A \cap B)$
 		\begin{align*}
-			P(A \cup B \cup C) = & \: P(A) + P(B) + P(C)                                 \\
-			                     & \mathord{-}\: P(A \cap B) - P(B \cap C) - P(A \cap C) \\
-			                     & \mathord{+}\: P(A \cap B \cap C)
-		\end{align*}
-
-		\begin{align*}
-			P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)}                                \\
-			            & = \dfrac{P(B)P(A \mid B)}{P(A)}                            \\
+			P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
 			            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
 		\end{align*}
 
 		\vspace{\baselineskip}
-		Bayes Theorem: \\
-		$P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
-		Prior: $P(B_k)$ \\
-		Likelihood: $P(A \mid B_k)$ \\
-		Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$ \\
-		Posterior: $P(B_k \mid A)$
+		Bayes Theorem: $P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
+		\begin{tblr}{
+				colspec={l|l},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			Prior: $P(B_k)$
+			 & Posterior: $P(B_k \mid A)$
+			\\
+			Likelihood: $P(A \mid B_k)$
+			 & Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$
+		\end{tblr}
 
-		\begin{align*}
-			 & \text{Independent:}                       \\
-			 & P(A \cap B) = P(A)P(B)                    \\
-			 & \Leftrightarrow P(B \mid A) = P(B)        \\
-			 & \Leftrightarrow P(A \mid B) = P(A)        \\
-			 & \Rightarrow \text{not mutually exclusive}
-		\end{align*}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-		\begin{align*}
-			 & \text{Mutually exclusive:}                \\
-			 & A \cap B = \emptyset                      \\
-			 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
-			 & \Rightarrow \text{not independent}
-		\end{align*}
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{aligned}[t]
+				 & \text{Independent:}                       \\
+				 & P(A \cap B) = P(A)P(B)                    \\
+				 & \Leftrightarrow P(B \mid A) = P(B)        \\
+				 & \Leftrightarrow P(A \mid B) = P(A)        \\
+				 & \Rightarrow \text{not mutually exclusive}
+			\end{aligned}
+			 &
+			\begin{aligned}[t]
+				 & \text{Mutually exclusive:}                \\
+				 & A \cap B = \emptyset                      \\
+				 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
+				 & \Rightarrow \text{not independent}
+			\end{aligned}
+		\end{tblr}
 	\end{tcolorbox}
 
 	\newcolumn
