@@ -373,6 +373,7 @@
 \end{tcolorbox}
 
 \newpage
+
 \begin{tcolorbox}[title=Sampling Distributions, width=390pt]
 	\begin{tblr}{
 			colspec={X[3, l]|X[5, l]},
@@ -514,137 +515,153 @@
 	Compare with \hlfancy{lightgray}{$F(n_1 - 1, n_2 - 1)$} critical value table to reject assumption.
 \end{tcolorbox}
 
-\begin{multicols*}{5}
-	\begin{tcolorbox}[title=Data]
-		\includegraphics[width=\linewidth]{normal-upper-tail.pdf} \\
-		\includegraphics[width=\linewidth]{chi-square-upper-tail.pdf}\\
-		\includegraphics[width=\linewidth]{t-upper-tail.pdf}\\
-		\includegraphics[width=\linewidth]{f-upper-tail.pdf}
+\newpage
 
-		Before computing, the \hlfancy{lightgray}{CI procedure has probability $(1-\alpha)$ of capturing $\mu$.}
-		However, after a CI is computed, $\mu$ either lies in it or it does not.
-		Thus, we call it a \hlfancy{lightgray}{$100*(1-\alpha)\%$ CI}, and we are \hlfancy{lightgray}{$100*(1-\alpha)\%$ confident} a computed CI contains $\mu$,
-		\hlfancy{lightgray}{not that there is probability $(1-\alpha)$} a computed CI contains $\mu$.
+\begin{tcolorbox}[title=Data, width=550pt]
+	\includegraphics[width=.49\linewidth]{normal-upper-tail.pdf}
+	\includegraphics[width=.49\linewidth]{chi-square-upper-tail.pdf} \\
+	\includegraphics[width=.49\linewidth]{t-upper-tail.pdf}
+	\includegraphics[width=.49\linewidth]{f-upper-tail.pdf} \\
+	Upper-tail critical value at significance $\alpha$ is an $x$-axis value, $z_\alpha$, $t_{n; \alpha}$, $\chi^2(n; \alpha)$, or $F(m, n; \alpha)$
 
-		General form for test statistic: $\dfrac{\text{sample val} - \text{population val}}{SE}$ \\
-		General form for CI: $\text{sample val} \pm \text{critical value}\times\text{SE}$
+	\vspace*{1pt}\hrule\vspace*{1pt}
 
-		Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
-		\begin{tblr}{
-				colspec={|c|c|c|c|c|c|c|},
-				hlines,
-				rows={valign=m},
-			}
-			Population & $\sigma$; $n$
-			           & SE
-			           & \shortstack{Test statistic\\under $H_0$}
-			           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate $E$}
-			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                    \\
+	General form for test statistic: \hlfancytall{lightgray}{$\dfrac{\text{sample val} - \text{population val}}{SE}$}\\
+	General form for CI: \hlfancy{lightgray}{$\text{sample val} \pm (\text{critical value}\times\text{SE})$}
 
-			Normal     & \shortstack{Known;\\Any}
-			           & $\dfrac{\sigma}{\sqrt{n}}$
-			           & $Z=\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
-			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-			           & $\displaystyle\left\lceil
-				             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
-				             \right\rceil$                                                \\
+	\vspace{\baselineskip}
+	Before computing, the \hlfancy{lightgray}{CI procedure has probability $(1-\alpha)$ of capturing $\mu$.}
+	However, after a CI is computed, $\mu$ either lies in it or it does not.
+	Thus, we call it a \hlfancy{lightgray}{$100*(1-\alpha)\%$ CI}, and we are \hlfancy{lightgray}{$100*(1-\alpha)\%$ confident} a computed CI contains $\mu$,
+	\hlfancy{lightgray}{not that there is probability $(1-\alpha)$} a computed CI contains $\mu$.
 
-			Any        & \shortstack{Known;\\Large}
-			           & $\dfrac{\sigma}{\sqrt{n}}$
-			           & $Z\approx\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
-			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-			           & $\displaystyle\left\lceil
-				             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
-				             \right\rceil$                                                \\
+	\vspace{\baselineskip}
+	Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
+	\begin{tblr}{
+			colspec={|c|c|c|c|c|c|c|},
+			hlines,
+			rows={valign=m},
+		}
+		Population & $\sigma$; $n$
+		           & SE
+		           & \shortstack{Test statistic\\under $H_0$}
+		           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate $E$}
+		           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                    \\
 
-			Normal     & \shortstack{Unknown;\\Small}
-			           & $\dfrac{S}{\sqrt{n}}$
-			           & $T=\dfrac{\overline X-\mu_0}{S/\sqrt n}$
-			           & $\overline x\pm t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
-			           & $E = t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
-			           & $\displaystyle\left\lceil
-				             \left(\dfrac{t_{n-1;\alpha/2}\cdot s}{E_0}\right)^2
-				             \right\rceil$                                                 \\
+		Normal     & \shortstack{Known;\\Any}
+		           & $\dfrac{\sigma}{\sqrt{n}}$
+		           & $Z=\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
+		           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+		           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+		           & $\displaystyle\left\lceil
+			             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
+			             \right\rceil$                                                \\
 
-			Any        & \shortstack{Unknown;\\Large}
-			           & $\dfrac{S}{\sqrt{n}}$
-			           & $Z\approx\dfrac{\overline X-\mu_0}{S/\sqrt n}$
-			           & $\overline x\pm z_{\alpha/2}\dfrac{s}{\sqrt n}$
-			           & $E = z_{\alpha/2}\dfrac{s}{\sqrt n}$
-			           & $\displaystyle\left\lceil
-				             \left(\dfrac{z_{\alpha/2}\cdot s}{E_0}\right)^2
-				             \right\rceil$
-		\end{tblr}
+		Any        & \shortstack{Known;\\Large}
+		           & $\dfrac{\sigma}{\sqrt{n}}$
+		           & $Z\approx\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
+		           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+		           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+		           & $\displaystyle\left\lceil
+			             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
+			             \right\rceil$                                                \\
 
-		Independent two-sample, \hlfancy{lightgray}{$H_0:\mu_1-\mu_2=\delta_0$}: \\
-		\begin{tblr}{
-				colspec={|c|c|c|c|c|},
-				hlines,
-				rows={valign=m},
-			}
-			Variances
-			 & Conditions
-			 & SE
-			 & Test statistic under $H_0$
-			 & $(1-\alpha)$ CI for $\mu_1-\mu_2$                                  \\
+		Normal     & \shortstack{Unknown;\\Small}
+		           & $\dfrac{S}{\sqrt{n}}$
+		           & $T=\dfrac{\overline X-\mu_0}{S/\sqrt n}$
+		           & $\overline x\pm t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
+		           & $E = t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
+		           & $\displaystyle\left\lceil
+			             \left(\dfrac{t_{n-1;\alpha/2}\cdot s}{E_0}\right)^2
+			             \right\rceil$                                                 \\
 
-			\shortstack{Known,\\unequal}
-			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
-			 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
-			 & $\displaystyle
-				   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-				   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
-			 & $\displaystyle
-				   (\overline{x}_1-\overline{x}_2)\pm
-				   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
+		Any        & \shortstack{Unknown;\\Large}
+		           & $\dfrac{S}{\sqrt{n}}$
+		           & $Z\approx\dfrac{\overline X-\mu_0}{S/\sqrt n}$
+		           & $\overline x\pm z_{\alpha/2}\dfrac{s}{\sqrt n}$
+		           & $E = z_{\alpha/2}\dfrac{s}{\sqrt n}$
+		           & $\displaystyle\left\lceil
+			             \left(\dfrac{z_{\alpha/2}\cdot s}{E_0}\right)^2
+			             \right\rceil$
+	\end{tblr}
 
-			\shortstack{Known,\\unequal}
-			 & \shortstack{Normal;\\any $n_1,n_2$}
-			 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
-			 & $\displaystyle
-				   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-				   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
-			 & $\displaystyle
-				   (\overline{x}_1-\overline{x}_2)\pm
-				   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
+	\vspace{\baselineskip}
+	Independent two-sample, \hlfancy{lightgray}{$H_0:\mu_1-\mu_2=\delta_0$}: \\
+	\begin{tblr}{
+			colspec={|c|c|c|c|c|},
+			hlines,
+			rows={valign=m},
+		}
+		Variances
+		 & Conditions
+		 & SE
+		 & Test statistic under $H_0$
+		 & $(1-\alpha)$ CI for $\mu_1-\mu_2$                                  \\
 
-			\shortstack{Unknown,\\unequal}
-			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
-			 & $\sqrt{\dfrac{S_1^2}{n_1}+\dfrac{S_2^2}{n_2}}$
-			 & $\displaystyle
-				   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-				   {\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}$
-			 & $\displaystyle
-				   (\overline{x}_1-\overline{x}_2)\pm
-				   z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$           \\
+		\shortstack{Known,\\unequal}
+		 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+		 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
+		 & $\displaystyle
+			   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+			   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
+		 & $\displaystyle
+			   (\overline{x}_1-\overline{x}_2)\pm
+			   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
 
-			\shortstack{Unknown,\\equal}
-			 & \shortstack{Normal;\\$n_1,n_2<30$}
-			 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
-			 & $\displaystyle
-				   T=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-				   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
-			 & $\displaystyle
-				   (\overline{x}_1-\overline{x}_2)\pm
-				   t_{n_1+n_2-2;\alpha/2}\,
-				   s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$                            \\
+		\shortstack{Known,\\unequal}
+		 & \shortstack{Normal;\\any $n_1,n_2$}
+		 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
+		 & $\displaystyle
+			   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+			   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
+		 & $\displaystyle
+			   (\overline{x}_1-\overline{x}_2)\pm
+			   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
 
-			\shortstack{Unknown,\\equal}
-			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
-			 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
-			 & $\displaystyle
-				   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-				   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
-			 & $\displaystyle
-				   (\overline{x}_1-\overline{x}_2)\pm
-				   z_{\alpha/2}\,s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
-		\end{tblr}
+		\shortstack{Unknown,\\unequal}
+		 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+		 & $\sqrt{\dfrac{S_1^2}{n_1}+\dfrac{S_2^2}{n_2}}$
+		 & $\displaystyle
+			   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+			   {\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}$
+		 & $\displaystyle
+			   (\overline{x}_1-\overline{x}_2)\pm
+			   z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$           \\
 
-		where \hlfancytall{lightgray}{$s_p^2= \dfrac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$} is a pooled estimate of the variance
+		\shortstack{Unknown,\\equal}
+		 & \shortstack{Normal;\\$n_1,n_2<30$}
+		 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
+		 & $\displaystyle
+			   T=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+			   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
+		 & $\displaystyle
+			   (\overline{x}_1-\overline{x}_2)\pm
+			   t_{n_1+n_2-2;\alpha/2}\,
+			   s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$                            \\
 
-		Dependent two-sample: single sample of paired differences \hlfancy{lightgray}{$D_i = X_i - Y_i$}, \hlfancy{lightgray}{$H_0: \mu_D = \delta_0$} \\
+		\shortstack{Unknown,\\equal}
+		 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+		 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
+		 & $\displaystyle
+			   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+			   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
+		 & $\displaystyle
+			   (\overline{x}_1-\overline{x}_2)\pm
+			   z_{\alpha/2}\,s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
+	\end{tblr} \\
+	where \hlfancytall{lightgray}{$s_p^2= \dfrac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$} is a pooled estimate of the population variance
+
+	\vspace{\baselineskip}
+	Dependent two-sample: single sample of paired differences
+	\hlfancy{lightgray}{$D_i = X_i - Y_i$},
+	\hlfancy{lightgray}{$H_0: \mu_D = \delta_0$} \\
+	\begin{tblr}{
+			colspec={X[l]|X[l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
 		\begin{tblr}{
 				colspec={|c|c|c|},
 				hlines,
@@ -652,27 +669,30 @@
 			}
 			Conditions
 			 & \shortstack{Test statistic\\under $H_0$}
-			 & $(1-\alpha)$ CI for $\mu_D$                          \\
-
-			\shortstack{Small sample;\\ normal}
-			 & $\displaystyle
-				   T=\frac{\overline D-\delta_0}{S_D/\sqrt n}$
-			 & $\displaystyle
-				   \overline d\pm t_{n-1;\alpha/2}\frac{s_D}{\sqrt n}$ \\
-
+			 & $(1-\alpha)$ CI for $\mu_D$                                        \\
+			\shortstack{Small sample;\\\ normal}
+			 & $\displaystyle T=\frac{\overline D-\delta_0}{S_D/\sqrt n}$
+			 & $\displaystyle \overline d\pm t_{n-1;\alpha/2}\frac{s_D}{\sqrt n}$ \\
 			Large sample
-			 & $\displaystyle
-				   Z\approx\frac{\overline D-\delta_0}{S_D/\sqrt n}$
-			 & $\displaystyle
-				   \overline d\pm z_{\alpha/2}\frac{s_D}{\sqrt n}$
+			 & $\displaystyle Z\approx\frac{\overline D-\delta_0}{S_D/\sqrt n}$
+			 & $\displaystyle \overline d\pm z_{\alpha/2}\frac{s_D}{\sqrt n}$
 		\end{tblr}
-		\begin{align*}
-			\hlfancymath{lightgray}{\overline{D}} & = \dfrac{\sum(X_i - Y_i)}{n}                              \\
-			                                      & = \dfrac{\sum X_i}{n} - \dfrac{\sum Y_i}{n}               \\
-			                                      & \hlfancymath{lightgray}{ = \overline{X} - \overline{Y{}}}
-		\end{align*}
+		 &
+		$\begin{aligned}[t]
+				\hlfancymath{lightgray}{\overline{D}} & = \dfrac{\sum(X_i - Y_i)}{n} = \dfrac{\sum X_i}{n} - \dfrac{\sum Y_i}{n} \\
+				                                      & \hlfancymath{lightgray}{= \overline{X} - \overline{Y{}}}
+			\end{aligned}$
+	\end{tblr}
 
-		Hypothesis testing: \\
+	\vspace{\baselineskip}
+	Hypothesis testing: \\
+	\begin{tblr}{
+			colspec={X[7,l]|X[3,l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
 		\begin{tblr}{
 				colspec={|c|c|c|c|},
 				hlines,
@@ -681,42 +701,51 @@
 			Test
 			 & Hypotheses
 			 & \shortstack{Reject $H_0$ if}
-			 & \shortstack{$p$-value (area under graph)}                      \\
-
+			 & \shortstack{$p$-value (area under graph)}                          \\
 			Two-sided
 			 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
 			 & $\displaystyle |q_{\mathrm{obs}}|>q_{\alpha/2}$
-			 & $\displaystyle
-				   2{*}P(Q\ge |q_{\mathrm{obs}}|\mid \theta = \theta_0)$         \\
-
+			 & $\displaystyle 2*P(Q\ge |q_{\mathrm{obs}}|\mid \theta = \theta_0)$ \\
 			Left-tailed
 			 & \shortstack{$H_0:\theta\ge\theta_0$\\$H_1:\theta<\theta_0$}
 			 & $\displaystyle q_{\mathrm{obs}}<-q_\alpha$
-			 & $\displaystyle P(Q\le q_{\mathrm{obs}}\mid \theta = \theta_0)$ \\
-
+			 & $\displaystyle P(Q\le q_{\mathrm{obs}}\mid \theta = \theta_0)$     \\
 			Right-tailed
 			 & \shortstack{$H_0:\theta\le\theta_0$\\$H_1:\theta>\theta_0$}
 			 & $\displaystyle q_{\mathrm{obs}}>q_\alpha$
 			 & $\displaystyle P(Q\ge q_{\mathrm{obs}}\mid \theta = \theta_0)$
 		\end{tblr}
-		$\theta$ is the population parameter \\
-		$q_\mathrm{obs}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$} \\
-		$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
+		 &
+		\begin{minipage}[t]{\linewidth} \vspace*{-4em}
+			$\theta$ is the population parameter \\
+			$q_{\mathrm{obs}}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$} \\
+			$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
+		\end{minipage}
+	\end{tblr}
 
-		\begin{tabular}{ | c | c | c | }
+	\begin{tblr}{
+			colspec={X[8, l]|X[9, l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{tabular}{|c|c|c|}
 			\hline
-			 & $H_0$ not rejected        & $H_0$ rejected \\ \hline
-			$H_0$ true
-			 & $\checkmark$ ($1-\alpha$)
-			 & Type I error ($\alpha$)                    \\ \hline
-			$H_0$ false
-			 & Type II error ($\beta$)
-			 & $\checkmark$ ($1-\beta$)                   \\ \hline
+			            & $H_0$ not rejected        & $H_0$ rejected           \\ \hline
+			$H_0$ true  & $\checkmark$ ($1-\alpha$) & Type I error ($\alpha$)  \\ \hline
+			$H_0$ false & Type II error ($\beta$)   & $\checkmark$ ($1-\beta$) \\ \hline
 		\end{tabular}
+		 &
+		\begin{minipage}[t]{\linewidth} \vspace*{-2em}
+			$P(\text{Type I error}) = P(H_0 \text{ rejected} \mid H_0 \text{ true}) = \alpha$ \\
+			$P(\text{Type II error}) = P(H_0 \text{ not rejected} \mid H_0 \text{ false}) = \beta$ \\
+			$\text{Power} = P(H_0 \text{ rejected} \mid H_0 \text{ false}) = 1 - \beta$
+		\end{minipage}
+	\end{tblr}
+\end{tcolorbox}
 
-		$P(\text{Type I error}) = P(H_0 \text{ rejected}  \mid  H_0 \text{ true}) = \alpha$ \\
-		$P(\text{Type II error}) = P(H_0 \text{ not rejected}  \mid  H_0 \text{ false}) = \beta$ \\
-		$\text{Power} = P(H_0 \text{ rejected}  \mid  H_0 \text{ false}) = 1 - \beta$
-	\end{tcolorbox}
+\begin{multicols*}{5}
+	t
 \end{multicols*}
 \end{document}
