@@ -273,7 +273,7 @@
 		\noindent
 		\includegraphics[width=\linewidth]{chi_squares.pdf}
 
-		$\chi^2(m) \perp \chi^2(n) \Rightarrow \chi^2(m) + \chi^2(n) \sim \chi^2(m + n)$ \\
+		Given independent $\chi^2(m)$ and $\chi^2(n)$, $\chi^2(m) + \chi^2(n) \sim \chi^2(m + n)$ \\
 		$\dfrac{X_i - \mu}{\sigma} \sim \N(0, 1) \Rightarrow \displaystyle\sum^n\left(\dfrac{X_i - \mu}{\sigma}\right)^2 = \dfrac{\sum (X_i - \mu)^2}{\sigma^2} \sim \chi^2(n)$
 		\begin{align*}
 			\hlfancymath{lightgray}{\dfrac{S^2(n-1)}{\sigma^2}}
@@ -291,7 +291,7 @@
 		Compare with \hlfancytall{lightgray}{$\chi^2(n-1)$} critical value table to reject assumption.
 
 		\vspace{\baselineskip}
-		Given independent $Z \sim \N(0, 1)$ and $U \sim \chi^2(n)$,
+		Given independent $Z \sim \N(0, 1)$ and $U \sim \chi^2(n)$, \\
 		\hlfancytall{lightgray}{$T = \dfrac{Z}{\sqrt{U/n}} \sim \tdist(n)$} \\
 		$E(T) = 0$ \\
 		$\var(T) = \dfrac{n}{n-2}$ \\
