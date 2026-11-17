@@ -303,7 +303,7 @@
 
 		\begin{align*}
 			P(S^2 \geq c) & = P\left(\dfrac{S^2(n-1)}{\sigma^2} \geq \dfrac{c(n-1)}{\sigma^2}\right) \\
-			           & = P\left(\chi^2(n-1) \geq \dfrac{c(n-1)}{\sigma^2}\right)
+			              & = P\left(\chi^2(n-1) \geq \dfrac{c(n-1)}{\sigma^2}\right)
 		\end{align*}
 		Assuming $\sigma = \sigma_0$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2(n-1)}{\sigma^2_0}$} \\
 		Compare with \hlfancytall{lightgray}{$\chi^2(n-1)$} critical value table to reject assumption.
@@ -335,11 +335,11 @@
 		Given $F_1 \sim F(m, n)$, $F_2 = \dfrac{1}{F_1} \sim F(n, m)$
 
 		\begin{align*}
-			 & P(F_1 \geq F(m, n; \alpha)) = \alpha                                                     \\
-			 & \Rightarrow P(\frac{1}{F_1} \leq \frac{1}{F(m, n; \alpha)}) = \alpha                     \\
-			 & \Rightarrow P(F_2 \leq \frac{1}{F(m, n; \alpha)}) = \alpha                               \\
-			 & \Rightarrow 1 - P(F_2 \geq \frac{1}{F(m, n; \alpha)}) = \alpha                           \\
-			 & \Rightarrow P(F_2 \geq \frac{1}{F(m, n; \alpha)}) = 1 - \alpha                           \\
+			 & P(F_1 \geq F(m, n; \alpha)) = \alpha                                                  \\
+			 & \Rightarrow P(\frac{1}{F_1} \leq \frac{1}{F(m, n; \alpha)}) = \alpha                  \\
+			 & \Rightarrow P(F_2 \leq \frac{1}{F(m, n; \alpha)}) = \alpha                            \\
+			 & \Rightarrow 1 - P(F_2 \geq \frac{1}{F(m, n; \alpha)}) = \alpha                        \\
+			 & \Rightarrow P(F_2 \geq \frac{1}{F(m, n; \alpha)}) = 1 - \alpha                        \\
 			 & \Rightarrow\!\hlfancymath{lightgray}{F(n, m; 1 - \alpha) = \frac{1}{F(m, n; \alpha)}}
 		\end{align*}
 
@@ -384,7 +384,7 @@
 			           & SE
 			           & \shortstack{Test statistic\\under $H_0$}
 			           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate $E$}
-			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                        \\
+			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                    \\
 
 			Normal     & \shortstack{Known;\\Any}
 			           & $\dfrac{\sigma}{\sqrt{n}}$
@@ -526,7 +526,7 @@
 			Test
 			 & Hypotheses
 			 & \shortstack{Reject $H_0$ if}
-			 & \shortstack{$p$-value (area under graph)}                                         \\
+			 & \shortstack{$p$-value (area under graph)}                      \\
 
 			Two-sided
 			 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
