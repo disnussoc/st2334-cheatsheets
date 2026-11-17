@@ -373,9 +373,9 @@
 \end{tcolorbox}
 
 \newpage
-\begin{tcolorbox}[title=Data, width=390pt]
+\begin{tcolorbox}[title=Sampling Distributions, width=390pt]
 	\begin{tblr}{
-			colspec={X[4, l]|X[5, l]},
+			colspec={X[3, l]|X[5, l]},
 			leftsep=0pt,
 			rightsep=0pt,
 			column{1}={rightsep=5pt},
@@ -386,7 +386,7 @@
 
 			\vspace{\baselineskip}
 			$\mu_{\overline{X}} = E(\overline{X}) = E(X) = \mu$ \\
-			$\sigma_{\overline{X}}^2 = \var(\overline{X}) = \dfrac{\var(X)}{n} = \sigma^2/n$
+			$\sigma_{\overline{X}}^2 = \var(\overline{X}) = \sigma^2/n$
 		\end{minipage}
 		 &
 		\begin{minipage}[t]{\linewidth}
@@ -401,10 +401,19 @@
 	\end{tblr}
 
 	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	LLN: $n \to \infty \Rightarrow \overline{X} \xrightarrow{p} \mu$ \\
-	CLT: $n \to \infty \Rightarrow \dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}} \xrightarrow{d} \N(0, 1)$
-	for i.i.d with finite mean and variance
+	\begin{tblr}{
+			colspec={X[3, l]|X[4, l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		LLN: As $n$ increases, $\overline{X} \xrightarrow{p} \mu$
+		 &
+		CLT: As $n$ increases, $\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}} \xrightarrow{d} \N(0, 1)$
+	\end{tblr}
+	for i.i.d sample with \hlfancy{lightgray}{finite} mean and variance. \\
+	If the population is normal, then \hlfancy{lightgray}{CLT is exact} instead of just converging.
 
 	\tcbsubtitle{$\chi^2$ Distribution}
 	Given i.i.d. $X_i \sim \N(0, 1)$, \hlfancytall{lightgray}{$U = \displaystyle\sum^n X_i^2 \sim \chi^2(n)$} \\
