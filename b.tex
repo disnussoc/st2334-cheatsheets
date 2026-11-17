@@ -355,16 +355,18 @@
 
 		Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
 		\begin{tblr}{
-				colspec={|c|c|c|c|c|c|},
+				colspec={|c|c|c|c|c|c|c|},
 				hlines,
 				rows={valign=m},
 			}
 			Population & $\sigma$; $n$
+			           & SE
 			           & \shortstack{Test statistic\\under $H_0$}
 			           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate $E$}
-			           & \shortstack{$n$ for given\\$E$ and $\alpha$}                                                        \\
+			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                        \\
 
 			Normal     & \shortstack{Known;\\Any}
+			           & $\dfrac{\sigma}{\sqrt{n}}$
 			           & $Z=\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
 			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
 			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
@@ -373,6 +375,7 @@
 				             \right\rceil$                                                \\
 
 			Any        & \shortstack{Known;\\Large}
+			           & $\dfrac{\sigma}{\sqrt{n}}$
 			           & $Z\approx\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
 			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
 			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
@@ -381,6 +384,7 @@
 				             \right\rceil$                                                \\
 
 			Normal     & \shortstack{Unknown;\\Small}
+			           & $\dfrac{S}{\sqrt{n}}$
 			           & $T=\dfrac{\overline X-\mu_0}{S/\sqrt n}$
 			           & $\overline x\pm t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
 			           & $E = t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
@@ -389,6 +393,7 @@
 				             \right\rceil$                                                 \\
 
 			Any        & \shortstack{Unknown;\\Large}
+			           & $\dfrac{S}{\sqrt{n}}$
 			           & $Z\approx\dfrac{\overline X-\mu_0}{S/\sqrt n}$
 			           & $\overline x\pm z_{\alpha/2}\dfrac{s}{\sqrt n}$
 			           & $E = z_{\alpha/2}\dfrac{s}{\sqrt n}$
@@ -399,17 +404,19 @@
 
 		Independent two-sample, \hlfancy{lightgray}{$H_0:\mu_1-\mu_2=\delta_0$}: \\
 		\begin{tblr}{
-				colspec={|c|c|c|c|},
+				colspec={|c|c|c|c|c|},
 				hlines,
 				rows={valign=m},
 			}
 			Variances
 			 & Conditions
+			 & SE
 			 & Test statistic under $H_0$
 			 & $(1-\alpha)$ CI for $\mu_1-\mu_2$                                  \\
 
 			\shortstack{Known,\\unequal}
 			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+			 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
 			 & $\displaystyle
 				   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
 				   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
@@ -419,6 +426,7 @@
 
 			\shortstack{Known,\\unequal}
 			 & \shortstack{Normal;\\any $n_1,n_2$}
+			 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
 			 & $\displaystyle
 				   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
 				   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
@@ -428,6 +436,7 @@
 
 			\shortstack{Unknown,\\unequal}
 			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+			 & $\sqrt{\dfrac{S_1^2}{n_1}+\dfrac{S_2^2}{n_2}}$
 			 & $\displaystyle
 				   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
 				   {\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}$
@@ -437,6 +446,7 @@
 
 			\shortstack{Unknown,\\equal}
 			 & \shortstack{Normal;\\$n_1,n_2<30$}
+			 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
 			 & $\displaystyle
 				   T=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
 				   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
@@ -447,6 +457,7 @@
 
 			\shortstack{Unknown,\\equal}
 			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+			 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
 			 & $\displaystyle
 				   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
 				   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
