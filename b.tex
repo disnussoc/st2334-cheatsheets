@@ -260,8 +260,9 @@
 		for i.i.d with finite mean and variance
 
 		\begin{align*}
-			S^2 & = \dfrac{1}{n-1}\displaystyle\sum^n (X_i - \overline{X})^2               \\
-			    & = \dfrac{1}{n-1}\displaystyle\sum^n X_i^2 - \dfrac{n}{n-1}\overline{X}^2
+			S^2 & = \dfrac{1}{n-1}\displaystyle\sum^n (X_i - \overline{X})^2                                          \\
+			    & = \dfrac{1}{n-1}\displaystyle\sum^n X_i^2 - \dfrac{n}{n-1}\overline{X}^2                            \\
+			    & = \dfrac{1}{n-1}\displaystyle\sum^n X_i^2 - \dfrac{1}{n(n-1)}\left(\displaystyle\sum^n X_i\right)^2
 		\end{align*}
 
 		\vspace{\baselineskip}
@@ -454,9 +455,9 @@
 				   z_{\alpha/2}\,s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
 		\end{tblr}
 
-		where \hlfancytall{lightgray}{$s_p^2= \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$} is a pooled estimate of the variance
+		where \hlfancytall{lightgray}{$s_p^2= \dfrac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$} is a pooled estimate of the variance
 
-		Dependent two-sample: single sample of paired differences \hlfancy{lightgray}{$D_i = X_i - Y_i$}
+		Dependent two-sample: single sample of paired differences \hlfancy{lightgray}{$D_i = X_i - Y_i$}, \hlfancy{lightgray}{$H_0: \mu_D = \delta_0$} \\
 		\begin{tblr}{
 				colspec={|c|c|c|},
 				hlines,
@@ -493,7 +494,7 @@
 			Test
 			 & Hypotheses
 			 & \shortstack{Reject $H_0$ if}
-			 & \shortstack{$p$-value}                                         \\
+			 & \shortstack{$p$-value (area under graph)}                                         \\
 
 			Two-sided
 			 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
@@ -512,8 +513,8 @@
 			 & $\displaystyle P(Q\ge q_{\mathrm{obs}}\mid \theta = \theta_0)$
 		\end{tblr}
 		$\theta$ is the population parameter \\
-		$q_\mathrm{obs}$ is the calculated test statistic \hlfancy{lightgray}{assuming $\theta_0$} \\
-		$q_\alpha$ is the upper-tail critical value with probability $\alpha$
+		$q_\mathrm{obs}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$} \\
+		$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
 
 		\begin{tabular}{ | c | c | c | }
 			\hline
