@@ -722,7 +722,7 @@
 	\vspace{\baselineskip}
 	Hypothesis testing: \\
 	\begin{tblr}{
-			colspec={X[7,l]|X[3,l]},
+			colspec={X[11,l]|X[5,l]},
 			leftsep=0pt,
 			rightsep=0pt,
 			column{1}={rightsep=5pt},
@@ -741,11 +741,11 @@
 			 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
 			 & $\displaystyle |q_{\mathrm{obs}}|>q_{\alpha/2}$
 			 & $\displaystyle 2*P(Q\ge |q_{\mathrm{obs}}|\mid \theta = \theta_0)$ \\
-			Left-tailed
+			Left-sided
 			 & \shortstack{$H_0:\theta\ge\theta_0$\\$H_1:\theta<\theta_0$}
 			 & $\displaystyle q_{\mathrm{obs}}<-q_\alpha$
 			 & $\displaystyle P(Q\le q_{\mathrm{obs}}\mid \theta = \theta_0)$     \\
-			Right-tailed
+			Right-sided
 			 & \shortstack{$H_0:\theta\le\theta_0$\\$H_1:\theta>\theta_0$}
 			 & $\displaystyle q_{\mathrm{obs}}>q_\alpha$
 			 & $\displaystyle P(Q\ge q_{\mathrm{obs}}\mid \theta = \theta_0)$
@@ -756,6 +756,43 @@
 			$q_{\mathrm{obs}}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$}, (usually $z$ ot $t$) \\
 			$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
 		\end{minipage}
+	\end{tblr} \\
+
+	CI and Hypothesis Test equivalence (with same model):\\
+	\begin{tblr}{
+			colspec={X[2, l]|X[3, l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			$q_{\mathrm{obs}}=
+				\hlfancymath{lightgray}{
+					\dfrac{\text{sample value}-\text{population value}}{\mathrm{SE}}
+				}$
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth} \vspace*{-3.2ex}
+			Upper bound \hlfancy{lightgray}{
+				$U=\text{sample value}+(\text{critical value}\times\mathrm{SE})$
+			}\\
+			Lower bound \hlfancy{lightgray}{
+				$L=\text{sample value}-(\text{critical value}\times\mathrm{SE})$
+			}
+		\end{minipage}
+	\end{tblr}
+	Two-sided: \hlfancy{lightgray}{reject $H_0$} iff \hlfancy{lightgray}{$\theta_0$ is not contained} in $(1-\alpha)$ CI $=\hat\theta \pm q_{\alpha/2}\mathrm{SE}$ \\
+	\begin{tblr}{
+			colspec={X[4, l]|X[5, l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		Left-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0>U}\!= \hat\theta+q_\alpha SE$
+		 &
+		Right-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0<L}\!=\hat\theta-q_\alpha SE$
 	\end{tblr}
 
 	\begin{tblr}{
