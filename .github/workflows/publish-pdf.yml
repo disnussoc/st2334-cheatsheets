@@ -37,9 +37,9 @@ jobs:
             -interaction=nonstopmode \
             -halt-on-error \
             -outdir=build \
-            st2334-midterms-cheatsheet.tex
+            b.tex
 
-          cp build/st2334-midterms-cheatsheet.pdf _site/
+          cp build/b.pdf _site/
 
           cat > _site/index.html <<'EOF'
           <!doctype html>
@@ -47,14 +47,14 @@ jobs:
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>ST2334 Midterms Cheatsheet</title>
+            <title>ST2334 Cheatsheet</title>
           </head>
           <body>
-            <h1>ST2334 Midterms Cheatsheet</h1>
-            <p><a href="st2334-midterms-cheatsheet.pdf">Open or download the PDF</a></p>
+            <h1>ST2334 Cheatsheet</h1>
+            <p><a href="b.pdf">Open or download b.pdf</a></p>
             <iframe
-              src="st2334-midterms-cheatsheet.pdf"
-              title="ST2334 Midterms Cheatsheet"
+              src="b.pdf"
+              title="ST2334 Cheatsheet"
               width="100%"
               height="900">
             </iframe>
