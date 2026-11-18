@@ -379,7 +379,7 @@
 
 \newpage
 
-\setcolumnwidth{385pt,385pt,500pt,}
+\setcolumnwidth{385pt,385pt,550pt,}
 \begin{paracol}{4}
 	\begin{tcolorbox}[title=Sampling Distributions, width=385pt,
 			reset and store to box array=breakwrap]
@@ -522,8 +522,7 @@
 	\consumeboxarray[breakwrap]{2}
 	\switchcolumn
 
-	\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=550pt,
-			reset and store to box array=breakwrap]
+	\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=550pt]
 		\includegraphics[width=.47\linewidth]{normal-upper-tail.pdf}
 		\includegraphics[width=.47\linewidth]{chi-square-upper-tail.pdf} \\
 		\includegraphics[width=.47\linewidth]{t-upper-tail.pdf}
@@ -564,6 +563,7 @@
 		Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
 		\begin{tblr}{
 				colspec={|c|c|c|c|c|c|c|},
+				colsep=1pt,
 				hlines,
 				rows={valign=m},
 			}
@@ -614,6 +614,7 @@
 		Independent two-sample, \hlfancy{lightgray}{$H_0:\mu_1-\mu_2=\delta_0$}: \\
 		\begin{tblr}{
 				colspec={|c|c|c|c|c|},
+				colsep=1pt,
 				hlines,
 				rows={valign=m},
 			}
@@ -712,107 +713,76 @@
 				\end{aligned}$
 		\end{tblr}
 
-		\vspace{\baselineskip}
-		Hypothesis testing: \\
-		\begin{tblr}{
-				colspec={X[11,l]|X[5,l]},
-				leftsep=0pt,
-				rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			\begin{tblr}{
-					colspec={|c|c|c|c|},
-					hlines,
-					rows={valign=m},
-				}
-				Test
-				 & Hypotheses
-				 & \shortstack{Reject $H_0$ if}
-				 & \shortstack{$p$-value (area under graph)}                          \\
-				Two-sided
-				 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
-				 & $\displaystyle |q_{\mathrm{obs}}|>q_{\alpha/2}$
-				 & $\displaystyle 2*P(Q\ge |q_{\mathrm{obs}}|\mid \theta = \theta_0)$ \\
-				Left-sided
-				 & \shortstack{$H_0:\theta\ge\theta_0$\\$H_1:\theta<\theta_0$}
-				 & $\displaystyle q_{\mathrm{obs}}<-q_\alpha$
-				 & $\displaystyle P(Q\le q_{\mathrm{obs}}\mid \theta = \theta_0)$     \\
-				Right-sided
-				 & \shortstack{$H_0:\theta\le\theta_0$\\$H_1:\theta>\theta_0$}
-				 & $\displaystyle q_{\mathrm{obs}}>q_\alpha$
-				 & $\displaystyle P(Q\ge q_{\mathrm{obs}}\mid \theta = \theta_0)$
-			\end{tblr}
-			 &
-			\begin{minipage}[t]{\linewidth} \vspace*{-4em}
-				$\theta$ is the population parameter \\
-				$q_{\mathrm{obs}}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$}, (usually $z$ ot $t$) \\
-				$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
-			\end{minipage}
-		\end{tblr} \\
-
-		CI and Hypothesis Test equivalence (with same model):\\
-		\begin{tblr}{
-				colspec={X[2, l]|X[3, l]},
-				leftsep=0pt,
-				rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			\begin{minipage}[t]{\linewidth}
-				$q_{\mathrm{obs}}=
-					\hlfancymath{lightgray}{
-						\dfrac{\text{sample value}-\text{population value}}{\mathrm{SE}}
-					}$
-			\end{minipage}
-			 &
-			\begin{minipage}[t]{\linewidth} \vspace*{-3.2ex}
-				Upper bound \hlfancy{lightgray}{
-					$U=\text{sample value}+(\text{critical value}\times\mathrm{SE})$
-				}\\
-				Lower bound \hlfancy{lightgray}{
-					$L=\text{sample value}-(\text{critical value}\times\mathrm{SE})$
-				}
-			\end{minipage}
-		\end{tblr}
-		Two-sided: \hlfancy{lightgray}{reject $H_0$} iff \hlfancy{lightgray}{$\theta_0$ is not contained} in $(1-\alpha)$ CI $=\hat\theta \pm q_{\alpha/2}\mathrm{SE}$ \\
-		\begin{tblr}{
-				colspec={X[4, l]|X[5, l]},
-				leftsep=0pt,
-				rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			Left-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0>U}\!= \hat\theta+q_\alpha SE$
-			 &
-			Right-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0<L}\!=\hat\theta-q_\alpha SE$
-		\end{tblr}
-
-		\begin{tblr}{
-				colspec={X[8, l]|X[9, l]},
-				leftsep=0pt,
-				rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			\begin{tabular}{|c|c|c|}
-				\hline
-				            & $H_0$ not rejected        & $H_0$ rejected           \\ \hline
-				$H_0$ true  & $\checkmark$ ($1-\alpha$) & Type I error ($\alpha$)  \\ \hline
-				$H_0$ false & Type II error ($\beta$)   & $\checkmark$ ($1-\beta$) \\ \hline
-			\end{tabular}
-			 &
-			\begin{minipage}[t]{\linewidth} \vspace*{-2em}
-				$P(\text{Type I error}) = P(H_0 \text{ rejected} \mid H_0 \text{ true}) = \alpha$ \\
-				$P(\text{Type II error}) = P(H_0 \text{ not rejected} \mid H_0 \text{ false}) = \beta$ \\
-				$\text{Power} = P(H_0 \text{ rejected} \mid H_0 \text{ false}) = 1 - \beta$
-			\end{minipage}
-		\end{tblr} \\
-
-		Under the same test conditions, lowering $\alpha$ (smaller rejection region) increases $\beta$ (chance of failing to reject)
 	\end{tcolorbox}
-	\consumeboxarray[breakwrap]{1}
 	\switchcolumn
-	\consumeboxarray[breakwrap]{2}
+	\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=\columnwidth]
+		Hypothesis testing: \\
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Test
+			 & Hypotheses
+			 & \shortstack{Reject $H_0$ if}
+			 & \shortstack{$p$-value (from table)}                         \\ \hline
+
+			Two-sided
+			 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
+			 & $|q_{\mathrm{obs}}|>q_{\alpha/2}$
+			 & $2*P(Q\ge |q_{\mathrm{obs}}\mid \theta=\theta_0)$           \\ \hline
+
+			Left-sided
+			 & \shortstack{$H_0:\theta\ge\theta_0$\\$H_1:\theta<\theta_0$}
+			 & $q_{\mathrm{obs}}<-q_\alpha$
+			 & $P(Q\le q_{\mathrm{obs}}\mid \theta=\theta_0)$              \\ \hline
+
+			Right-sided
+			 & \shortstack{$H_0:\theta\le\theta_0$\\$H_1:\theta>\theta_0$}
+			 & $q_{\mathrm{obs}}>q_\alpha$
+			 & $P(Q\ge q_{\mathrm{obs}} \mid \theta=\theta_0$)             \\ \hline
+		\end{tabular} \\
+		$\theta$ is the population parameter.\\
+		$q_{\mathrm{obs}}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$}, usually $z$ or $t$.\\
+		$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$).
+
+		\vspace*{2pt}\hrule\vspace*{2pt}
+
+		CI and Hypothesis Test equivalence (with same model):
+		\begin{center}
+			\fbox{\begin{minipage}{0.85\linewidth}
+					\centering
+					$q_{\mathrm{obs}}=
+						\hlfancymath{lightgray}{
+							\dfrac{\text{sample value}-\text{population value}}{\mathrm{SE}}
+						}$\\
+					Upper bound \hlfancy{lightgray}{
+						$U=\text{sample value}+(\text{critical value}\times\mathrm{SE})$
+					}\\
+					Lower bound \hlfancy{lightgray}{
+						$L=\text{sample value}-(\text{critical value}\times\mathrm{SE})$
+					}
+				\end{minipage}}
+		\end{center}
+
+		Two-sided: \hlfancy{lightgray}{reject $H_0$} iff
+		\hlfancy{lightgray}{$\theta_0$ is not contained} in $(1-\alpha)$ CI
+		$=\hat\theta \pm q_{\alpha/2}\mathrm{SE}$.\\
+		Left-sided: \hlfancy{lightgray}{reject $H_0$} iff
+		$\hlfancymath{lightgray}{\theta_0>U}\!=\hat\theta+q_\alpha SE$.\\
+		Right-sided: \hlfancy{lightgray}{reject $H_0$} iff
+		$\hlfancymath{lightgray}{\theta_0<L}\!=\hat\theta-q_\alpha SE$.
+
+		\vspace*{4pt}\hrule\vspace*{4pt}
+
+		\begin{tabular}{|c|c|c|}
+			\hline
+			            & $H_0$ not rejected        & $H_0$ rejected           \\ \hline
+			$H_0$ true  & $\checkmark$ ($1-\alpha$) & Type I error ($\alpha$)  \\ \hline
+			$H_0$ false & Type II error ($\beta$)   & $\checkmark$ ($1-\beta$) \\ \hline
+		\end{tabular} \\
+		$P(\text{Type I error}) = P(H_0 \text{ rejected} \mid H_0 \text{ true}) = \alpha$\\
+		$P(\text{Type II error}) = P(H_0 \text{ not rejected} \mid H_0 \text{ false}) = \beta$\\
+		$\text{Power} = P(H_0 \text{ rejected} \mid H_0 \text{ false}) = 1 - \beta$\\
+		Under the same test conditions, lowering $\alpha$ (smaller rejection region)
+		increases $\beta$ (chance of failing to reject).
+	\end{tcolorbox}
 \end{paracol}
 \end{document}
