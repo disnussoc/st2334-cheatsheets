@@ -379,9 +379,9 @@
 
 \newpage
 
-\setcolumnwidth{395pt,395pt,550pt,}
+\setcolumnwidth{385pt,385pt,500pt,}
 \begin{paracol}{4}
-\begin{tcolorbox}[title=Sampling Distributions, width=395pt,
+\begin{tcolorbox}[title=Sampling Distributions, width=385pt,
 	reset and store to box array=breakwrap]
 	\begin{tblr}{
 			colspec={X[3, l]|X[5, l]},
@@ -444,34 +444,16 @@
 	For large $n$, $\chi^2(n) \approx \N(n, 2n)$ \\
 	\vspace*{1pt}\hrule\vspace*{1pt}
 	Given independent $\chi^2(m)$, $\chi^2(n)$, $\chi^2(m) + \chi^2(n) \sim \chi^2(m + n)$ \\
+
 	$\dfrac{X_i - \mu}{\sigma} \sim \N(0, 1) \Rightarrow \displaystyle\sum^n\left(\dfrac{X_i - \mu}{\sigma}\right)^2 = \dfrac{\sum (X_i - \mu)^2}{\sigma^2} \sim \chi^2(n)$ \\
-	\begin{tblr}{
-			colspec={X[5.95,l]|X[7,l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
 			\begin{align*}
-				\hlfancymath{lightgray}{\dfrac{S^2(n-1)}{\sigma^2}}
-				 & = \dfrac{\sum (X_i - \overline{X})^2(n-1)}{(n-1)\sigma^2} \\
-				 & = \dfrac{\sum (X_i - \overline{X})^2}{\sigma^2}           \\
-				 & \hlfancymath{lightgray}{\sim \chi^2(n - 1)}
-			\end{align*}
+				\hlfancymath{lightgray}{\dfrac{S^2(n-1)}{\sigma^2}} & = \dfrac{\sum (X_i - \overline{X})^2(n-1)}{(n-1)\sigma^2} = \dfrac{\sum (X_i - \overline{X})^2}{\sigma^2} \hlfancymath{lightgray}{\sim \chi^2(n - 1)}
+			\end{align*} \\
 			for i.i.d. normal sample
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
+
 			\begin{align*}
-				P(S^2 \geq c)
-				 & = P\left(\dfrac{S^2(n-1)}{\sigma^2}
-				\geq \dfrac{c(n-1)}{\sigma^2}\right)   \\
-				 & = P\left(\chi^2(n-1)
-				\geq \dfrac{c(n-1)}{\sigma^2}\right)
+				P(S^2 \geq c) & = P\left(\dfrac{S^2(n-1)}{\sigma^2} \geq \dfrac{c(n-1)}{\sigma^2}\right) = P\left(\chi^2(n-1) \geq \dfrac{c(n-1)}{\sigma^2}\right)
 			\end{align*}
-		\end{minipage}
-	\end{tblr}
 
 	Assuming $\sigma = \sigma_0$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2(n-1)}{\sigma^2_0}$} \\
 	Compare with \hlfancytall{lightgray}{$\chi^2(n-1)$} critical value table to reject assumption.
