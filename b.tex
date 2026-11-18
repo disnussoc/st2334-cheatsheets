@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 \lineskip=0pt % https://tex.stackexchange.com/a/349882
 
-\usepackage[skins, breakable, raster]{tcolorbox}
+\usepackage[skins, breakable, raster, magazine]{tcolorbox}
+\newboxarray{breakwrap}
 \tcbsetforeverylayer{
   skin=enhanced jigsaw,
   fonttitle=\large,
@@ -16,7 +17,8 @@
   break at=-\baselineskip/0pt
 }
 
-\usepackage{multicol}
+% paracol for custom col widths
+\usepackage{paracol}
 \usepackage{geometry}
 \geometry{
 	paperheight=420mm, paperwidth=594mm,
@@ -83,6 +85,8 @@
 
 \setlength\columnsep{0pt}
 
+\setcolumnwidth{330pt,465pt,}
+\begin{paracol}{3}
 \begin{tcolorbox}[title=Probability, width=330pt]
 	\begin{tblr}{
 			cells={mode=dmath},
@@ -150,7 +154,7 @@
 	\end{tblr}
 \end{tcolorbox}
 
-\newpage
+\switchcolumn
 
 \begin{tcolorbox}[title=Probability Functions, width=465pt]
 	\begin{tblr}{
@@ -361,9 +365,9 @@
 	\end{tblr}
 \end{tcolorbox}
 
-\newpage
+\switchcolumn
 
-\begin{tcolorbox}[title=Data]
+\begin{tcolorbox}[title=Data, width=100pt]
 	Zipf's law for the $x$-th most popular item: \\
 	PMF: $f(x) = \dfrac{c}{x},\ x\in\{1\ ..\ n\}$
 
@@ -371,10 +375,14 @@
 	Benford's law for leading digits: \\
 	PMF: $f(d) = \log_{10}\left(1 + \dfrac{1}{d}\right),\ d\in\{1\ ..\ 9\}$
 \end{tcolorbox}
+\end{paracol}
 
 \newpage
 
-\begin{tcolorbox}[title=Sampling Distributions, width=390pt]
+\setcolumnwidth{395pt,395pt,550pt,}
+\begin{paracol}{4}
+\begin{tcolorbox}[title=Sampling Distributions, width=395pt,
+	reset and store to box array=breakwrap]
 	\begin{tblr}{
 			colspec={X[3, l]|X[5, l]},
 			leftsep=0pt,
@@ -527,14 +535,17 @@
 	Assuming equal variances $\sigma_1 = \sigma_2$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2_1}{s_2^2}$} \\
 	Compare with \hlfancy{lightgray}{$F(n_1 - 1, n_2 - 1)$} critical value table to reject assumption.
 \end{tcolorbox}
+\consumeboxarray[breakwrap]{1}
+\switchcolumn
+\consumeboxarray[breakwrap]{2}
+\switchcolumn
 
-\newpage
-
-\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=550pt]
-	\includegraphics[width=.49\linewidth]{normal-upper-tail.pdf}
-	\includegraphics[width=.49\linewidth]{chi-square-upper-tail.pdf} \\
-	\includegraphics[width=.49\linewidth]{t-upper-tail.pdf}
-	\includegraphics[width=.49\linewidth]{f-upper-tail.pdf} \\
+\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=550pt,
+    reset and store to box array=breakwrap]
+	\includegraphics[width=.47\linewidth]{normal-upper-tail.pdf}
+	\includegraphics[width=.47\linewidth]{chi-square-upper-tail.pdf} \\
+	\includegraphics[width=.47\linewidth]{t-upper-tail.pdf}
+	\includegraphics[width=.47\linewidth]{f-upper-tail.pdf} \\
 	Upper-tail critical value at significance $\alpha$ is a value on the $x$-axis, $z_\alpha$, $t_{n; \alpha}$, $\chi^2(n; \alpha)$, or $F(m, n; \alpha)$ \\
 	\hlfancy{lightgray}{usually taken from the given tables, or given in the question}
 
@@ -818,8 +829,8 @@
 
 	Under the same test conditions, lowering $\alpha$ (smaller rejection region) increases $\beta$ (chance of failing to reject)
 \end{tcolorbox}
-
-\begin{multicols*}{5}
-	t
-\end{multicols*}
+\consumeboxarray[breakwrap]{1}
+\switchcolumn
+\consumeboxarray[breakwrap]{2}
+\end{paracol}
 \end{document}
