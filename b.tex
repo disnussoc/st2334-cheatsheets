@@ -403,6 +403,12 @@
 	\end{tblr}
 
 	\vspace*{1pt}\hrule\vspace*{1pt}
+
+	An unbiased estimator $\hat{\theta}$ for $\theta$ means $E(\hat{\theta})=\theta$. \\
+	$\overline{X}$ is an unbiased estimator for $\mu$, $S^2$ is an unbiased estimator for $\sigma^2$.
+
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
 	\begin{tblr}{
 			colspec={X[4, l]|X[3, l]},
 			leftsep=0pt,
@@ -534,16 +540,34 @@
 
 	\vspace*{1pt}\hrule\vspace*{1pt}
 
-	General form for test statistic: \hlfancytall{lightgray}{$\dfrac{\text{sample val} - \text{population val}}{\mathrm{SE}}$}\\
-	General form for CI: \hlfancy{lightgray}{$\text{sample val} \pm (\text{critical value}\times\text{SE})$}
+	\begin{tblr}{
+			colspec={X[l]|X[l]},
+			leftsep=0pt,
+			rightsep=0pt,
+			column{1}={rightsep=5pt},
+			column{2}={leftsep=5pt},
+		}
+		\begin{minipage}[t]{\linewidth}
+			General test statistic: \hlfancytall{lightgray}{$\dfrac{\text{sample val} - \text{population val}}{\mathrm{SE}}$}\\
+			General CI: \hlfancy{lightgray}{$\text{sample val} \pm (\text{critical value}\times\text{SE})$}
+		\end{minipage}
+		 &
+		\begin{minipage}[t]{\linewidth}
+			CI Margin of Error $E$:
+			\hlfancy{lightgray}{$\text{critical value}\times\mathrm{SE} = \text{L}/2$} \\
+			CI Length $L$: \hlfancy{lightgray}{$\text{Upper} - \text{Lower} = 2E$} \\
+		\end{minipage}
+	\end{tblr}
 
-	\vspace{\baselineskip}
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
 	Before computing, the \hlfancy{lightgray}{CI procedure has probability $(1-\alpha)$ of capturing $\mu$.}
 	However, after a CI is computed, $\mu$ either lies in it or it does not.
 	Thus, we call it a \hlfancy{lightgray}{$100*(1-\alpha)\%$ CI}, and we are \hlfancy{lightgray}{$100*(1-\alpha)\%$ confident} a computed CI contains $\mu$,
 	\hlfancy{lightgray}{not that there is probability $(1-\alpha)$} a computed CI contains $\mu$.
 
-	\vspace{\baselineskip}
+	\vspace*{1pt}\hrule\vspace*{1pt}
+
 	Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
 	\begin{tblr}{
 			colspec={|c|c|c|c|c|c|c|},
