@@ -87,732 +87,732 @@
 
 \setcolumnwidth{330pt,465pt,}
 \begin{paracol}{3}
-\begin{tcolorbox}[title=Probability, width=330pt]
-	\begin{tblr}{
-			cells={mode=dmath},
-			colspec={c|c},
-			leftsep=0pt, rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
-		 &
-		{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
+	\begin{tcolorbox}[title=Probability, width=330pt]
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
+			 &
+			{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
 
-	\end{tblr}
+		\end{tblr}
 
-	\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-	\begin{align*}
-		P(A) & = P(A \cap B) + P(A \cap B')          \\
-		     & = P(B)P(A \mid B) + P(B')P(A \mid B')
-	\end{align*}
+		\begin{align*}
+			P(A) & = P(A \cap B) + P(A \cap B')          \\
+			     & = P(B)P(A \mid B) + P(B')P(A \mid B')
+		\end{align*}
 
-	\begin{align*}
-		P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
-		            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
-	\end{align*}
+		\begin{align*}
+			P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
+			            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
+		\end{align*}
 
-	\vspace{\baselineskip}
-	Bayes Theorem: $P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
-	\begin{tblr}{
-			colspec={l|l},
-			leftsep=0pt, rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		Prior: $P(B_k)$
-		 & Posterior: $P(B_k \mid A)$
-		\\
-		Likelihood: $P(A \mid B_k)$
-		 & Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$
-	\end{tblr}
+		\vspace{\baselineskip}
+		Bayes Theorem: $P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
+		\begin{tblr}{
+				colspec={l|l},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			Prior: $P(B_k)$
+			 & Posterior: $P(B_k \mid A)$
+			\\
+			Likelihood: $P(A \mid B_k)$
+			 & Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$
+		\end{tblr}
 
-	\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-	\begin{tblr}{
-			cells={mode=dmath},
-			colspec={c|c},
-			leftsep=0pt, rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{aligned}[t]
-			 & \text{Independent:}                       \\
-			 & P(A \cap B) = P(A)P(B)                    \\
-			 & \Leftrightarrow P(B \mid A) = P(B)        \\
-			 & \Leftrightarrow P(A \mid B) = P(A)        \\
-			 & \Rightarrow \text{not mutually exclusive}
-		\end{aligned}
-		 &
-		\begin{aligned}[t]
-			 & \text{Mutually exclusive:}                \\
-			 & A \cap B = \emptyset                      \\
-			 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
-			 & \Rightarrow \text{not independent}
-		\end{aligned}
-	\end{tblr}
-\end{tcolorbox}
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{aligned}[t]
+				 & \text{Independent:}                       \\
+				 & P(A \cap B) = P(A)P(B)                    \\
+				 & \Leftrightarrow P(B \mid A) = P(B)        \\
+				 & \Leftrightarrow P(A \mid B) = P(A)        \\
+				 & \Rightarrow \text{not mutually exclusive}
+			\end{aligned}
+			 &
+			\begin{aligned}[t]
+				 & \text{Mutually exclusive:}                \\
+				 & A \cap B = \emptyset                      \\
+				 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
+				 & \Rightarrow \text{not independent}
+			\end{aligned}
+		\end{tblr}
+	\end{tcolorbox}
 
-\switchcolumn
+	\switchcolumn
 
-\begin{tcolorbox}[title=Probability Functions, width=465pt]
-	\begin{tblr}{
-			colspec={X[l]|X[l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			Discrete: \\
-			PMF: $f(x) = P(X = x)$ \\
-			CDF: $F(x) = P(X \leq x) = \displaystyle\sum_{u \leq x}{f(u)}$
+	\begin{tcolorbox}[title=Probability Functions, width=465pt]
+		\begin{tblr}{
+				colspec={X[l]|X[l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				Discrete: \\
+				PMF: $f(x) = P(X = x)$ \\
+				CDF: $F(x) = P(X \leq x) = \displaystyle\sum_{u \leq x}{f(u)}$
 
-			Properties:
-			\begin{align*}
-				1 - F(x) & = 1 - P(X \leq x) \\
-				         & = P( X > x)
-			\end{align*}
+				Properties:
+				\begin{align*}
+					1 - F(x) & = 1 - P(X \leq x) \\
+					         & = P( X > x)
+				\end{align*}
 
-			\begin{align*}
-				F(b) - F(a) & = P(X \leq b) - P(X \leq a) \\
-				            & = P(a < X \leq b)
-			\end{align*}
+				\begin{align*}
+					F(b) - F(a) & = P(X \leq b) - P(X \leq a) \\
+					            & = P(a < X \leq b)
+				\end{align*}
 
-			\begin{align*}
-				f(x) & = P(X = x) = P(X \leq x) - P(X < x) \\
-				     & = F(x) - F(x-)
-			\end{align*}
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			Continuous: \\
-			PDF: $\displaystyle\int_a^b f(x)\dd{x} = P(a \leq X \leq b)$ \\
-			CDF: $F(x) = P(X \leq x) =  \displaystyle\int_{-\infty}^{x}f(t)\dd{t}$
+				\begin{align*}
+					f(x) & = P(X = x) = P(X \leq x) - P(X < x) \\
+					     & = F(x) - F(x-)
+				\end{align*}
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				Continuous: \\
+				PDF: $\displaystyle\int_a^b f(x)\dd{x} = P(a \leq X \leq b)$ \\
+				CDF: $F(x) = P(X \leq x) =  \displaystyle\int_{-\infty}^{x}f(t)\dd{t}$
 
-			Properties:
-			\begin{align*}
-				1 - F(x) & = 1 - P(X \leq x) \\
-				         & = P( X \geq x)
-			\end{align*}
+				Properties:
+				\begin{align*}
+					1 - F(x) & = 1 - P(X \leq x) \\
+					         & = P( X \geq x)
+				\end{align*}
 
-			\begin{align*}
-				F'(x) & = \diff{}{x}\displaystyle\int_{-\infty}^{x}f(t)\dd{t} \\
-				      & = f(x)
-			\end{align*}
-		\end{minipage}
-	\end{tblr}
+				\begin{align*}
+					F'(x) & = \diff{}{x}\displaystyle\int_{-\infty}^{x}f(t)\dd{t} \\
+					      & = f(x)
+				\end{align*}
+			\end{minipage}
+		\end{tblr}
 
-	\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-	\begin{tblr}{
-			colspec={X[5,l]|X[9,l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			$\mu_X = E(X) = \begin{cases}
-					\displaystyle\sum^{x}xf(x) \\[1.5ex]
-					\displaystyle\int_{x}xf(x)\dd{x}
-				\end{cases}$ \\
-			$E(g(X)) = \begin{cases}
-					\displaystyle\sum^{x}g(x)f(x) \\[1.5ex]
-					\displaystyle\int_{x}g(x)f(x)\dd{x}
-				\end{cases}$ \\
-			$E(aX + b) = aE(X) + b$ \\
-			$E(X \pm Y) = E(X) \pm E(Y)$ \\
-			$E\left(\displaystyle\sum X_i\right) = \displaystyle\sum E(X_i)$
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			\vspace*{-5ex}
-			$\begin{aligned}[t]
-				{\sigma_X}^2 = \var(X) & = E[(X - \mu_X)^2]                                 \\
-				                                          & = \begin{cases}
-					                                              \displaystyle\sum^{x}(x - \mu_X)^2f(x) \\[1.5ex]
-					                                              \displaystyle\int_{x}(x - \mu_X)^2f(x)\dd{x}
-				                                              \end{cases} \\
-				                                          & = E[X^2] - E[X]^2
-				\end{aligned}$ \\
-			$\var(g(X)) = E[g(X)^2] - E[g(X)]^2$ \\
-			$\var(aX + b) = a^2\var(X)$ \\
-			$\var(X \pm Y) = \var(X) + \var(Y) \pm 2\cov(X, Y)$ \\
-			$\var\left(\displaystyle\sum X_i\right) = \displaystyle\sum \var(X_i) + 2\displaystyle\sum_{m>n} \cov(X_m, X_n)$
-		\end{minipage}
-	\end{tblr}
+		\begin{tblr}{
+				colspec={X[5,l]|X[9,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				$\mu_X = E(X) = \begin{cases}
+						\displaystyle\sum^{x}xf(x) \\[1.5ex]
+						\displaystyle\int_{x}xf(x)\dd{x}
+					\end{cases}$ \\
+				$E(g(X)) = \begin{cases}
+						\displaystyle\sum^{x}g(x)f(x) \\[1.5ex]
+						\displaystyle\int_{x}g(x)f(x)\dd{x}
+					\end{cases}$ \\
+				$E(aX + b) = aE(X) + b$ \\
+				$E(X \pm Y) = E(X) \pm E(Y)$ \\
+				$E\left(\displaystyle\sum X_i\right) = \displaystyle\sum E(X_i)$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\vspace*{-5ex}
+				$\begin{aligned}[t]
+					{\sigma_X}^2 = \var(X) & = E[(X - \mu_X)^2]                                 \\
+					                                          & = \begin{cases}
+						                                              \displaystyle\sum^{x}(x - \mu_X)^2f(x) \\[1.5ex]
+						                                              \displaystyle\int_{x}(x - \mu_X)^2f(x)\dd{x}
+					                                              \end{cases} \\
+					                                          & = E[X^2] - E[X]^2
+					\end{aligned}$ \\
+				$\var(g(X)) = E[g(X)^2] - E[g(X)]^2$ \\
+				$\var(aX + b) = a^2\var(X)$ \\
+				$\var(X \pm Y) = \var(X) + \var(Y) \pm 2\cov(X, Y)$ \\
+				$\var\left(\displaystyle\sum X_i\right) = \displaystyle\sum \var(X_i) + 2\displaystyle\sum_{m>n} \cov(X_m, X_n)$
+			\end{minipage}
+		\end{tblr}
 
-	\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-	\begin{tblr}{
-			colspec={X[l]|X[l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			$\begin{aligned}[t]
-					\cov(X,Y) & = E[(X - \mu_X)(Y - \mu_Y)]                                                                               \\
-					          & \hspace{-9ex} = \begin{cases}
-						                            \displaystyle\sum^{y}\displaystyle\sum^{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y) \\[1.5ex]
-						                            \displaystyle\int_{y}\displaystyle\int_{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y)\dd{x}\dd{y}
-					                            \end{cases} \\
-					          & \hspace{-9ex} = E[XY] - E[X]E[Y]
-				\end{aligned}$
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			$\cov(aX+c_1, bY+c_2) = ab\cov(X, Y)$ \\
-			$\cov(X,Y) = \cov(Y,X)$
-			\begin{align*}
-				X \perp Y & \Rightarrow \cov(X,Y)=0                      \\
-				          & \Leftrightarrow \var(X\pm Y)=\var(X)+\var(Y)
-			\end{align*}
-			$\rho(X, Y) = \dfrac{\cov(X, Y)}{\sigma_X\sigma_Y} = \dfrac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}}$
-		\end{minipage}
-	\end{tblr}
+		\begin{tblr}{
+				colspec={X[l]|X[l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				$\begin{aligned}[t]
+						\cov(X,Y) & = E[(X - \mu_X)(Y - \mu_Y)]                                                                               \\
+						          & \hspace{-9ex} = \begin{cases}
+							                            \displaystyle\sum^{y}\displaystyle\sum^{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y) \\[1.5ex]
+							                            \displaystyle\int_{y}\displaystyle\int_{x}(x - \mu_X)(y - \mu_Y)f_{X,Y}(x, y)\dd{x}\dd{y}
+						                            \end{cases} \\
+						          & \hspace{-9ex} = E[XY] - E[X]E[Y]
+					\end{aligned}$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				$\cov(aX+c_1, bY+c_2) = ab\cov(X, Y)$ \\
+				$\cov(X,Y) = \cov(Y,X)$
+				\begin{align*}
+					X \perp Y & \Rightarrow \cov(X,Y)=0                      \\
+					          & \Leftrightarrow \var(X\pm Y)=\var(X)+\var(Y)
+				\end{align*}
+				$\rho(X, Y) = \dfrac{\cov(X, Y)}{\sigma_X\sigma_Y} = \dfrac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}}$
+			\end{minipage}
+		\end{tblr}
 
-	\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-	\begin{tblr}{
-			colspec={X[4,l]|X[5,l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			Joint Discrete: \\
-			PMF: $f_{X, Y}(x, y) = P(X = x,\ Y = y)$ \\
-			CDF: $\begin{aligned}[t]
-					F_{X, Y}(x, y) & = P(X \leq x,\ Y \leq y)                                     \\
-					               & = \displaystyle\sum_{u \leq x}\sum_{v \leq y} f_{X, Y}(u, v)
-				\end{aligned}$ \\
-			Marginal: $\begin{aligned}[t]
-					f_X(x) & = P(X=x)                             \\
-					       & = \displaystyle\sum_y f_{X, Y}(x, y)
-				\end{aligned}$
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			Joint Continuous: \\
-			PDF: $\displaystyle\int\int_D f_{X, Y}(x, y)\dd{x}\dd{y} = P((x, y) \in D)$ \\
-			CDF: $\begin{aligned}[t]
-					F_{X, Y}(x, y) & = P(X \leq x,\ Y \leq y)                                                       \\
-					               & = \displaystyle\int_{-\infty}^{x}\int_{-\infty}^{y} f_{X, Y}(u, v)\dd{v}\dd{u}
-				\end{aligned}$ \\
-			Marginal: $f_X(x) = \displaystyle\int_{-\infty}^{\infty}f_{X, Y}(x, y)\dd{y}$
-		\end{minipage}
-	\end{tblr}
+		\begin{tblr}{
+				colspec={X[4,l]|X[5,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				Joint Discrete: \\
+				PMF: $f_{X, Y}(x, y) = P(X = x,\ Y = y)$ \\
+				CDF: $\begin{aligned}[t]
+						F_{X, Y}(x, y) & = P(X \leq x,\ Y \leq y)                                     \\
+						               & = \displaystyle\sum_{u \leq x}\sum_{v \leq y} f_{X, Y}(u, v)
+					\end{aligned}$ \\
+				Marginal: $\begin{aligned}[t]
+						f_X(x) & = P(X=x)                             \\
+						       & = \displaystyle\sum_y f_{X, Y}(x, y)
+					\end{aligned}$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				Joint Continuous: \\
+				PDF: $\displaystyle\int\int_D f_{X, Y}(x, y)\dd{x}\dd{y} = P((x, y) \in D)$ \\
+				CDF: $\begin{aligned}[t]
+						F_{X, Y}(x, y) & = P(X \leq x,\ Y \leq y)                                                       \\
+						               & = \displaystyle\int_{-\infty}^{x}\int_{-\infty}^{y} f_{X, Y}(u, v)\dd{v}\dd{u}
+					\end{aligned}$ \\
+				Marginal: $f_X(x) = \displaystyle\int_{-\infty}^{\infty}f_{X, Y}(x, y)\dd{y}$
+			\end{minipage}
+		\end{tblr}
 
-	Joint expectation: $E[g(X,Y)] = \begin{cases}
-			\displaystyle\sum^x\sum^y g(x,y)f_{X,Y}(x,y) \\[1.5ex]
-			\displaystyle\int\!\!\int g(x,y)f_{X,Y}(x,y)\,dx\,dy
-		\end{cases}$ \\
-	Conditional: $f_{Y \mid X}(y \mid x) = \dfrac{f_{X, Y}(x, y)}{f_X(x)}$, \ $f_{X \mid Y}(x \mid y) = \dfrac{f_{X, Y}(x, y)}{f_Y(y)}$ \\
-	Conditional expectation: $E(Y \mid X=x)=\begin{cases}
-			\displaystyle\sum^y y f_{Y \mid X}(y \mid x) \\[1.5ex]
-			\displaystyle\int y f_{Y \mid X}(y \mid x)\,dy
-		\end{cases}$
+		Joint expectation: $E[g(X,Y)] = \begin{cases}
+				\displaystyle\sum^x\sum^y g(x,y)f_{X,Y}(x,y) \\[1.5ex]
+				\displaystyle\int\!\!\int g(x,y)f_{X,Y}(x,y)\,dx\,dy
+			\end{cases}$ \\
+		Conditional: $f_{Y \mid X}(y \mid x) = \dfrac{f_{X, Y}(x, y)}{f_X(x)}$, \ $f_{X \mid Y}(x \mid y) = \dfrac{f_{X, Y}(x, y)}{f_Y(y)}$ \\
+		Conditional expectation: $E(Y \mid X=x)=\begin{cases}
+				\displaystyle\sum^y y f_{Y \mid X}(y \mid x) \\[1.5ex]
+				\displaystyle\int y f_{Y \mid X}(y \mid x)\,dy
+			\end{cases}$
 
-	\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{1pt}\hrule\vspace*{1pt}
 
-	\begin{tblr}{
-			colspec={X[l]|X[l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			Independent random variables:
-			\begin{align*}
-				 & \Leftrightarrow f_{X,Y}(x,y)=f_X(x)f_Y(y)   \\
-				 & \Leftrightarrow F_{X,Y}(x,y)=F_X(x)F_Y(y)   \\
-				 & \Leftrightarrow f_{Y\mid X}(y\mid x)=f_Y(y) \\
-				 & \Leftrightarrow f_{X\mid Y}(x\mid y)=f_X(x)
-			\end{align*}
-		\end{minipage}
-		\par\vspace{0.5\baselineskip}
-		\begin{minipage}[t]{\linewidth}
-			Independence shortcut: \\
-			Support $R_{X,Y}=R_X\times R_Y$, \\
-			Discrete: PMF table must be non-zero \\
-			Continuous: Integral must be rectangular \\
-			and $f_{X,Y}(x,y)$ can be factorised into \\
-			$C \cdot g_1(x)g_2(y)$ over the support.
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			Marginals from factorisation: \\
-			$f_X(x) =
-				\begin{cases}
-					C \cdot g_1(x)\displaystyle\sum^y g_2(y) \\[1.5ex]
-					C \cdot g_1(x)\displaystyle\int g_2(y)\,dy
-				\end{cases}$
+		\begin{tblr}{
+				colspec={X[l]|X[l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				Independent random variables:
+				\begin{align*}
+					 & \Leftrightarrow f_{X,Y}(x,y)=f_X(x)f_Y(y)   \\
+					 & \Leftrightarrow F_{X,Y}(x,y)=F_X(x)F_Y(y)   \\
+					 & \Leftrightarrow f_{Y\mid X}(y\mid x)=f_Y(y) \\
+					 & \Leftrightarrow f_{X\mid Y}(x\mid y)=f_X(x)
+				\end{align*}
+			\end{minipage}
+			\par\vspace{0.5\baselineskip}
+			\begin{minipage}[t]{\linewidth}
+				Independence shortcut: \\
+				Support $R_{X,Y}=R_X\times R_Y$, \\
+				Discrete: PMF table must be non-zero \\
+				Continuous: Integral must be rectangular \\
+				and $f_{X,Y}(x,y)$ can be factorised into \\
+				$C \cdot g_1(x)g_2(y)$ over the support.
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				Marginals from factorisation: \\
+				$f_X(x) =
+					\begin{cases}
+						C \cdot g_1(x)\displaystyle\sum^y g_2(y) \\[1.5ex]
+						C \cdot g_1(x)\displaystyle\int g_2(y)\,dy
+					\end{cases}$
 
-			\vspace{0.8\baselineskip}
+				\vspace{0.8\baselineskip}
 
-			$f_Y(y) =
-				\begin{cases}
-					C \cdot g_2(y)\displaystyle\sum^x g_1(x) \\[1.5ex]
-					C \cdot g_2(y)\displaystyle\int g_1(x)\,dx
-				\end{cases}$
-		\end{minipage}
-	\end{tblr}
-\end{tcolorbox}
+				$f_Y(y) =
+					\begin{cases}
+						C \cdot g_2(y)\displaystyle\sum^x g_1(x) \\[1.5ex]
+						C \cdot g_2(y)\displaystyle\int g_1(x)\,dx
+					\end{cases}$
+			\end{minipage}
+		\end{tblr}
+	\end{tcolorbox}
 
-\switchcolumn
+	\switchcolumn
 
-\begin{tcolorbox}[title=Data, width=100pt]
-	Zipf's law for the $x$-th most popular item: \\
-	PMF: $f(x) = \dfrac{c}{x},\ x\in\{1\ ..\ n\}$
+	\begin{tcolorbox}[title=Data, width=100pt]
+		Zipf's law for the $x$-th most popular item: \\
+		PMF: $f(x) = \dfrac{c}{x},\ x\in\{1\ ..\ n\}$
 
-	\vspace{\baselineskip}
-	Benford's law for leading digits: \\
-	PMF: $f(d) = \log_{10}\left(1 + \dfrac{1}{d}\right),\ d\in\{1\ ..\ 9\}$
-\end{tcolorbox}
+		\vspace{\baselineskip}
+		Benford's law for leading digits: \\
+		PMF: $f(d) = \log_{10}\left(1 + \dfrac{1}{d}\right),\ d\in\{1\ ..\ 9\}$
+	\end{tcolorbox}
 \end{paracol}
 
 \newpage
 
 \setcolumnwidth{385pt,385pt,500pt,}
 \begin{paracol}{4}
-\begin{tcolorbox}[title=Sampling Distributions, width=385pt,
-	reset and store to box array=breakwrap]
-	\begin{tblr}{
-			colspec={X[3, l]|X[5, l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			$\overline{X} = \dfrac{1}{n}\displaystyle\sum X_i$
-
-			\vspace{\baselineskip}
-			$\mu_{\overline{X}} = E(\overline{X}) = E(X) = \mu$ \\
-			$\sigma_{\overline{X}}^2 = \var(\overline{X}) = \sigma^2/n$ \\
-			$\mathrm{SE}(\overline{X}) = \sigma_{\overline{X}} = \sigma/\sqrt{n}$
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			$\begin{aligned}[t]
-					S^2 & = \dfrac{1}{n-1}\sum (X_i - \overline{X})^2 \\
-					    & = \dfrac{1}{n-1}\sum X_i^2
-					- \dfrac{n}{n-1}\overline{X}^2                    \\
-					    & = \dfrac{1}{n-1}\sum X_i^2
-					- \dfrac{1}{n(n-1)}\left(\sum X_i\right)^2
-				\end{aligned}$
-		\end{minipage}
-	\end{tblr}
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	An unbiased estimator $\hat{\theta}$ for $\theta$ means $E(\hat{\theta})=\theta$. \\
-	$\overline{X}$ is an unbiased estimator for $\mu$, $S^2$ is an unbiased estimator for $\sigma^2$.
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	\begin{tblr}{
-			colspec={X[4, l]|X[3, l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{tabular}[t]{@{}l@{}}
-			CLT: As $n$ increases, $\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}} \xrightarrow{d} \N(0, 1)$ \\
-			$\overline{X} \approx \N(\mu, \sigma^2/n),\ \displaystyle\sum^n X_i \approx \N(n\mu, n\sigma^2)$
-		\end{tabular}
-		 &
-		\begin{tabular}[t]{@{}l@{}}
-			LLN: As $n$ increases, $\overline{X} \xrightarrow{p} \mu$ \\[0.5em]
-			i.e. $\forall\varepsilon\ \displaystyle P\left(|\overline{X}-\mu|>\varepsilon\right)\to 0$
-		\end{tabular}
-	\end{tblr}
-	for i.i.d sample from \hlfancy{lightgray}{any distribution} with \hlfancy{lightgray}{finite} mean and variance. \\
-	If the population is normal, then \hlfancy{lightgray}{CLT is exact} instead of just approximation.
-
-	\tcbsubtitle{$\chi^2$ Distribution}
-	Given i.i.d. $Z_i \sim \N(0, 1)$, \hlfancytall{lightgray}{$U = \displaystyle\sum^n_{i=1} Z_i^2 \sim \chi^2(n)$} \\
-	$E(U) = n$, \ $\var(U) = 2n$ \\
-	\includegraphics[width=0.9\linewidth]{chi_squares.pdf} \\
-	For large $n$, $\chi^2(n) \approx \N(n, 2n)$ \\
-	\vspace*{1pt}\hrule\vspace*{1pt}
-	Given independent $\chi^2(m)$, $\chi^2(n)$, $\chi^2(m) + \chi^2(n) \sim \chi^2(m + n)$ \\
-
-	$\dfrac{X_i - \mu}{\sigma} \sim \N(0, 1) \Rightarrow \displaystyle\sum^n\left(\dfrac{X_i - \mu}{\sigma}\right)^2 = \dfrac{\sum (X_i - \mu)^2}{\sigma^2} \sim \chi^2(n)$ \\
-			\begin{align*}
-				\hlfancymath{lightgray}{\dfrac{S^2(n-1)}{\sigma^2}} & = \dfrac{\sum (X_i - \overline{X})^2(n-1)}{(n-1)\sigma^2} = \dfrac{\sum (X_i - \overline{X})^2}{\sigma^2} \hlfancymath{lightgray}{\sim \chi^2(n - 1)}
-			\end{align*} \\
-			for i.i.d. normal sample
-
-			\begin{align*}
-				P(S^2 \geq c) & = P\left(\dfrac{S^2(n-1)}{\sigma^2} \geq \dfrac{c(n-1)}{\sigma^2}\right) = P\left(\chi^2(n-1) \geq \dfrac{c(n-1)}{\sigma^2}\right)
-			\end{align*}
-
-	Assuming $\sigma = \sigma_0$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2(n-1)}{\sigma^2_0}$} \\
-	Compare with \hlfancytall{lightgray}{$\chi^2(n-1)$} critical value table to reject assumption.
-
-	\tcbsubtitle{$t$-distribution}
-	Given independent $Z \sim \N(0, 1)$ and $U \sim \chi^2(n)$,
-	\hlfancytall{lightgray}{$T = \dfrac{Z}{\sqrt{U/n}} \sim \tdist(n)$} \\
-	$E(T) = 0$, \ $\var(T) = \dfrac{n}{n-2}$ \\
-	\includegraphics[width=0.9\linewidth]{t_distributions.pdf} \\
-	For large $n$, $\tdist(n) \approx \N(0, 1)$
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	\begin{align*}
-		\hlfancymath{lightgray}{\dfrac{\overline{X} - \mu}{\sqrt{S^2/n}}}
-		 & = \dfrac{\overline{X} - \mu}{\sqrt{\dfrac{S^2(n-1)\sigma^2}{\sigma^2(n-1)n}}}  = \dfrac{\overline{X} - \mu}{\sqrt{\dfrac{\sigma^2}{n}}\sqrt{\dfrac{S^2(n-1)}{\sigma^2(n-1)}}} = \dfrac{\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}}}{\sqrt{\dfrac{S^2(n-1)}{\sigma^2}\Big/(n-1)}} \\
-		 & \hlfancymath{lightgray}{\sim \tdist(n - 1)}
-	\end{align*}
-	for i.i.d. normal sample
-
-	\tcbsubtitle{$F$-distribution}
-	Given independent $U \sim \chi^2(m)$ and $V \sim \chi^2(n)$,
-	\hlfancytall{lightgray}{$F = \dfrac{U/m}{V/n} \sim F(m, n)$} \\
-	$E(F) = \dfrac{n}{n-2}$, \ $\var(F) = \dfrac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$ \\
-	\includegraphics[width=.49\linewidth]{f_varying_m.pdf}
-	\includegraphics[width=.49\linewidth]{f_varying_n.pdf} \\
-	$m \to \infty,\ n\to \infty \Rightarrow F(m,n) \to 1$
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	\begin{tblr}{
-			colspec={X[3,l]|X[4,l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			$\begin{aligned}[t]
-					\hlfancymath{lightgray}{\dfrac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}}
-					 & = \dfrac{\dfrac{S_1^2(n_1-1)}{\sigma_1^2}/(n_1-1)}
-					     {\dfrac{S_2^2(n_2-1)}{\sigma_2^2}/(n_2-1)} \\
-					 & \hlfancymath{lightgray}{\sim F(n_1 - 1, n_2 - 1)}
-				\end{aligned}$
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			\vspace*{-2.8em}
-			Given $F_1 \sim F(m, n)$, $F_2 = \dfrac{1}{F_1} \sim F(n, m)$
-			$\begin{aligned}[t]
-					 & P(F_1 \geq F(m, n; \alpha)) = \alpha                                 \\
-					 & \Rightarrow P(\frac{1}{F_1} \leq \frac{1}{F(m, n; \alpha)}) = \alpha \\
-					 & \Rightarrow P(F_2 \leq \frac{1}{F(m, n; \alpha)}) = \alpha           \\
-					 & \Rightarrow P(F_2 \geq \frac{1}{F(m, n; \alpha)}) = 1 - \alpha       \\
-					 & \Rightarrow\!\hlfancymath{lightgray}{F(n, m; 1 - \alpha)
-						                = \frac{1}{F(m, n; \alpha)}}
-				\end{aligned}$
-		\end{minipage}
-	\end{tblr}
-
-	Assuming equal variances $\sigma_1 = \sigma_2$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2_1}{s_2^2}$} \\
-	Compare with \hlfancy{lightgray}{$F(n_1 - 1, n_2 - 1)$} critical value table to reject assumption.
-\end{tcolorbox}
-\consumeboxarray[breakwrap]{1}
-\switchcolumn
-\consumeboxarray[breakwrap]{2}
-\switchcolumn
-
-\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=550pt,
-    reset and store to box array=breakwrap]
-	\includegraphics[width=.47\linewidth]{normal-upper-tail.pdf}
-	\includegraphics[width=.47\linewidth]{chi-square-upper-tail.pdf} \\
-	\includegraphics[width=.47\linewidth]{t-upper-tail.pdf}
-	\includegraphics[width=.47\linewidth]{f-upper-tail.pdf} \\
-	Upper-tail critical value at significance $\alpha$ is a value on the $x$-axis, $z_\alpha$, $t_{n; \alpha}$, $\chi^2(n; \alpha)$, or $F(m, n; \alpha)$ \\
-	\hlfancy{lightgray}{usually taken from the given tables, or given in the question}
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	\begin{tblr}{
-			colspec={X[l]|X[l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			General test statistic: \hlfancytall{lightgray}{$\dfrac{\text{sample val} - \text{population val}}{\mathrm{SE}}$}\\
-			General CI: \hlfancy{lightgray}{$\text{sample val} \pm (\text{critical value}\times\text{SE})$}
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth}
-			CI Margin of Error $E$:
-			\hlfancy{lightgray}{$\text{critical value}\times\mathrm{SE} = \text{L}/2$} \\
-			CI Length $L$: \hlfancy{lightgray}{$\text{Upper} - \text{Lower} = 2E$} \\
-		\end{minipage}
-	\end{tblr}
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	Before computing, the \hlfancy{lightgray}{CI procedure has probability $(1-\alpha)$ of capturing $\mu$.}
-	However, after a CI is computed, $\mu$ either lies in it or it does not.
-	Thus, we call it a \hlfancy{lightgray}{$100*(1-\alpha)\%$ CI}, and we are \hlfancy{lightgray}{$100*(1-\alpha)\%$ confident} a computed CI contains $\mu$,
-	\hlfancy{lightgray}{not that there is probability $(1-\alpha)$} a computed CI contains $\mu$.
-
-	\vspace*{1pt}\hrule\vspace*{1pt}
-
-	Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
-	\begin{tblr}{
-			colspec={|c|c|c|c|c|c|c|},
-			hlines,
-			rows={valign=m},
-		}
-		Population & $\sigma$; $n$
-		           & SE
-		           & \shortstack{Test statistic\\under $H_0$}
-		           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate, $E$}
-		           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                     \\
-
-		Normal     & \shortstack{Known;\\Any}
-		           & $\dfrac{\sigma}{\sqrt{n}}$
-		           & $Z=\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
-		           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-		           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-		           & $\displaystyle\left\lceil
-			             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
-			             \right\rceil$                                                 \\
-
-		Any        & \shortstack{Known;\\Large}
-		           & $\dfrac{\sigma}{\sqrt{n}}$
-		           & $Z\approx\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
-		           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-		           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
-		           & $\displaystyle\left\lceil
-			             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
-			             \right\rceil$                                                 \\
-
-		Normal     & \shortstack{Unknown;\\Small}
-		           & $\dfrac{S}{\sqrt{n}}$
-		           & $T=\dfrac{\overline X-\mu_0}{S/\sqrt n}$
-		           & $\overline x\pm t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
-		           & $E = t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
-		           & $\displaystyle\left\lceil
-			             \left(\dfrac{t_{n-1;\alpha/2}\cdot s}{E_0}\right)^2
-			             \right\rceil$                                                  \\
-
-		Any        & \shortstack{Unknown;\\Large}
-		           & $\dfrac{S}{\sqrt{n}}$
-		           & $Z\approx\dfrac{\overline X-\mu_0}{S/\sqrt n}$
-		           & $\overline x\pm z_{\alpha/2}\dfrac{s}{\sqrt n}$
-		           & $E = z_{\alpha/2}\dfrac{s}{\sqrt n}$
-		           & $\displaystyle\left\lceil
-			             \left(\dfrac{z_{\alpha/2}\cdot s}{E_0}\right)^2
-			             \right\rceil$
-	\end{tblr}
-
-	\vspace{\baselineskip}
-	Independent two-sample, \hlfancy{lightgray}{$H_0:\mu_1-\mu_2=\delta_0$}: \\
-	\begin{tblr}{
-			colspec={|c|c|c|c|c|},
-			hlines,
-			rows={valign=m},
-		}
-		Variances
-		 & Conditions
-		 & SE
-		 & Test statistic under $H_0$
-		 & $(1-\alpha)$ CI for $\mu_1-\mu_2$                                  \\
-
-		\shortstack{Known,\\unequal}
-		 & \shortstack{Any;\\$n_1,n_2\ge 30$}
-		 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
-		 & $\displaystyle
-			   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-			   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
-		 & $\displaystyle
-			   (\overline{x}_1-\overline{x}_2)\pm
-			   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
-
-		\shortstack{Known,\\unequal}
-		 & \shortstack{Normal;\\any $n_1,n_2$}
-		 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
-		 & $\displaystyle
-			   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-			   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
-		 & $\displaystyle
-			   (\overline{x}_1-\overline{x}_2)\pm
-			   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
-
-		\shortstack{Unknown,\\unequal}
-		 & \shortstack{Any;\\$n_1,n_2\ge 30$}
-		 & $\sqrt{\dfrac{S_1^2}{n_1}+\dfrac{S_2^2}{n_2}}$
-		 & $\displaystyle
-			   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-			   {\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}$
-		 & $\displaystyle
-			   (\overline{x}_1-\overline{x}_2)\pm
-			   z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$           \\
-
-		\shortstack{Unknown,\\equal}
-		 & \shortstack{Normal;\\$n_1,n_2<30$}
-		 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
-		 & $\displaystyle
-			   T=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-			   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
-		 & $\displaystyle
-			   (\overline{x}_1-\overline{x}_2)\pm
-			   t_{n_1+n_2-2;\alpha/2}\,
-			   s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$                            \\
-
-		\shortstack{Unknown,\\equal}
-		 & \shortstack{Any;\\$n_1,n_2\ge 30$}
-		 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
-		 & $\displaystyle
-			   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
-			   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
-		 & $\displaystyle
-			   (\overline{x}_1-\overline{x}_2)\pm
-			   z_{\alpha/2}\,s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
-	\end{tblr} \\
-	where \hlfancytall{lightgray}{$s_p^2= \dfrac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$} is a pooled estimate of the common/equal population variances
-
-	\vspace{\baselineskip}
-	Dependent two-sample: single sample of paired differences
-	\hlfancy{lightgray}{$D_i = X_i - Y_i$}. Assumptions apply to differences. \\
-	\begin{tblr}{
-			colspec={X[l]|X[l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			\hlfancy{lightgray}{$H_0: \mu_D = \delta_0$} \\
-			\begin{tblr}{
-					colspec={|c|c|c|},
-					hlines,
-					rows={valign=m},
-				}
-				Conditions
-				 & \shortstack{Test statistic\\under $H_0$}
-				 & $(1-\alpha)$ CI for $\mu_D$                                        \\
-				\shortstack{Small sample;\\\ normal}
-				 & $\displaystyle T=\frac{\overline D-\delta_0}{S_D/\sqrt n}$
-				 & $\displaystyle \overline d\pm t_{n-1;\alpha/2}\frac{s_D}{\sqrt n}$ \\
-				Large sample
-				 & $\displaystyle Z\approx\frac{\overline D-\delta_0}{S_D/\sqrt n}$
-				 & $\displaystyle \overline d\pm z_{\alpha/2}\frac{s_D}{\sqrt n}$
-			\end{tblr}
-		\end{minipage}
-		 &
-		$\begin{aligned}[t]
-				\\
-				\hlfancymath{lightgray}{\overline{D}} & = \dfrac{\sum(X_i - Y_i)}{n} = \dfrac{\sum X_i}{n} - \dfrac{\sum Y_i}{n} \\
-				                                      & \hlfancymath{lightgray}{= \overline{X} - \overline{Y{}}}
-			\end{aligned}$
-	\end{tblr}
-
-	\vspace{\baselineskip}
-	Hypothesis testing: \\
-	\begin{tblr}{
-			colspec={X[11,l]|X[5,l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
+	\begin{tcolorbox}[title=Sampling Distributions, width=385pt,
+			reset and store to box array=breakwrap]
 		\begin{tblr}{
-				colspec={|c|c|c|c|},
+				colspec={X[3, l]|X[5, l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				$\overline{X} = \dfrac{1}{n}\displaystyle\sum X_i$
+
+				\vspace{\baselineskip}
+				$\mu_{\overline{X}} = E(\overline{X}) = E(X) = \mu$ \\
+				$\sigma_{\overline{X}}^2 = \var(\overline{X}) = \sigma^2/n$ \\
+				$\mathrm{SE}(\overline{X}) = \sigma_{\overline{X}} = \sigma/\sqrt{n}$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				$\begin{aligned}[t]
+						S^2 & = \dfrac{1}{n-1}\sum (X_i - \overline{X})^2 \\
+						    & = \dfrac{1}{n-1}\sum X_i^2
+						- \dfrac{n}{n-1}\overline{X}^2                    \\
+						    & = \dfrac{1}{n-1}\sum X_i^2
+						- \dfrac{1}{n(n-1)}\left(\sum X_i\right)^2
+					\end{aligned}$
+			\end{minipage}
+		\end{tblr}
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		An unbiased estimator $\hat{\theta}$ for $\theta$ means $E(\hat{\theta})=\theta$. \\
+		$\overline{X}$ is an unbiased estimator for $\mu$, $S^2$ is an unbiased estimator for $\sigma^2$.
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		\begin{tblr}{
+				colspec={X[4, l]|X[3, l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{tabular}[t]{@{}l@{}}
+				CLT: As $n$ increases, $\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}} \xrightarrow{d} \N(0, 1)$ \\
+				$\overline{X} \approx \N(\mu, \sigma^2/n),\ \displaystyle\sum^n X_i \approx \N(n\mu, n\sigma^2)$
+			\end{tabular}
+			 &
+			\begin{tabular}[t]{@{}l@{}}
+				LLN: As $n$ increases, $\overline{X} \xrightarrow{p} \mu$ \\[0.5em]
+				i.e. $\forall\varepsilon\ \displaystyle P\left(|\overline{X}-\mu|>\varepsilon\right)\to 0$
+			\end{tabular}
+		\end{tblr}
+		for i.i.d sample from \hlfancy{lightgray}{any distribution} with \hlfancy{lightgray}{finite} mean and variance. \\
+		If the population is normal, then \hlfancy{lightgray}{CLT is exact} instead of just approximation.
+
+		\tcbsubtitle{$\chi^2$ Distribution}
+		Given i.i.d. $Z_i \sim \N(0, 1)$, \hlfancytall{lightgray}{$U = \displaystyle\sum^n_{i=1} Z_i^2 \sim \chi^2(n)$} \\
+		$E(U) = n$, \ $\var(U) = 2n$ \\
+		\includegraphics[width=0.9\linewidth]{chi_squares.pdf} \\
+		For large $n$, $\chi^2(n) \approx \N(n, 2n)$ \\
+		\vspace*{1pt}\hrule\vspace*{1pt}
+		Given independent $\chi^2(m)$, $\chi^2(n)$, $\chi^2(m) + \chi^2(n) \sim \chi^2(m + n)$ \\
+
+		$\dfrac{X_i - \mu}{\sigma} \sim \N(0, 1) \Rightarrow \displaystyle\sum^n\left(\dfrac{X_i - \mu}{\sigma}\right)^2 = \dfrac{\sum (X_i - \mu)^2}{\sigma^2} \sim \chi^2(n)$ \\
+		\begin{align*}
+			\hlfancymath{lightgray}{\dfrac{S^2(n-1)}{\sigma^2}} & = \dfrac{\sum (X_i - \overline{X})^2(n-1)}{(n-1)\sigma^2} = \dfrac{\sum (X_i - \overline{X})^2}{\sigma^2} \hlfancymath{lightgray}{\sim \chi^2(n - 1)}
+		\end{align*} \\
+		for i.i.d. normal sample
+
+		\begin{align*}
+			P(S^2 \geq c) & = P\left(\dfrac{S^2(n-1)}{\sigma^2} \geq \dfrac{c(n-1)}{\sigma^2}\right) = P\left(\chi^2(n-1) \geq \dfrac{c(n-1)}{\sigma^2}\right)
+		\end{align*}
+
+		Assuming $\sigma = \sigma_0$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2(n-1)}{\sigma^2_0}$} \\
+		Compare with \hlfancytall{lightgray}{$\chi^2(n-1)$} critical value table to reject assumption.
+
+		\tcbsubtitle{$t$-distribution}
+		Given independent $Z \sim \N(0, 1)$ and $U \sim \chi^2(n)$,
+		\hlfancytall{lightgray}{$T = \dfrac{Z}{\sqrt{U/n}} \sim \tdist(n)$} \\
+		$E(T) = 0$, \ $\var(T) = \dfrac{n}{n-2}$ \\
+		\includegraphics[width=0.9\linewidth]{t_distributions.pdf} \\
+		For large $n$, $\tdist(n) \approx \N(0, 1)$
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		\begin{align*}
+			\hlfancymath{lightgray}{\dfrac{\overline{X} - \mu}{\sqrt{S^2/n}}}
+			 & = \dfrac{\overline{X} - \mu}{\sqrt{\dfrac{S^2(n-1)\sigma^2}{\sigma^2(n-1)n}}}  = \dfrac{\overline{X} - \mu}{\sqrt{\dfrac{\sigma^2}{n}}\sqrt{\dfrac{S^2(n-1)}{\sigma^2(n-1)}}} = \dfrac{\dfrac{\overline{X} - \mu}{\sqrt{\sigma^2/n}}}{\sqrt{\dfrac{S^2(n-1)}{\sigma^2}\Big/(n-1)}} \\
+			 & \hlfancymath{lightgray}{\sim \tdist(n - 1)}
+		\end{align*}
+		for i.i.d. normal sample
+
+		\tcbsubtitle{$F$-distribution}
+		Given independent $U \sim \chi^2(m)$ and $V \sim \chi^2(n)$,
+		\hlfancytall{lightgray}{$F = \dfrac{U/m}{V/n} \sim F(m, n)$} \\
+		$E(F) = \dfrac{n}{n-2}$, \ $\var(F) = \dfrac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$ \\
+		\includegraphics[width=.49\linewidth]{f_varying_m.pdf}
+		\includegraphics[width=.49\linewidth]{f_varying_n.pdf} \\
+		$m \to \infty,\ n\to \infty \Rightarrow F(m,n) \to 1$
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		\begin{tblr}{
+				colspec={X[3,l]|X[4,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				$\begin{aligned}[t]
+						\hlfancymath{lightgray}{\dfrac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}}
+						 & = \dfrac{\dfrac{S_1^2(n_1-1)}{\sigma_1^2}/(n_1-1)}
+						     {\dfrac{S_2^2(n_2-1)}{\sigma_2^2}/(n_2-1)} \\
+						 & \hlfancymath{lightgray}{\sim F(n_1 - 1, n_2 - 1)}
+					\end{aligned}$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\vspace*{-2.8em}
+				Given $F_1 \sim F(m, n)$, $F_2 = \dfrac{1}{F_1} \sim F(n, m)$
+				$\begin{aligned}[t]
+						 & P(F_1 \geq F(m, n; \alpha)) = \alpha                                 \\
+						 & \Rightarrow P(\frac{1}{F_1} \leq \frac{1}{F(m, n; \alpha)}) = \alpha \\
+						 & \Rightarrow P(F_2 \leq \frac{1}{F(m, n; \alpha)}) = \alpha           \\
+						 & \Rightarrow P(F_2 \geq \frac{1}{F(m, n; \alpha)}) = 1 - \alpha       \\
+						 & \Rightarrow\!\hlfancymath{lightgray}{F(n, m; 1 - \alpha)
+							                = \frac{1}{F(m, n; \alpha)}}
+					\end{aligned}$
+			\end{minipage}
+		\end{tblr}
+
+		Assuming equal variances $\sigma_1 = \sigma_2$, \hlfancytall{lightgray}{test statistic $= \dfrac{s^2_1}{s_2^2}$} \\
+		Compare with \hlfancy{lightgray}{$F(n_1 - 1, n_2 - 1)$} critical value table to reject assumption.
+	\end{tcolorbox}
+	\consumeboxarray[breakwrap]{1}
+	\switchcolumn
+	\consumeboxarray[breakwrap]{2}
+	\switchcolumn
+
+	\begin{tcolorbox}[title=Confidence Intervals \& Hypothesis Testing, width=550pt,
+			reset and store to box array=breakwrap]
+		\includegraphics[width=.47\linewidth]{normal-upper-tail.pdf}
+		\includegraphics[width=.47\linewidth]{chi-square-upper-tail.pdf} \\
+		\includegraphics[width=.47\linewidth]{t-upper-tail.pdf}
+		\includegraphics[width=.47\linewidth]{f-upper-tail.pdf} \\
+		Upper-tail critical value at significance $\alpha$ is a value on the $x$-axis, $z_\alpha$, $t_{n; \alpha}$, $\chi^2(n; \alpha)$, or $F(m, n; \alpha)$ \\
+		\hlfancy{lightgray}{usually taken from the given tables, or given in the question}
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		\begin{tblr}{
+				colspec={X[l]|X[l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				General test statistic: \hlfancytall{lightgray}{$\dfrac{\text{sample val} - \text{population val}}{\mathrm{SE}}$}\\
+				General CI: \hlfancy{lightgray}{$\text{sample val} \pm (\text{critical value}\times\text{SE})$}
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				CI Margin of Error $E$:
+				\hlfancy{lightgray}{$\text{critical value}\times\mathrm{SE} = \text{L}/2$} \\
+				CI Length $L$: \hlfancy{lightgray}{$\text{Upper} - \text{Lower} = 2E$} \\
+			\end{minipage}
+		\end{tblr}
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		Before computing, the \hlfancy{lightgray}{CI procedure has probability $(1-\alpha)$ of capturing $\mu$.}
+		However, after a CI is computed, $\mu$ either lies in it or it does not.
+		Thus, we call it a \hlfancy{lightgray}{$100*(1-\alpha)\%$ CI}, and we are \hlfancy{lightgray}{$100*(1-\alpha)\%$ confident} a computed CI contains $\mu$,
+		\hlfancy{lightgray}{not that there is probability $(1-\alpha)$} a computed CI contains $\mu$.
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		Single sample, \hlfancy{lightgray}{$H_0:\mu=\mu_0$}: \\
+		\begin{tblr}{
+				colspec={|c|c|c|c|c|c|c|},
 				hlines,
 				rows={valign=m},
 			}
-			Test
-			 & Hypotheses
-			 & \shortstack{Reject $H_0$ if}
-			 & \shortstack{$p$-value (area under graph)}                          \\
-			Two-sided
-			 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
-			 & $\displaystyle |q_{\mathrm{obs}}|>q_{\alpha/2}$
-			 & $\displaystyle 2*P(Q\ge |q_{\mathrm{obs}}|\mid \theta = \theta_0)$ \\
-			Left-sided
-			 & \shortstack{$H_0:\theta\ge\theta_0$\\$H_1:\theta<\theta_0$}
-			 & $\displaystyle q_{\mathrm{obs}}<-q_\alpha$
-			 & $\displaystyle P(Q\le q_{\mathrm{obs}}\mid \theta = \theta_0)$     \\
-			Right-sided
-			 & \shortstack{$H_0:\theta\le\theta_0$\\$H_1:\theta>\theta_0$}
-			 & $\displaystyle q_{\mathrm{obs}}>q_\alpha$
-			 & $\displaystyle P(Q\ge q_{\mathrm{obs}}\mid \theta = \theta_0)$
+			Population & $\sigma$; $n$
+			           & SE
+			           & \shortstack{Test statistic\\under $H_0$}
+			           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate, $E$}
+			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                     \\
+
+			Normal     & \shortstack{Known;\\Any}
+			           & $\dfrac{\sigma}{\sqrt{n}}$
+			           & $Z=\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
+			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+			           & $\displaystyle\left\lceil
+				             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
+				             \right\rceil$                                                 \\
+
+			Any        & \shortstack{Known;\\Large}
+			           & $\dfrac{\sigma}{\sqrt{n}}$
+			           & $Z\approx\dfrac{\overline X-\mu_0}{\sigma/\sqrt n}$
+			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
+			           & $\displaystyle\left\lceil
+				             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
+				             \right\rceil$                                                 \\
+
+			Normal     & \shortstack{Unknown;\\Small}
+			           & $\dfrac{S}{\sqrt{n}}$
+			           & $T=\dfrac{\overline X-\mu_0}{S/\sqrt n}$
+			           & $\overline x\pm t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
+			           & $E = t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
+			           & $\displaystyle\left\lceil
+				             \left(\dfrac{t_{n-1;\alpha/2}\cdot s}{E_0}\right)^2
+				             \right\rceil$                                                  \\
+
+			Any        & \shortstack{Unknown;\\Large}
+			           & $\dfrac{S}{\sqrt{n}}$
+			           & $Z\approx\dfrac{\overline X-\mu_0}{S/\sqrt n}$
+			           & $\overline x\pm z_{\alpha/2}\dfrac{s}{\sqrt n}$
+			           & $E = z_{\alpha/2}\dfrac{s}{\sqrt n}$
+			           & $\displaystyle\left\lceil
+				             \left(\dfrac{z_{\alpha/2}\cdot s}{E_0}\right)^2
+				             \right\rceil$
 		\end{tblr}
-		 &
-		\begin{minipage}[t]{\linewidth} \vspace*{-4em}
-			$\theta$ is the population parameter \\
-			$q_{\mathrm{obs}}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$}, (usually $z$ ot $t$) \\
-			$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
-		\end{minipage}
-	\end{tblr} \\
 
-	CI and Hypothesis Test equivalence (with same model):\\
-	\begin{tblr}{
-			colspec={X[2, l]|X[3, l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{minipage}[t]{\linewidth}
-			$q_{\mathrm{obs}}=
-				\hlfancymath{lightgray}{
-					\dfrac{\text{sample value}-\text{population value}}{\mathrm{SE}}
-				}$
-		\end{minipage}
-		 &
-		\begin{minipage}[t]{\linewidth} \vspace*{-3.2ex}
-			Upper bound \hlfancy{lightgray}{
-				$U=\text{sample value}+(\text{critical value}\times\mathrm{SE})$
-			}\\
-			Lower bound \hlfancy{lightgray}{
-				$L=\text{sample value}-(\text{critical value}\times\mathrm{SE})$
+		\vspace{\baselineskip}
+		Independent two-sample, \hlfancy{lightgray}{$H_0:\mu_1-\mu_2=\delta_0$}: \\
+		\begin{tblr}{
+				colspec={|c|c|c|c|c|},
+				hlines,
+				rows={valign=m},
 			}
-		\end{minipage}
-	\end{tblr}
-	Two-sided: \hlfancy{lightgray}{reject $H_0$} iff \hlfancy{lightgray}{$\theta_0$ is not contained} in $(1-\alpha)$ CI $=\hat\theta \pm q_{\alpha/2}\mathrm{SE}$ \\
-	\begin{tblr}{
-			colspec={X[4, l]|X[5, l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		Left-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0>U}\!= \hat\theta+q_\alpha SE$
-		 &
-		Right-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0<L}\!=\hat\theta-q_\alpha SE$
-	\end{tblr}
+			Variances
+			 & Conditions
+			 & SE
+			 & Test statistic under $H_0$
+			 & $(1-\alpha)$ CI for $\mu_1-\mu_2$                                  \\
 
-	\begin{tblr}{
-			colspec={X[8, l]|X[9, l]},
-			leftsep=0pt,
-			rightsep=0pt,
-			column{1}={rightsep=5pt},
-			column{2}={leftsep=5pt},
-		}
-		\begin{tabular}{|c|c|c|}
-			\hline
-			            & $H_0$ not rejected        & $H_0$ rejected           \\ \hline
-			$H_0$ true  & $\checkmark$ ($1-\alpha$) & Type I error ($\alpha$)  \\ \hline
-			$H_0$ false & Type II error ($\beta$)   & $\checkmark$ ($1-\beta$) \\ \hline
-		\end{tabular}
-		 &
-		\begin{minipage}[t]{\linewidth} \vspace*{-2em}
-			$P(\text{Type I error}) = P(H_0 \text{ rejected} \mid H_0 \text{ true}) = \alpha$ \\
-			$P(\text{Type II error}) = P(H_0 \text{ not rejected} \mid H_0 \text{ false}) = \beta$ \\
-			$\text{Power} = P(H_0 \text{ rejected} \mid H_0 \text{ false}) = 1 - \beta$
-		\end{minipage}
-	\end{tblr} \\
+			\shortstack{Known,\\unequal}
+			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+			 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
+			 & $\displaystyle
+				   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+				   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
+			 & $\displaystyle
+				   (\overline{x}_1-\overline{x}_2)\pm
+				   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
 
-	Under the same test conditions, lowering $\alpha$ (smaller rejection region) increases $\beta$ (chance of failing to reject)
-\end{tcolorbox}
-\consumeboxarray[breakwrap]{1}
-\switchcolumn
-\consumeboxarray[breakwrap]{2}
+			\shortstack{Known,\\unequal}
+			 & \shortstack{Normal;\\any $n_1,n_2$}
+			 & $\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}$
+			 & $\displaystyle
+				   Z=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+				   {\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$
+			 & $\displaystyle
+				   (\overline{x}_1-\overline{x}_2)\pm
+				   z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ \\
+
+			\shortstack{Unknown,\\unequal}
+			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+			 & $\sqrt{\dfrac{S_1^2}{n_1}+\dfrac{S_2^2}{n_2}}$
+			 & $\displaystyle
+				   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+				   {\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}$
+			 & $\displaystyle
+				   (\overline{x}_1-\overline{x}_2)\pm
+				   z_{\alpha/2}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$           \\
+
+			\shortstack{Unknown,\\equal}
+			 & \shortstack{Normal;\\$n_1,n_2<30$}
+			 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
+			 & $\displaystyle
+				   T=\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+				   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
+			 & $\displaystyle
+				   (\overline{x}_1-\overline{x}_2)\pm
+				   t_{n_1+n_2-2;\alpha/2}\,
+				   s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$                            \\
+
+			\shortstack{Unknown,\\equal}
+			 & \shortstack{Any;\\$n_1,n_2\ge 30$}
+			 & ${S_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}$
+			 & $\displaystyle
+				   Z\approx\frac{(\overline{X}_1-\overline{X}_2)-\delta_0}
+				   {S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$
+			 & $\displaystyle
+				   (\overline{x}_1-\overline{x}_2)\pm
+				   z_{\alpha/2}\,s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
+		\end{tblr} \\
+		where \hlfancytall{lightgray}{$s_p^2= \dfrac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$} is a pooled estimate of the common/equal population variances
+
+		\vspace{\baselineskip}
+		Dependent two-sample: single sample of paired differences
+		\hlfancy{lightgray}{$D_i = X_i - Y_i$}. Assumptions apply to differences. \\
+		\begin{tblr}{
+				colspec={X[l]|X[l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				\hlfancy{lightgray}{$H_0: \mu_D = \delta_0$} \\
+				\begin{tblr}{
+						colspec={|c|c|c|},
+						hlines,
+						rows={valign=m},
+					}
+					Conditions
+					 & \shortstack{Test statistic\\under $H_0$}
+					 & $(1-\alpha)$ CI for $\mu_D$                                        \\
+					\shortstack{Small sample;\\\ normal}
+					 & $\displaystyle T=\frac{\overline D-\delta_0}{S_D/\sqrt n}$
+					 & $\displaystyle \overline d\pm t_{n-1;\alpha/2}\frac{s_D}{\sqrt n}$ \\
+					Large sample
+					 & $\displaystyle Z\approx\frac{\overline D-\delta_0}{S_D/\sqrt n}$
+					 & $\displaystyle \overline d\pm z_{\alpha/2}\frac{s_D}{\sqrt n}$
+				\end{tblr}
+			\end{minipage}
+			 &
+			$\begin{aligned}[t]
+					\\
+					\hlfancymath{lightgray}{\overline{D}} & = \dfrac{\sum(X_i - Y_i)}{n} = \dfrac{\sum X_i}{n} - \dfrac{\sum Y_i}{n} \\
+					                                      & \hlfancymath{lightgray}{= \overline{X} - \overline{Y{}}}
+				\end{aligned}$
+		\end{tblr}
+
+		\vspace{\baselineskip}
+		Hypothesis testing: \\
+		\begin{tblr}{
+				colspec={X[11,l]|X[5,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{tblr}{
+					colspec={|c|c|c|c|},
+					hlines,
+					rows={valign=m},
+				}
+				Test
+				 & Hypotheses
+				 & \shortstack{Reject $H_0$ if}
+				 & \shortstack{$p$-value (area under graph)}                          \\
+				Two-sided
+				 & \shortstack{$H_0:\theta=\theta_0$\\$H_1:\theta\ne\theta_0$}
+				 & $\displaystyle |q_{\mathrm{obs}}|>q_{\alpha/2}$
+				 & $\displaystyle 2*P(Q\ge |q_{\mathrm{obs}}|\mid \theta = \theta_0)$ \\
+				Left-sided
+				 & \shortstack{$H_0:\theta\ge\theta_0$\\$H_1:\theta<\theta_0$}
+				 & $\displaystyle q_{\mathrm{obs}}<-q_\alpha$
+				 & $\displaystyle P(Q\le q_{\mathrm{obs}}\mid \theta = \theta_0)$     \\
+				Right-sided
+				 & \shortstack{$H_0:\theta\le\theta_0$\\$H_1:\theta>\theta_0$}
+				 & $\displaystyle q_{\mathrm{obs}}>q_\alpha$
+				 & $\displaystyle P(Q\ge q_{\mathrm{obs}}\mid \theta = \theta_0)$
+			\end{tblr}
+			 &
+			\begin{minipage}[t]{\linewidth} \vspace*{-4em}
+				$\theta$ is the population parameter \\
+				$q_{\mathrm{obs}}$ is the calculated test statistic \hlfancy{lightgray}{under $H_0$}, (usually $z$ ot $t$) \\
+				$q_\alpha$ is the upper-tail critical value at significance $\alpha$ (or $\alpha/2$)
+			\end{minipage}
+		\end{tblr} \\
+
+		CI and Hypothesis Test equivalence (with same model):\\
+		\begin{tblr}{
+				colspec={X[2, l]|X[3, l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				$q_{\mathrm{obs}}=
+					\hlfancymath{lightgray}{
+						\dfrac{\text{sample value}-\text{population value}}{\mathrm{SE}}
+					}$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth} \vspace*{-3.2ex}
+				Upper bound \hlfancy{lightgray}{
+					$U=\text{sample value}+(\text{critical value}\times\mathrm{SE})$
+				}\\
+				Lower bound \hlfancy{lightgray}{
+					$L=\text{sample value}-(\text{critical value}\times\mathrm{SE})$
+				}
+			\end{minipage}
+		\end{tblr}
+		Two-sided: \hlfancy{lightgray}{reject $H_0$} iff \hlfancy{lightgray}{$\theta_0$ is not contained} in $(1-\alpha)$ CI $=\hat\theta \pm q_{\alpha/2}\mathrm{SE}$ \\
+		\begin{tblr}{
+				colspec={X[4, l]|X[5, l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			Left-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0>U}\!= \hat\theta+q_\alpha SE$
+			 &
+			Right-sided: \hlfancy{lightgray}{reject $H_0$} iff $\hlfancymath{lightgray}{\theta_0<L}\!=\hat\theta-q_\alpha SE$
+		\end{tblr}
+
+		\begin{tblr}{
+				colspec={X[8, l]|X[9, l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				            & $H_0$ not rejected        & $H_0$ rejected           \\ \hline
+				$H_0$ true  & $\checkmark$ ($1-\alpha$) & Type I error ($\alpha$)  \\ \hline
+				$H_0$ false & Type II error ($\beta$)   & $\checkmark$ ($1-\beta$) \\ \hline
+			\end{tabular}
+			 &
+			\begin{minipage}[t]{\linewidth} \vspace*{-2em}
+				$P(\text{Type I error}) = P(H_0 \text{ rejected} \mid H_0 \text{ true}) = \alpha$ \\
+				$P(\text{Type II error}) = P(H_0 \text{ not rejected} \mid H_0 \text{ false}) = \beta$ \\
+				$\text{Power} = P(H_0 \text{ rejected} \mid H_0 \text{ false}) = 1 - \beta$
+			\end{minipage}
+		\end{tblr} \\
+
+		Under the same test conditions, lowering $\alpha$ (smaller rejection region) increases $\beta$ (chance of failing to reject)
+	\end{tcolorbox}
+	\consumeboxarray[breakwrap]{1}
+	\switchcolumn
+	\consumeboxarray[breakwrap]{2}
 \end{paracol}
 \end{document}
