@@ -368,46 +368,8 @@
 	\switchcolumn
 
 	\begin{tcolorbox}[title=Distributions]
-		Discrete uniform: $X\sim U\{a,\ldots,b\}$ \\
-		$x\in\{a,\ldots,b\}$, $m=b-a+1$ \\
-		PMF: $f_X(x)=1/m$ \\
-		$E(X)=(a+b)/2$ \\
-		$\var(X)=(m^2-1)/12$ \\
-
-		Bernoulli: $X\sim\mathrm{Bernoulli}(p)$ \\
-		0/1 indicator for a process with probability $p$ of happening \\
-		$x\in\{0,1\}$, $q = 1-p$ \\
-		PMF: $f_X(x)=p^xq^{1-x}$ \\
-		$E(X)=p$ \\
-		$\var(X)=pq$ \\
-
-		Binomial: $X\sim\mathrm{Bin}(n,p)$ \\
-		Number of successes among $n$ Bernoulli($p$) trials \\
-		$x\in\{0,\ldots,n\}$, $q = 1-p$ \\
-		PMF: $f_X(x)=\displaystyle\binom nx p^xq^{n-x}$ \\
-		$E(X)=np$ \\
-		$\var(X)=npq$ \\
-
-		Negative binomial: $X\sim\mathrm{NB}(r,p)$ \\
-		Number of Bernoulli($p$) trials until $r$ successes, inclusive \\
-		$x\in\{r,r+1,\ldots\}$, $q = 1-p$ \\
-		PMF: $f_X(x)=\displaystyle\binom{x-1}{r-1}p^rq^{x-r}$ \\
-		$E(X)=r/p$ \\
-		$\var(X)=rq/p^2$ \\
-
-		Geometric: $X\sim\mathrm{Geom}(p)=\mathrm{NB}(1,p)$ \\
-		Number of Bernoulli($p$) trials until the first success, inclusive \\
-		$x\in\{1,2,\ldots\}$, $q = 1-p$\\
-		PMF: $f_X(x)=q^{x-1}p$ \\
-		$E(X)=1/p$ \\
-		$\var(X)=q/p^2$ \\
-
 		Poisson: $X\sim\mathrm{Pois}(\lambda)$ \\
 		Count of independent events within a fixed interval, where $\lambda$ is the expected count \\
-		$x\in\{0,1,\ldots\}$ \\
-		PMF: $f_X(x)=e^{-\lambda}\lambda^x/x!$ \\
-		$E(X)=\lambda$ \\
-		$\var(X)=\lambda$ \\
 		If given that events happen at a constant rate $\alpha$ per unit time
 		and counts in disjoint intervals are independent,
 		then the expected count of events over duration $T$ time units is $\lambda = \alpha T$
@@ -415,33 +377,24 @@
 		$\lambda,\ \alpha,\ T$ can be any positive real number. \\
 		If $p$ is small, and as $n$ increases $p$ decreases such that $np$ is fixed, $\mathrm{Bin}(n, p) \approx \mathrm{Pois}(np)$ \\
 
-		Indicator variable for event $A$: $I_A \sim \mathrm{Bernoulli}(p)$\\
-		$p=P(A)$, $q=1-p$, $i\in\{0,1\}$ \\
-		PMF: $P(I_A=i)=p^iq^{1-i}$ \\
-		$E(I_A)=p=P(A)$ \\
-		$\var(I_A)=pq=P(A)[1-P(A)]$
-
 		\vspace*{1pt}\hrule\vspace*{1pt}
 
-		Continuous uniform: $X\sim U(a,b)$, $a<b$ \\
+		Continuous uniform: $X\sim U(a,b)$ \\
 		$x\in[a,b]$ \\
-		PDF: $f_X(x)=\dfrac{1}{b-a}$ \\
 		CDF: $\displaystyle F_X(x)=\dfrac{x-a}{b-a}$ \\
-		$E(X)=\dfrac{a+b}{2}$ \\
-		$\var(X)=\dfrac{(b-a)^2}{12}$ \\
 
 		Exponential: $X\sim\mathrm{Exp}(\lambda)$ \\
 		Waiting time between events in a Poisson process of rate $\lambda$ per unit time (not expected count) \\
 		$x\in[0,\infty)$ \\
-		PDF: $f_X(x)= \lambda e^{-\lambda x}$ \\
 		CDF: $F_X(x)=1-e^{-\lambda x}$ \\
-		$E(X)=1/\lambda$ \\
-		$\var(X)=1/\lambda^2$ \\
 		Survival: $P(X>x)=e^{-\lambda x}$ \\
-		Memoryless: $P(X>s+t\mid X>s)=P(X>t)$ \\
 		If given the mean time between events $\mu$ in a Poisson process,
 		then the rate of events per unit time is $\lambda = 1/\mu$,
 		and so the waiting time between events follows a $\mathrm{Exp}(1/\mu)$ distribution.
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+
 	\end{tcolorbox}
 \end{paracol}
 
