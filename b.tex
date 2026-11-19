@@ -420,6 +420,28 @@
 		PMF: $P(I_A=i)=p^iq^{1-i}$ \\
 		$E(I_A)=p=P(A)$ \\
 		$\var(I_A)=pq=P(A)[1-P(A)]$
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		Continuous uniform: $X\sim U(a,b)$, $a<b$ \\
+		$x\in[a,b]$ \\
+		PDF: $f_X(x)=\dfrac{1}{b-a}$ \\
+		CDF: $\displaystyle F_X(x)=\dfrac{x-a}{b-a}$ \\
+		$E(X)=\dfrac{a+b}{2}$ \\
+		$\var(X)=\dfrac{(b-a)^2}{12}$ \\
+
+		Exponential: $X\sim\mathrm{Exp}(\lambda)$ \\
+		Waiting time between events in a Poisson process of rate $\lambda$ per unit time (not expected count) \\
+		$x\in[0,\infty)$ \\
+		PDF: $f_X(x)= \lambda e^{-\lambda x}$ \\
+		CDF: $F_X(x)=1-e^{-\lambda x}$ \\
+		$E(X)=1/\lambda$ \\
+		$\var(X)=1/\lambda^2$ \\
+		Survival: $P(X>x)=e^{-\lambda x}$ \\
+		Memoryless: $P(X>s+t\mid X>s)=P(X>t)$ \\
+		If given the mean time between events $\mu$ in a Poisson process,
+		then the rate of events per unit time is $\lambda = 1/\mu$,
+		and so the waiting time between events follows a $\mathrm{Exp}(1/\mu)$ distribution.
 	\end{tcolorbox}
 \end{paracol}
 
