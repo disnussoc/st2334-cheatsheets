@@ -369,11 +369,11 @@
 
 	\begin{tcolorbox}[title=Distributions]
 		Poisson: $X\sim\mathrm{Pois}(\lambda)$ \\
-		Count of independent events within a fixed interval, where $\lambda$ is the expected count \\
-		If given that events happen at a constant rate $\alpha$ per unit time
+		\hlfancy{lightgray}{Count of independent events} within a fixed interval, where \hlfancy{lightgray}{$\lambda$ is the expected count} \\
+		If given that \hlfancy{lightgray}{events happen at a constant rate $\alpha$} per unit time
 		and counts in disjoint intervals are independent,
-		then the expected count of events over duration $T$ time units is $\lambda = \alpha T$
-		and so the count of events over duration $T$ time units follows a $\mathrm{Pois}(\alpha T)$ distribution.
+		then the \hlfancy{lightgray}{expected count of events over duration $T$ time units is $\lambda = \alpha T$}.
+		Therefore, the \hlfancy{lightgray}{count of events over duration $T$ time units follows a $\mathrm{Pois}(\alpha T)$ distribution}.
 		$\lambda,\ \alpha,\ T$ can be any positive real number. \\
 		If $p$ is small, and as $n$ increases $p$ decreases such that $np$ is fixed, $\mathrm{Bin}(n, p) \approx \mathrm{Pois}(np)$ \\
 
@@ -384,13 +384,13 @@
 		CDF: $\displaystyle F_X(x)=\dfrac{x-a}{b-a}$ \\
 
 		Exponential: $X\sim\mathrm{Exp}(\lambda)$ \\
-		Waiting time between events in a Poisson process of rate $\lambda$ per unit time (not expected count) \\
+		\hlfancy{lightgray}{Waiting time between events} in a Poisson process of \hlfancy{lightgray}{rate $\lambda$} per unit time \hlfancy{lightgray}{(not expected count)} \\
 		$x\in[0,\infty)$ \\
 		CDF: $F_X(x)=1-e^{-\lambda x}$ \\
 		Survival: $P(X>x)=e^{-\lambda x}$ \\
-		If given the mean time between events $\mu$ in a Poisson process,
-		then the rate of events per unit time is $\lambda = 1/\mu$,
-		and so the waiting time between events follows a $\mathrm{Exp}(1/\mu)$ distribution.
+		If given the \hlfancy{lightgray}{mean time between events $\mu$} in a Poisson process,
+		then the \hlfancy{lightgray}{rate per unit time is $\lambda = 1/\mu$}.
+		Therefore, the \hlfancy{lightgray}{waiting time between events follows a $\mathrm{Exp}(1/\mu)$ distribution}.
 
 		\vspace*{1pt}\hrule\vspace*{1pt}
 
