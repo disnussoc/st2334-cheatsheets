@@ -617,7 +617,7 @@
 
 	\vspace*{4pt}\hrule\vspace*{4pt}
 
-	\textbf{Blind box collection (coupon collector)} \\
+	\textbf{Blind box collection} \\
 	Each box independently contains one of $d$ equally likely designs. \\
 	Let $Y_t$ be the design in box $t$, and let $T$ be the number of boxes needed to collect all $d$ designs. \\
 	Let $W_j$ be the number of boxes needed to get a new design from $j-1$ collected designs to $j$ collected designs. \\
@@ -630,6 +630,37 @@
 	Since $T=\displaystyle\sum_{j=1}^d W_j$,
 	$E(T)=\displaystyle\sum_{j=1}^d E(W_j)
 		=d\left(1+\frac12+\cdots+\frac1d\right)=dH_d$
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{First and last of two server response times} \\
+	Two independent servers have two independent $\mathrm{Exp}(\lambda)$ stages. \\
+	Let $T_i$ be a server's total time. \\
+	$f_T(t)=\lambda^2te^{-\lambda t}$, $S_T(t)=P(T>t)=e^{-\lambda t}(1+\lambda t)$ \\
+	Let $U=\min(T_1,T_2)$, and $V=\max(T_1,T_2)$. \\
+	For $0<u<v$, \\
+	$f_{U,V}(u,v)=2f_T(u)f_T(v)=2\lambda^4uv e^{-\lambda(u+v)}$ \\
+	$f_U(u)=2f_T(u)S_T(u)$,  $f_V(v)=2(1 - S_T(v))f_T(v)$ \\
+	$f_{V\mid U}(v\mid u)=\dfrac{f_T(v)}{S_T(u)}=\dfrac{\lambda^2v e^{-\lambda(v-u)}}{1+\lambda u}$ \\
+	$E(V\mid U=u)=u+\dfrac{u+2/\lambda}{1+\lambda u}$ \\
+	$E(V-U\mid U=u)=\dfrac1\lambda\left(1+\dfrac1{1+\lambda u}\right)$ \\
+	$E(U)=\dfrac5{4\lambda}$, $E(V)=\dfrac{11}{4\lambda}$, $E(UV)=\dfrac4{\lambda^2}$, \\
+	so $\cov(U,V)=\dfrac9{16\lambda^2}>0$
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{Increasing runs in a random permutation} \\
+	Given a random permutation of $n$ items, a run is a consecutive block whose values are increasing. \\
+	Let $D_i=\mathbf{1}\{A_i>A_{i+1}\}$ indicate a descent and $R=1+\displaystyle\sum_{i=1}^{n-1}D_i$ be the number of runs\\
+	$E(D_i)=1/2$, $E(R)= (n+1)/2$ \\
+	Neighboring descents require $A_i>A_{i+1}>A_{i+2}$ which is one of six orders, \\
+	so $E(D_iD_{i+1}) = 1/6$, $\cov(D_i,D_{i+1})=\dfrac16-\dfrac14=-\dfrac1{12}$. \\
+	Non-neighboring indicators are independent, \\
+	so $\cov(D_iD_j) = 0$. \\
+	$\var(D_i) = 1/4$, $\var(R)=(n-1)/4 + 2(n-2)(1/12) = (n+1)/12$
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
 \end{tcolorbox}
 
 \newpage
