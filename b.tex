@@ -85,8 +85,84 @@
 
 \setlength\columnsep{0pt}
 
-\setcolumnwidth{465pt,330pt,}
-\begin{paracol}{3}
+\setcolumnwidth{465pt,}
+\begin{paracol}{2}
+	\begin{tcolorbox}[title=Probability, width=465pt]
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=20pt},
+				column{2}={leftsep=20pt},
+			}
+			{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
+			 &
+			{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
+
+		\end{tblr}
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{aligned}[t]
+				P(A) & = P(A \cap B) + P(A \cap B')          \\
+				     & = P(B)P(A \mid B) + P(B')P(A \mid B')
+			\end{aligned}
+			 &
+			\begin{aligned}[t]
+				P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
+				            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
+			\end{aligned}
+		\end{tblr}
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		\begin{tblr}{
+				colspec={X[3, c]|X[5, c]},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt, rightsep=8pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				Bayes Theorem: \\
+				$P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\sum{P(B_i)P(A \mid B_i)}}$ \\
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				Posterior: $P(B_k \mid A)$ \\
+				Prior: $P(B_k)$ \qquad Likelihood: $P(A \mid B_k)$ \\
+				Evidence: $P(A)=\sum P(B_i)P(A \mid B_i)$
+			\end{minipage}
+		\end{tblr}
+
+		\vspace*{1pt}\hrule\vspace*{1pt}
+
+		\begin{tblr}{
+				cells={mode=dmath},
+				colspec={c|c},
+				leftsep=0pt, rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{aligned}[t]
+				 & \text{Independent: } P(A \cap B) = P(A)P(B)                           \\
+				 & \Leftrightarrow P(B \mid A) = P(B) \Leftrightarrow P(A \mid B) = P(A) \\
+				 & \Rightarrow \text{not mutually exclusive}
+			\end{aligned}
+			 &
+			\begin{aligned}[t]
+				 & \text{Mutually exclusive: } A \cap B = \emptyset \\
+				 & \Leftrightarrow P(A \cup B) = P(A) + P(B)        \\
+				 & \Rightarrow \text{not independent}
+			\end{aligned}
+		\end{tblr}
+	\end{tcolorbox}
+
 	\begin{tcolorbox}[title=Probability Functions, width=465pt]
 		\begin{tblr}{
 				colspec={X[l]|X[l]},
@@ -105,12 +181,10 @@
 					1 - F(x) & = 1 - P(X \leq x) \\
 					         & = P( X > x)
 				\end{align*}
-
 				\begin{align*}
 					F(b) - F(a) & = P(X \leq b) - P(X \leq a) \\
 					            & = P(a < X \leq b)
 				\end{align*}
-
 				\begin{align*}
 					f(x) & = P(X = x) = P(X \leq x) - P(X < x) \\
 					     & = F(x) - F(x-)
@@ -293,75 +367,6 @@
 						C \cdot g_2(y)\displaystyle\int g_1(x)\,dx
 					\end{cases}$
 			\end{minipage}
-		\end{tblr}
-	\end{tcolorbox}
-
-	\switchcolumn
-
-	\begin{tcolorbox}[title=Probability, width=330pt]
-		\begin{tblr}{
-				cells={mode=dmath},
-				colspec={c|c},
-				leftsep=0pt, rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			{^nP_k}= \dfrac{n!}{(n-k)!} = {^nC_k} \times k!
-			 &
-			{^nC_k} = \dfrac{n!}{k!(n-k)!} = {^nP_k}\ /\ k!
-
-		\end{tblr}
-
-		\vspace*{1pt}\hrule\vspace*{1pt}
-
-		\begin{align*}
-			P(A) & = P(A \cap B) + P(A \cap B')          \\
-			     & = P(B)P(A \mid B) + P(B')P(A \mid B')
-		\end{align*}
-
-		\begin{align*}
-			P(B \mid A) & = \dfrac{P(A \cap B)}{P(A)} \ = \dfrac{P(B)P(A \mid B)}{P(A)} \\
-			            & = \dfrac{P(A \cap B)}{P(B)P(A \mid B) + P(B')P(A \mid B')}
-		\end{align*}
-
-		\vspace{\baselineskip}
-		Bayes Theorem: $P(B_k  \mid  A) = \dfrac{P(B_k)P(A \mid B_k)}{\displaystyle\sum{P(B_i)P(A \mid B_i)}}$ \\
-		\begin{tblr}{
-				colspec={l|l},
-				leftsep=0pt, rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			Prior: $P(B_k)$
-			 & Posterior: $P(B_k \mid A)$
-			\\
-			Likelihood: $P(A \mid B_k)$
-			 & Evidence: $P(A)=\displaystyle\sum P(B_i)P(A \mid B_i)$
-		\end{tblr}
-
-		\vspace*{1pt}\hrule\vspace*{1pt}
-
-		\begin{tblr}{
-				cells={mode=dmath},
-				colspec={c|c},
-				leftsep=0pt, rightsep=0pt,
-				column{1}={rightsep=5pt},
-				column{2}={leftsep=5pt},
-			}
-			\begin{aligned}[t]
-				 & \text{Independent:}                       \\
-				 & P(A \cap B) = P(A)P(B)                    \\
-				 & \Leftrightarrow P(B \mid A) = P(B)        \\
-				 & \Leftrightarrow P(A \mid B) = P(A)        \\
-				 & \Rightarrow \text{not mutually exclusive}
-			\end{aligned}
-			 &
-			\begin{aligned}[t]
-				 & \text{Mutually exclusive:}                \\
-				 & A \cap B = \emptyset                      \\
-				 & \Leftrightarrow P(A \cup B) = P(A) + P(B) \\
-				 & \Rightarrow \text{not independent}
-			\end{aligned}
 		\end{tblr}
 	\end{tcolorbox}
 
