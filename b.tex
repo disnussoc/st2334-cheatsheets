@@ -544,13 +544,13 @@
 		\begin{align*}
 			P(S\mid F\cap M')
 			 & = \frac{P(S)P(F\cap M'\mid S)}
-			     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')} \\
+			     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
 			 & = \frac{0.20(0.63)}{0.20(0.63)+0.80(0.02)} = \frac{0.126}{0.142}\approx 0.887
 		\end{align*}
 		\begin{align*}
 			P(S'\mid F\cap M')
 			 & = \frac{P(S')P(F\cap M'\mid S')}
-			     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')} \\
+			     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
 			 & = \frac{0.80(0.02)}{0.20(0.63)+0.80(0.02)} = \frac{0.016}{0.142}\approx 0.113
 		\end{align*}
 	\end{tcolorbox}
@@ -749,8 +749,8 @@
 			Population & $\sigma$; $n$
 			           & SE
 			           & \shortstack{Test statistic\\under $H_0$}
-			           & $(1-\alpha)$ CI for $\mu$                             & \shortstack{Maximum error\\of estimate, $E$}
-			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                     \\
+			           & $(1-\alpha)$ CI for $\mu$                               & \shortstack{Maximum error\\of estimate, $E$}
+			           & \shortstack{Min $n$ for given\\$E$ and $\alpha$}                                                       \\
 
 			Normal     & \shortstack{Known;\\Any}
 			           & $\dfrac{\sigma}{\sqrt{n}}$
@@ -758,7 +758,7 @@
 			           & $\overline x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
 			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
 			           & $\displaystyle\left\lceil
-				             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
+				             \left(\dfrac{z_{\alpha/2} \cdot  \sigma}{E_0}\right)^2
 				             \right\rceil$                                                 \\
 
 			Any        & \shortstack{Known;\\Large}
@@ -768,7 +768,7 @@
 			           & $E = z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$
 			           & $\displaystyle\left\lceil
 				             \left(\dfrac{z_{\alpha/2}\cdot \sigma}{E_0}\right)^2
-				             \right\rceil$                                                 \\
+				             \right\rceil$                                                   \\
 
 			Normal     & \shortstack{Unknown;\\Small}
 			           & $\dfrac{S}{\sqrt{n}}$
@@ -777,7 +777,7 @@
 			           & $E = t_{n-1;\alpha/2}\dfrac{s}{\sqrt n}$
 			           & $\displaystyle\left\lceil
 				             \left(\dfrac{t_{n-1;\alpha/2}\cdot s}{E_0}\right)^2
-				             \right\rceil$                                                  \\
+				             \right\rceil$                                                    \\
 
 			Any        & \shortstack{Unknown;\\Large}
 			           & $\dfrac{S}{\sqrt{n}}$
