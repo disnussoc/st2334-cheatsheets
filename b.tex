@@ -656,11 +656,28 @@
 	Neighboring descents require $A_i>A_{i+1}>A_{i+2}$ which is one of six orders, \\
 	so $E(D_iD_{i+1}) = 1/6$, $\cov(D_i,D_{i+1})=\dfrac16-\dfrac14=-\dfrac1{12}$. \\
 	Non-neighboring indicators are independent, \\
-	so $\cov(D_iD_j) = 0$. \\
-	$\var(D_i) = 1/4$, $\var(R)=(n-1)/4 + 2(n-2)(1/12) = (n+1)/12$
+	so $\cov(D_i,D_j) = 0$ for $|i-j|>1$. \\
+	$\var(D_i) = 1/4$, $\var(R)=(n-1)/4 + 2(n-2)\left(-\dfrac1{12}\right) = (n+1)/12$
 
 	\vspace*{4pt}\hrule\vspace*{4pt}
 
+	\textbf{Optimise packet length under retransmission} \\
+	Each packet has $b$ data bits and $h$ overhead bits. \\
+	If each bit is independently corrupted with probability $q$, then the number of corruptions is $X_b\sim\mathrm{Bin}(b+h,q)$. \\
+	A packet is uncorrupted with probability $s_b=P(X_b=0)=(1-q)^{b+h}$. \\
+	The number of attempts for one packet is $N\sim\mathrm{Geom}(s_b)$ and $E(N)=1/s_b$. \\
+	The number of attempts for $r$ packets is $T_r=\sum_{i=1}^rN_i\sim\mathrm{NB}(r,s_b)$ and $E(T_r)=r/s_b$. \\
+	Expected transmitted bits per delivered data bit is
+	$C(b)=\dfrac{b+h}{b s_b}=\left(1+\dfrac hb\right)(1-q)^{-(b+h)}$ \\
+	Let $a=-\log(1-q)$. Minimising $C(b)$ is the same as minimising $\log C(b)$, \\
+	so $\dfrac{d}{db}\log C(b)=a-\dfrac{h}{b(b+h)}=0$ gives minimum $b_* =\dfrac{\sqrt{h^2+4h/a}-h}{2}$. \\
+	Round to nearest integer for optimal payload.
+
+	For rare errors, $X_b\approx\mathrm{Poisson}(q(b+h))$ and $s_b\approx e^{-q(b+h)}$. \\
+	Minimising $\log C(b)$ now gives $b(b + h) = h/q$. \\
+	When $q$ is small and $qh\ll1$, then $b \gg h$ and $b_*\approx\sqrt{h/q}$.
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
 \end{tcolorbox}
 
 \newpage
