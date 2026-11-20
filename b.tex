@@ -404,162 +404,233 @@
 \newpage
 
 \begin{tcolorbox}[title=Problems, width=\columnwidth]
-		\textbf{Five-digit poker test} \\
-		Count number of permutations for strings of 5 digits from $0$--$9$ \\
-		\begin{tblr}{
-				colspec={c|c|c|c},
-				hlines,
-			}
-			Pattern         & Shape & Count                                                                        & Counting idea                                                                                                                                \\
-			All different   & abcde & $10\cdot9\cdot8\cdot7\cdot6 $                                                & Fill 5 slots without repeat                                                                                                                  \\
-			One pair        & aabcd & $\displaystyle\binom52\cdot10\cdot(9\cdot8\cdot7) $                          & Choose 2 slots as the pair, 10 options in the pair, fill 3 slots without repeat                                                              \\
-			Two pairs       & aabbc & $\displaystyle\binom52\displaystyle\binom32\displaystyle\binom{10}{2}\cdot8$ & Choose 2 slots out of 5 for first pair, 2 slots out of 3 for second pair, choose 2 digits out of 10 for pair values, 8 options for last slot \\
-			Three of a kind & aaabc & $\displaystyle\binom53\cdot10\cdot(9\cdot8) $                                & Choose 3 slots as the triple, 10 options in the triple, fill 2 slots without repeat                                                          \\
-			Full house      & aaabb & $\displaystyle\binom53\cdot10\cdot9 $                                        & Choose 3 slots as the triple, 10 options in the triple, 9 options for the pair                                                               \\
-			Four of a kind  & aaaab & $\displaystyle\binom54\cdot10\cdot9 $                                        & Choose 4 slots as the four, 10 options in the four, 9 options for last slot                                                                  \\
-			Five of a kind  & aaaaa & $10$                                                                         & 10 options for the repeated digit                                                                                                            \\
-		\end{tblr}
+	\textbf{Five-digit poker test} \\
+	Count number of permutations for strings of 5 digits from $0$--$9$ \\
+	\begin{tblr}{
+			colspec={c|c|c|c},
+			hlines,
+		}
+		Pattern         & Shape & Count                                                                        & Counting idea                                                                                                                                \\
+		All different   & abcde & $10\cdot9\cdot8\cdot7\cdot6 $                                                & Fill 5 slots without repeat                                                                                                                  \\
+		One pair        & aabcd & $\displaystyle\binom52\cdot10\cdot(9\cdot8\cdot7) $                          & Choose 2 slots as the pair, 10 options in the pair, fill 3 slots without repeat                                                              \\
+		Two pairs       & aabbc & $\displaystyle\binom52\displaystyle\binom32\displaystyle\binom{10}{2}\cdot8$ & Choose 2 slots out of 5 for first pair, 2 slots out of 3 for second pair, choose 2 digits out of 10 for pair values, 8 options for last slot \\
+		Three of a kind & aaabc & $\displaystyle\binom53\cdot10\cdot(9\cdot8) $                                & Choose 3 slots as the triple, 10 options in the triple, fill 2 slots without repeat                                                          \\
+		Full house      & aaabb & $\displaystyle\binom53\cdot10\cdot9 $                                        & Choose 3 slots as the triple, 10 options in the triple, 9 options for the pair                                                               \\
+		Four of a kind  & aaaab & $\displaystyle\binom54\cdot10\cdot9 $                                        & Choose 4 slots as the four, 10 options in the four, 9 options for last slot                                                                  \\
+		Five of a kind  & aaaaa & $10$                                                                         & 10 options for the repeated digit                                                                                                            \\
+	\end{tblr}
 
-		\vspace*{4pt}\hrule\vspace*{4pt}
+	\vspace*{4pt}\hrule\vspace*{4pt}
 
-		\textbf{Git hash collisions (birthday problem)} \\
-		For $n$ independent, uniform items out of $m$ possible options, \\
-		$ P(\text{at least one collision})=1-P(\text{no collision}) = 1 - \displaystyle\prod_{i=0}^{n-1}\left(1-\dfrac{i}{m}\right)$ \\
-		Birthday approximation: $P(\text{at least one collision})\approx1-e^{-n(n-1)/(2m)}$. For small risk, $P(\text{at least one collision})\approx\binom n2/m$. \\
-		When $P(\text{at least one collision}) = 0.5$, $n \approx \sqrt{2m \ln 2} \approx 1.18\sqrt{m}$ \\
-		Git hashes: Hex abbreviations of length $l=7$ means $m = 16^7$ possible abbreviations, 50\% collision with $n\approx1.18\sqrt{16^7}\approx19{,}300$ hashes\\
-		Birthday: $m=365$ possible birthdays, 50\% collision with $n\approx1.18\sqrt{365}\approx22.5$ people
+	\textbf{Git hash collisions (birthday problem)} \\
+	For $n$ independent, uniform items out of $m$ possible options, \\
+	$ P(\text{at least one collision})=1-P(\text{no collision}) = 1 - \displaystyle\prod_{i=0}^{n-1}\left(1-\dfrac{i}{m}\right)$ \\
+	Birthday approximation: $P(\text{at least one collision})\approx1-e^{-n(n-1)/(2m)}$. For small risk, $P(\text{at least one collision})\approx\binom n2/m$. \\
+	When $P(\text{at least one collision}) = 0.5$, $n \approx \sqrt{2m \ln 2} \approx 1.18\sqrt{m}$ \\
+	Git hashes: Hex abbreviations of length $l=7$ means $m = 16^7$ possible abbreviations, 50\% collision with $n\approx1.18\sqrt{16^7}\approx19{,}300$ hashes\\
+	Birthday: $m=365$ possible birthdays, 50\% collision with $n\approx1.18\sqrt{365}\approx22.5$ people
 
-		\vspace*{4pt}\hrule\vspace*{4pt}
+	\vspace*{4pt}\hrule\vspace*{4pt}
 
-		\textbf{Fisher--Yates random shuffling} \\
-		To shuffle a sequence of length $n$ in $n$ steps, for each step $i$ from $1$ to $n$, choose an index $j$ from $\{i,...,n\}$, then swap position $i$ and $j$. \\
-		This process gives $n(n-1)...(1) = n!$ possible choice sequences. Since there are $n!$ possible shuffle orders, the probability of every order is equally likely. \\
-		If at each step $j$ is chosen from $\{1,...,n\}$, there will be $n\cdot ... \cdot n = n^n$ choice sequences, so the probability of every order is not all equally likely. \\
+	\textbf{Fisher--Yates random shuffling} \\
+	To shuffle a sequence of length $n$ in $n$ steps, for each step $i$ from $1$ to $n$, choose an index $j$ from $\{i,...,n\}$, then swap position $i$ and $j$. \\
+	This process gives $n(n-1)...(1) = n!$ possible choice sequences. Since there are $n!$ possible shuffle orders, the probability of every order is equally likely. \\
+	If at each step $j$ is chosen from $\{1,...,n\}$, there will be $n\cdot ... \cdot n = n^n$ choice sequences, so the probability of every order is not all equally likely. \\
 
-		When testing for all items to change position, let $A_i$ be the event that item $i$ remains in its original position. \\
-		$P(\text{failure})= P(A_1 \cup ... \cup A_n) = 1 - P(A_1' \cap ... \cap A_n')$ \\
-		By the inclusion-exclusion principle, $1 - P(A_1' \cap ... \cap A_n')
-			= \displaystyle\sum_{k=1}^n(-1)^{k+1}\binom nk\frac{(n-k)!}{n!}
-			=\displaystyle\sum_{k=1}^n\frac{(-1)^{k+1}}{k!}
-			\approx 1-e^{-1} \approx 0.6321 \text{ as } n \to \infty$
+	When testing for all items to change position, let $A_i$ be the event that item $i$ remains in its original position. \\
+	$P(\text{failure})= P(A_1 \cup ... \cup A_n) = 1 - P(A_1' \cap ... \cap A_n')$ \\
+	By the inclusion-exclusion principle, $1 - P(A_1' \cap ... \cap A_n')
+		= \displaystyle\sum_{k=1}^n(-1)^{k+1}\binom nk\frac{(n-k)!}{n!}
+		=\displaystyle\sum_{k=1}^n\frac{(-1)^{k+1}}{k!}
+		\approx 1-e^{-1} \approx 0.6321 \text{ as } n \to \infty$
 
-		\vspace*{4pt}\hrule\vspace*{4pt}
+	\vspace*{4pt}\hrule\vspace*{4pt}
 
-		\textbf{Uniform selection in one pass} \\
-		Choose $n$ items from a sequence of $N$. \\
-		If $t$ items remain and $r$ are still needed, keep the next item with probability $r/t$, otherwise skip it with probability $1-r/t=(t-r)/t$. \\
-		Every subset of size $n$ has a unique keep/skip path,
-		with $P(\text{that subset})=\dfrac{n!(N-n)!}{N!}=\dfrac1{\binom Nn}$. \\
-		e.g. from 8 items, select the 2nd, 4th, and 7th has probability $\dfrac58 \cdot \underline{\dfrac37} \cdot \dfrac46 \cdot \underline{\dfrac25} \cdot \dfrac34 \cdot \dfrac23 \cdot \underline{\dfrac12}
-			=\dfrac1{56}
-			=\dfrac1{\binom83}$
+	\textbf{Uniform selection in one pass} \\
+	Choose $n$ items from a sequence of $N$. \\
+	If $t$ items remain and $r$ are still needed, keep the next item with probability $r/t$, otherwise skip it with probability $1-r/t=(t-r)/t$. \\
+	Every subset of size $n$ has a unique keep/skip path,
+	with $P(\text{that subset})=\dfrac{n!(N-n)!}{N!}=\dfrac1{\binom Nn}$. \\
+	e.g. from 8 items, select the 2nd, 4th, and 7th has probability $\dfrac58 \cdot \underline{\dfrac37} \cdot \dfrac46 \cdot \underline{\dfrac25} \cdot \dfrac34 \cdot \dfrac23 \cdot \underline{\dfrac12}
+		=\dfrac1{56}
+		=\dfrac1{\binom83}$
 
-		\vspace*{4pt}\hrule\vspace*{4pt}
+	\vspace*{4pt}\hrule\vspace*{4pt}
 
-		\textbf{Fair bit extractor} \\
-		Given a bit generator with independent outputs and $P(1)=p$, $P(0)=q=1-p$. \\
-		Since $P(01)=P(10)=pq$, map $01\mapsto0$, $10\mapsto1$, and discard $00,11$. \\
-		$P(\text{acceptance}) = 2pq$ \\
-		$P(0\mid\text{accepted}) = P(1\mid\text{accepted}) = pq/(2pq) = 1/2$ \\
-		From $N$ generated bits, expected number of output bits is $Npq \leq N/4$. \\
-		The method does not require knowing $p$. $p \neq 0.5$ produces fewer outputs but equal pairs can similarly be recycled as $0011\mapsto0$, $1100\mapsto1$. \\
-		If bits are dependent or $P(01) \neq P(10)$ so fairness is not guaranteed.
+	\textbf{Fair bit extractor} \\
+	Given a bit generator with independent outputs and $P(1)=p$, $P(0)=q=1-p$. \\
+	Since $P(01)=P(10)=pq$, map $01\mapsto0$, $10\mapsto1$, and discard $00,11$. \\
+	$P(\text{acceptance}) = 2pq$ \\
+	$P(0\mid\text{accepted}) = P(1\mid\text{accepted}) = pq/(2pq) = 1/2$ \\
+	From $N$ generated bits, expected number of output bits is $Npq \leq N/4$. \\
+	The method does not require knowing $p$. $p \neq 0.5$ produces fewer outputs but equal pairs can similarly be recycled as $0011\mapsto0$, $1100\mapsto1$. \\
+	If bits are dependent or $P(01) \neq P(10)$ so fairness is not guaranteed.
 
-		\vspace*{4pt}\hrule\vspace*{4pt}
+	\vspace*{4pt}\hrule\vspace*{4pt}
 
-		\textbf{Demand after survey and pop-up} \\
-		\textbf{Given:} \\
-		$D$ is low, medium, or high demand \\
-		$C$ = favourable survey \\
-		$T$ = successful pop-up. \\
-		In low/medium/high order, $P(D)=(0.70,0.25,0.05)$, $P(C\mid D)=(0.20,0.50,0.90)$, $P(T\mid D)=(0.10,0.60,0.80)$. \\
-		\textbf{Assume:} conditional independence (Naive Bayes): $P(C \cap T \mid D) = P(C \mid D)P(T \mid D)$ \\
+	\textbf{Demand after survey and pop-up} \\
+	\textbf{Given:} \\
+	$D$ is low, medium, or high demand \\
+	$C$ = favourable survey \\
+	$T$ = successful pop-up. \\
+	In low/medium/high order, $P(D)=(0.70,0.25,0.05)$, $P(C\mid D)=(0.20,0.50,0.90)$, $P(T\mid D)=(0.10,0.60,0.80)$. \\
+	\textbf{Assume:} conditional independence (Naive Bayes): $P(C \cap T \mid D) = P(C \mid D)P(T \mid D)$ \\
 
-		$w_{CT}$ is the prior-weighted likelihoods, $s_{CT}$ is the sum of $w_{CT}$ across demand levels.
-		\begin{align*}
-			w_{CT} & = P(D)P(C\cap T\mid D)                                     \\
-			       & = P(D)P(C\mid D)P(T\mid D)                                 \\
-			       & = (0.70(0.20)(0.10),\ 0.25(0.50)(0.60),\ 0.05(0.90)(0.80)) \\
-			       & = (0.014,0.075,0.036)
-		\end{align*}
-		$s_{CT} = \sum w_{CT} = 0.125$
-		\begin{align*}
-			P(D\mid C \cap T) & = \dfrac{P(D)P(C\cap T\mid D)}{s_{CT}} \\
-			                  & = w_{CT} / s_{CT}                      \\
-			                  & = (0.112,0.600,0.288)
-		\end{align*}
-		So the probability that demand is high given favourable survey and successful pop-up is $P(D = H \mid C \cap T) = 0.288$ \\
+	$w_{CT}$ is the prior-weighted likelihoods, $s_{CT}$ is the sum of $w_{CT}$ across demand levels.
+	\begin{align*}
+		w_{CT} & = P(D)P(C\cap T\mid D)                                     \\
+		       & = P(D)P(C\mid D)P(T\mid D)                                 \\
+		       & = (0.70(0.20)(0.10),\ 0.25(0.50)(0.60),\ 0.05(0.90)(0.80)) \\
+		       & = (0.014,0.075,0.036)
+	\end{align*}
+	$s_{CT} = \sum w_{CT} = 0.125$
+	\begin{align*}
+		P(D\mid C \cap T) & = \dfrac{P(D)P(C\cap T\mid D)}{s_{CT}} \\
+		                  & = w_{CT} / s_{CT}                      \\
+		                  & = (0.112,0.600,0.288)
+	\end{align*}
+	So the probability that demand is high given favourable survey and successful pop-up is $P(D = H \mid C \cap T) = 0.288$ \\
 
-		For a failed pop-up, $P(T'\mid D)=1-P(T\mid D)$.\\
-		$w_{CT'}$ is the prior-weighted likelihoods, $s_{CT'}$ is the sum of $w_{CT'}$ across demand levels.
-		\begin{align*}
-			w_{CT'} & = P(D)P(C\cap T'\mid D)                                    \\
-			        & = P(D)P(C\mid D)P(T'\mid D)                                \\
-			        & = (0.70(0.20)(0.90),\ 0.25(0.50)(0.40),\ 0.05(0.90)(0.20)) \\
-			        & = (0.126,0.050,0.009)
-		\end{align*}
-		$s_{CT'} = \sum w_{CT'} = 0.185$
-		\begin{align*}
-			P(D\mid C \cap T') & = \dfrac{P(D)P(C\cap T'\mid D)}{s_{CT'}} \\
-			                   & = w_{CT'}/s_{CT'}                        \\
-			                   & = (0.681,0.270,0.049)
-		\end{align*}
-		So the probability that demand is high given favourable survey and failed pop-up is $P(D=H\mid C\cap T') = 0.049$.
+	For a failed pop-up, $P(T'\mid D)=1-P(T\mid D)$.\\
+	$w_{CT'}$ is the prior-weighted likelihoods, $s_{CT'}$ is the sum of $w_{CT'}$ across demand levels.
+	\begin{align*}
+		w_{CT'} & = P(D)P(C\cap T'\mid D)                                    \\
+		        & = P(D)P(C\mid D)P(T'\mid D)                                \\
+		        & = (0.70(0.20)(0.90),\ 0.25(0.50)(0.40),\ 0.05(0.90)(0.20)) \\
+		        & = (0.126,0.050,0.009)
+	\end{align*}
+	$s_{CT'} = \sum w_{CT'} = 0.185$
+	\begin{align*}
+		P(D\mid C \cap T') & = \dfrac{P(D)P(C\cap T'\mid D)}{s_{CT'}} \\
+		                   & = w_{CT'}/s_{CT'}                        \\
+		                   & = (0.681,0.270,0.049)
+	\end{align*}
+	So the probability that demand is high given favourable survey and failed pop-up is $P(D=H\mid C\cap T') = 0.049$.
 
-		\vspace*{4pt}\hrule\vspace*{4pt}
+	\vspace*{4pt}\hrule\vspace*{4pt}
 
-		\textbf{Naive Bayes email classifier} \\
-		\textbf{Given:} \\
-		$S$ = spam, $S'$ = not spam \\
-		$F$ = contains "free", $M$ = contains "meeting". \\
-		$P(S)=0.20$, $P(S')=0.80$ \\
-		$P(F\mid S)=0.70$, $P(F\mid S')=0.05$ \\
-		$P(M\mid S)=0.10$, $P(M\mid S')=0.60$ \\
-		\textbf{Assume:} word indicators are conditionally independent
+	\textbf{Naive Bayes email classifier} \\
+	\textbf{Given:} \\
+	$S$ = spam, $S'$ = not spam \\
+	$F$ = contains "free", $M$ = contains "meeting". \\
+	$P(S)=0.20$, $P(S')=0.80$ \\
+	$P(F\mid S)=0.70$, $P(F\mid S')=0.05$ \\
+	$P(M\mid S)=0.10$, $P(M\mid S')=0.60$ \\
+	\textbf{Assume:} word indicators are conditionally independent
 
-		\begin{align*}
-			P(F\cap M\mid S) & = P(F \mid S)P(M \mid S) \\
-			                 & = 0.70(0.10)=0.07
-		\end{align*}
-		\begin{align*}
-			P(F\cap M\mid S') & = P(F \mid S')P(M \mid S') \\
-			                  & = 0.05(0.60)=0.03
-		\end{align*}
-		\begin{align*}
-			P(S\mid F\cap M) & = \frac{P(S)P(F\cap M\mid S)}{P(S)P(F\cap M\mid S)+P(S')P(F\cap M\mid S')} \\
-			                 & =\frac{0.20(0.07)}{0.20(0.07)+0.80(0.03)}
-			= \frac{0.014}{0.038} = 0.368
-		\end{align*}
-		\begin{align*}
-			P(S'\mid F\cap M) & =\frac{P(S')P(F\cap M\mid S')}{P(S)P(F\cap M\mid S)+P(S')P(F\cap M\mid S')} \\
-			                  & = \frac{0.80(0.03)}{0.20(0.07)+0.80(0.03)}
-			=\frac{0.024}{0.038} = 0.632.
-		\end{align*}
+	\begin{align*}
+		P(F\cap M\mid S) & = P(F \mid S)P(M \mid S) \\
+		                 & = 0.70(0.10)=0.07
+	\end{align*}
+	\begin{align*}
+		P(F\cap M\mid S') & = P(F \mid S')P(M \mid S') \\
+		                  & = 0.05(0.60)=0.03
+	\end{align*}
+	\begin{align*}
+		P(S\mid F\cap M) & = \frac{P(S)P(F\cap M\mid S)}{P(S)P(F\cap M\mid S)+P(S')P(F\cap M\mid S')} \\
+		                 & =\frac{0.20(0.07)}{0.20(0.07)+0.80(0.03)}
+		= \frac{0.014}{0.038} = 0.368
+	\end{align*}
+	\begin{align*}
+		P(S'\mid F\cap M) & =\frac{P(S')P(F\cap M\mid S')}{P(S)P(F\cap M\mid S)+P(S')P(F\cap M\mid S')} \\
+		                  & = \frac{0.80(0.03)}{0.20(0.07)+0.80(0.03)}
+		=\frac{0.024}{0.038} = 0.632.
+	\end{align*}
 
-		\begin{align*}
-			P(F\cap M'\mid S)
-			 & = P(F\mid S)P(M'\mid S) \\
-			 & = 0.70(1-0.10)=0.63
-		\end{align*}
-		\begin{align*}
-			P(F\cap M'\mid S')
-			 & = P(F\mid S')P(M'\mid S') \\
-			 & = 0.05(1-0.60)=0.02
-		\end{align*}
-		\begin{align*}
-			P(S\mid F\cap M')
-			 & = \frac{P(S)P(F\cap M'\mid S)}
-			     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
-			 & = \frac{0.20(0.63)}{0.20(0.63)+0.80(0.02)} = \frac{0.126}{0.142}\approx 0.887
-		\end{align*}
-		\begin{align*}
-			P(S'\mid F\cap M')
-			 & = \frac{P(S')P(F\cap M'\mid S')}
-			     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
-			 & = \frac{0.80(0.02)}{0.20(0.63)+0.80(0.02)} = \frac{0.016}{0.142}\approx 0.113
-		\end{align*}
-	\end{tcolorbox}
+	\begin{align*}
+		P(F\cap M'\mid S)
+		 & = P(F\mid S)P(M'\mid S) \\
+		 & = 0.70(1-0.10)=0.63
+	\end{align*}
+	\begin{align*}
+		P(F\cap M'\mid S')
+		 & = P(F\mid S')P(M'\mid S') \\
+		 & = 0.05(1-0.60)=0.02
+	\end{align*}
+	\begin{align*}
+		P(S\mid F\cap M')
+		 & = \frac{P(S)P(F\cap M'\mid S)}
+		     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
+		 & = \frac{0.20(0.63)}{0.20(0.63)+0.80(0.02)} = \frac{0.126}{0.142}\approx 0.887
+	\end{align*}
+	\begin{align*}
+		P(S'\mid F\cap M')
+		 & = \frac{P(S')P(F\cap M'\mid S')}
+		     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
+		 & = \frac{0.80(0.02)}{0.20(0.63)+0.80(0.02)} = \frac{0.016}{0.142}\approx 0.113
+	\end{align*}
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{Record updates in Maximum Search} \\
+	Given a random order of $n$ values, let $R_i$ be the event that position $i$ contains the largest value among positions $1$ to $i$. \\
+	Let $I_i=1$ if $R_i$ occurs, and $0$ otherwise.
+	Let $X=\displaystyle\sum_{i=1}^n I_i$ which counts the number of updates in a linear maximum search. \\
+	For $i<j$, given $R_j$, the first $i$ values remain in uniformly random relative order, so $P(R_i\mid R_j)=1/i$. Hence $P(R_i\cap R_j)=1/(ij)=P(R_i)P(R_j)$; the indicators are pairwise independent. \\
+	$E(I_i)=P(R_i)=1/i$ \\
+	$E(X) = E(\sum I_i) = 1 + 1/2 + ... + 1/n = H_n$ \\
+
+	\begin{align*}
+		E(X^2) & = \sum_i E(I_i^2)+\sum_{i \neq j}E(I_iI_j) \\
+		       & = \sum_i E(I_i)+\sum_{ i \neq j}\frac1{ij} \\
+		       & = H_n + 2\sum_{i < j}\frac1{ij}
+	\end{align*}
+	\begin{align*}
+		[E(X)]^2 = \left(H_n\right)^2 = \sum_{i=1}^n\frac1{i^2}+2\sum_{i<j}\frac1{ij}
+	\end{align*}
+	$\var(X) = E(X^2) - [E(X)]^2 = H_n - \sum_{i=1}^n\frac1{i^2}$
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{Bit flips in a binary counter} \\
+	Given a uniformly random $m$-bit string, add $1$ with wrap-around to all-zeroes. \\
+	Let $X$ be the number of bits that flip after addition. \\
+	For $m=4$ \\
+	\begin{tblr}{
+			colspec={c|c|c|c},
+			hlines,
+		}
+		\shortstack{Number of\\flips $k$} & Pattern & Count & $P(X=k)$   \\
+		1                                 & xxx0    & 8     & $8/16=1/2$ \\
+		2                                 & xx01    & 4     & $4/16=1/4$ \\
+		3                                 & x011    & 2     & $2/16=1/8$ \\
+		4                                 & x111    & 2     & $2/16=1/8$
+	\end{tblr}
+
+	$f_X(x) = P(X=k)=\begin{cases}
+			2^{-k}           & 1\le k<m,        \\
+			2^{-(m-1)} & k=m,             \\
+			0          & \text{otherwise}
+		\end{cases}$ \\
+	For at least $k$ bit flips, $k-1$ trailing bits must be all ones. So, $P(X\ge k)=(1/2)^{k-1}$ \\
+	Since $X=\displaystyle\sum_{k=1}^m\mathbf{1}\{X\ge k\}$, \\
+	$E(X) = \displaystyle\sum_{k=1}^mP(X\ge k) = 2-\frac1{2^{m-1}}$
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{Inverse CDF} \\
+	We can generate a value with any target CDF $F(x)$ by transforming a random variable $U \sim U(0, 1)$. \\
+	Just set $X=F^{-1}(U)$, then $X$ will have our target CDF $F$. If $F$ is continuous, $P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x)$ \\
+	For example, if the target is a Pareto distribution $f_X(x)=2/x^3$ for $x\ge1$, $F_X(x)=1-x^{-2}$. \\
+	Inverting $U=F_X(X)$ gives $X=1/\sqrt{1-U}$. \\
+	Check: $P(X\le x)= P(1/\sqrt{1-U}\le x) = P(U\le1-x^{-2})=1-x^{-2}$.
+
+	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{Blind box collection (coupon collector)} \\
+	Each box independently contains one of $d$ equally likely designs. \\
+	Let $Y_t$ be the design in box $t$, and let $T$ be the number of boxes needed to collect all $d$ designs. \\
+	Let $W_j$ be the number of boxes needed to get a new design from $j-1$ collected designs to $j$ collected designs. \\
+	At this stage, a draw is a success with probability $p_j=(d-j+1)/(d)$ \\
+	$W_j$ then follows a Geom($p_j$) distribution, so $P(W_j = r) = (1 - p_j)^{r - 1}p_j$. \\
+	Using the tail-sum formula,
+	$E(W_j)=\displaystyle\sum_{r=1}^{\infty}P(W_j\ge r)
+		=\displaystyle\sum_{r=1}^{\infty}(1-p_j)^{r-1}
+		=\dfrac1{p_j}=\dfrac{d}{d-j+1}$ \\
+	Since $T=\displaystyle\sum_{j=1}^d W_j$,
+	$E(T)=\displaystyle\sum_{j=1}^d E(W_j)
+		=d\left(1+\frac12+\cdots+\frac1d\right)=dH_d$
+\end{tcolorbox}
 
 \newpage
 
