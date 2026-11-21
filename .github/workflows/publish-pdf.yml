@@ -31,6 +31,7 @@ jobs:
 
       - name: Compile PDF and prepare Pages files
         run: |
+          LAST_UPDATED="$(TZ='Asia/Singapore' date '+%Y-%m-%d %H:%M:%S GMT+8')"
           mkdir -p build _site
 
           latexmk -pdf \
@@ -41,7 +42,7 @@ jobs:
 
           cp build/b.pdf _site/
 
-          cat > _site/index.html <<'EOF'
+          cat > _site/index.html <<EOF
           <!doctype html>
           <html lang="en">
           <head>
@@ -51,6 +52,7 @@ jobs:
           </head>
           <body>
             <h1>ST2334 Cheatsheet</h1>
+            <p>Last updated: ${LAST_UPDATED}</p>
             <p><a href="b.pdf">Open or download b.pdf</a></p>
             <iframe
               src="b.pdf"
