@@ -463,8 +463,9 @@
 	$P(\text{acceptance}) = 2pq$ \\
 	$P(0\mid\text{accepted}) = P(1\mid\text{accepted}) = pq/(2pq) = 1/2$ \\
 	From $N$ generated bits, expected number of output bits is $Npq \leq N/4$. \\
-	The method does not require knowing $p$. $p \neq 0.5$ produces fewer outputs but equal pairs can similarly be recycled as $0011\mapsto0$, $1100\mapsto1$. \\
-	If bits are dependent or $P(01) \neq P(10)$ so fairness is not guaranteed.
+	This method does not require knowing $p$, it just needs $P(01) = P(10)$. \\
+	$p \neq 0.5$ produces fewer outputs but equal pairs can similarly be recycled as $0011\mapsto0$, $1100\mapsto1$. \\
+	If $P(01) \neq P(10)$, this method cannot be used as the mapping is no longer fair.
 
 	\vspace*{4pt}\hrule\vspace*{4pt}
 
@@ -597,7 +598,7 @@
 		4                                 & x111    & 2     & $2/16=1/8$
 	\end{tblr}
 
-	$f_X(x) = P(X=k)=\begin{cases}
+	$f_X(k) = P(X=k)=\begin{cases}
 			2^{-k}           & 1\le k<m,        \\
 			2^{-(m-1)} & k=m,             \\
 			0          & \text{otherwise}
@@ -671,7 +672,7 @@
 	$C(b)=\dfrac{b+h}{b s_b}=\left(1+\dfrac hb\right)(1-q)^{-(b+h)}$ \\
 	Let $a=-\log(1-q)$. Minimising $C(b)$ is the same as minimising $\log C(b)$, \\
 	so $\dfrac{d}{db}\log C(b)=a-\dfrac{h}{b(b+h)}=0$ gives minimum $b_* =\dfrac{\sqrt{h^2+4h/a}-h}{2}$. \\
-	Round to nearest integer for optimal payload.
+	Compare both $C(\lfloor b_*\rfloor)$ and $C(\lceil b_*\rceil)$ for rounding to integer.
 
 	For rare errors, $X_b\approx\mathrm{Poisson}(q(b+h))$ and $s_b\approx e^{-q(b+h)}$. \\
 	Minimising $\log C(b)$ now gives $b(b + h) = h/q$. \\
