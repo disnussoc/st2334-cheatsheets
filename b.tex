@@ -588,7 +588,7 @@
 	Let $X$ be the number of bits that flip after addition. \\
 	For $m=4$ \\
 	\begin{tblr}{
-			colspec={c|c|c|c},
+			colspec={|c|c|c|c|},
 			hlines,
 		}
 		\shortstack{Number of\\flips $k$} & Pattern & Count & $P(X=k)$   \\
@@ -612,10 +612,23 @@
 	\textbf{Inverse CDF} \\
 	We can generate a value with any target CDF $F(x)$ by transforming a random variable $U \sim U(0, 1)$. \\
 	Just set $X=F^{-1}(U)$, then $X$ will have our target CDF $F$. If $F$ is continuous, $P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x)$ \\
-	For example, if the target is a Pareto distribution $f_X(x)=2/x^3$ for $x\ge1$, $F_X(x)=1-x^{-2}$. \\
-	Inverting $U=F_X(X)$ gives $X=1/\sqrt{1-U}$. \\
-	Check: $P(X\le x)= P(1/\sqrt{1-U}\le x) = P(U\le1-x^{-2})=1-x^{-2}$.
 
+	Target: a Pareto distribution $f_X(x)=2/x^3$ for $x\ge1$, $F_X(x)=1-x^{-2}$. \\
+	Inverting $U=F_X(X)$ gives $X=1/\sqrt{1-U}$. \\
+	Check: $P(X\le x)= P(1/\sqrt{1-U}\le x) = P(U\le1-x^{-2})=1-x^{-2}$. \\
+
+	Target: Uniform point by area within a disk with radius $1$. Uniform area means $P(R \leq r) = \pi r^2/\pi = r^2$. \\
+	Inverting gives $R=\sqrt{U}$. Then use an independent $V \sim U(0, 1)$ for angle $\Theta = 2\pi V$. \\
+	Then the point in the disk is $(X, Y) = (R\cos(\Theta), R\sin(\Theta))$ \\
+	Check: $R \sim U(0, 1)$ concentrates area in the center. $50\%$ of points are within the disk with radius $1/2$ even though that is only $1/4$ of the area. \\
+
+	Target: Uniform point within a unit sphere. The fraction of volume within radius $r$ is $P(R\leq r)=(4\pi r^3/3)/(4\pi/3)=r^3$, for $0\leq r\leq1$. \\
+	Inverting gives $R=U^{1/3}$, which is uniform within the sphere. \\
+
+	Target (Box--Muller): Generate two independent standard normal values. Their joint density is $f_{X,Y}(x,y)=(2\pi)^{-1}e^{-(x^2+y^2)/2}$, \\
+	which depends only on $R=\sqrt{X^2+Y^2}$. Integrating in polar coordinates gives $P(R>r)=\int_r^\infty s e^{-s^2/2}\,ds=e^{-r^2/2}$. \\
+	Thus $R=\sqrt{-2\log U}$ has the required distribution. Then use an independent $V\sim U(0,1)$ for the uniform angle $\Theta=2\pi V$.  \\
+	Then the standard normal values are $$(X,Y)=\left(\sqrt{-2\log U}\cos(2\pi V),\sqrt{-2\log U}\sin(2\pi V)\right).$$ \\
 	\vspace*{4pt}\hrule\vspace*{4pt}
 
 	\textbf{Blind box collection} \\
@@ -679,6 +692,19 @@
 	When $q$ is small and $qh\ll1$, then $b \gg h$ and $b_*\approx\sqrt{h/q}$.
 
 	\vspace*{4pt}\hrule\vspace*{4pt}
+
+	\textbf{Replacement frequency in reservoir sampling} \\
+	Given an infinite data stream, maintain a uniform reservoir of size $k$ using one pass.
+	Keep the first $k$ records in the reservoir. For each later record $i$, draw $J_i$ uniformly from $\{1,\ldots,i\}$ \\
+	if $J_i\leq k$, replace the record in slot $J_i$, otherwise keep the reservoir unchanged. \\
+	This keeps every $k$-subset of the first $i$ records equally likely, and record $i$ is included with probability $k/i$. \\
+	Let $I_i=1$ if record $i$ replaces an item, and $0$ otherwise. \\
+	The fresh independent draws make $I_i\sim\mathrm{Bernoulli}(k/i)$ independent, even though the reservoir contents are dependent. \\
+	For records $m+1$ through $n$, $R_{m,n}=\displaystyle\sum_{i=m+1}^n I_i$ is Poisson-binomial, with
+	$\lambda=E(R_{m,n}) =k\displaystyle\sum_{i=m+1}^n\frac1i$                             \\
+	$\var(R_{m,n}) =\displaystyle\sum_{i=m+1}^n\frac{k}{i}\left(1-\frac{k}{i}\right) =\lambda-k^2\sum_{i=m+1}^n\frac1{i^2}$ \\
+	When the individual probabilities $p_i=k/i$ are small, approximate $R_{m,n}$ by $Z\sim\mathrm{Pois}(\lambda)$. \\
+	For any event $A$, $\left|P(R_{m,n}\in A)-P(Z\in A)\right|\leq\displaystyle\sum_{i=m+1}^n\frac{p_i^2}{\lambda}\leq\max_{m<i\leq n}p_i$. \\
 \end{tcolorbox}
 
 \newpage
