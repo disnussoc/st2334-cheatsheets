@@ -373,339 +373,313 @@
 	\switchcolumn
 
 	\begin{tcolorbox}[title=Distributions]
-		Poisson: $X\sim\mathrm{Pois}(\lambda)$ \\
-		\hlfancy{lightgray}{Count of independent events} within a fixed interval, where \hlfancy{lightgray}{$\lambda$ is the expected count} \\
-		If given that \hlfancy{lightgray}{events happen at a constant rate $\alpha$} per unit time
-		and counts in disjoint intervals are independent,
-		then the \hlfancy{lightgray}{expected count of events over duration $T$ time units is $\lambda = \alpha T$}.
-		Therefore, the \hlfancy{lightgray}{count of events over duration $T$ time units follows a $\mathrm{Pois}(\alpha T)$ distribution}. \\
-		If $p$ is small, and as $n$ increases $p$ decreases such that $np$ is fixed, $\mathrm{Bin}(n, p) \approx \mathrm{Pois}(np)$ \\
+		\begin{tblr}{
+				colspec={X[5, l]|X[5, l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				Poisson: $X\sim\mathrm{Pois}(\lambda)$ \quad \hlfancy{lightgray}{Count of independent events} within a fixed interval, where \hlfancy{lightgray}{$\lambda$ is the expected count} \\
+				If given that \hlfancy{lightgray}{events happen at a constant rate $\alpha$} per unit time
+				and counts in disjoint intervals are independent,
+				then the \hlfancy{lightgray}{expected count of events over duration $T$ time units is $\lambda = \alpha T$}.
+				Therefore, the \hlfancy{lightgray}{count of events over duration $T$ time units follows a $\mathrm{Pois}(\alpha T)$ distribution}. \\
+				If $p$ is small, and as $n$ increases $p$ decreases such that $np$ is fixed, $\mathrm{Bin}(n, p) \approx \mathrm{Pois}(np)$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				Continuous uniform: $X\sim U(a,b)$ \quad $x\in[a,b]$ CDF: $\displaystyle F_X(x)=(x-a)/(b-a)$ \\
+				Exponential: $X\sim\mathrm{Exp}(\lambda)$ \quad \hlfancy{lightgray}{Waiting time between events} in a Poisson with \hlfancy{lightgray}{rate $\lambda$} per unit time \hlfancy{lightgray}{(not expected count)} \\
+				$x\in[0,\infty)$ CDF: $F_X(x)=1-e^{-\lambda x}$ \quad Survival: $P(X>x)=e^{-\lambda x}$ \\
+				If given the \hlfancy{lightgray}{mean time between events $\mu$} in a Poisson process,
+				then the \hlfancy{lightgray}{rate per unit time is $\lambda = 1/\mu$}.
+				Therefore, the \hlfancy{lightgray}{waiting time between events follows a $\mathrm{Exp}(1/\mu)$ distribution}.
+			\end{minipage}
+		\end{tblr}
+	\end{tcolorbox}
 
-		\vspace*{1pt}\hrule\vspace*{1pt}
+	\begin{tcolorbox}[title=Problems, width=\columnwidth]
+		\begin{tblr}{
+				colspec={X[6,l]|X[5,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				\textbf{Five-digit poker test} \quad Count number of permutations for strings of 5 digits from $0$--$9$ \\
+				\begin{tblr}{
+						colspec={|c|c|c|X[l]|},
+						hlines,
+					}
+					Pattern         & Shape & Count                                                                        & Counting idea                                                                                                                                \\
+					All different   & abcde & $10\cdot9\cdot8\cdot7\cdot6 $                                                & Fill 5 slots without repeat                                                                                                                  \\
+					One pair        & aabcd & $\displaystyle\binom52\cdot10\cdot(9\cdot8\cdot7) $                          & Choose 2 slots as the pair, 10 options in the pair, fill 3 slots without repeat                                                              \\
+					Two pairs       & aabbc & $\displaystyle\binom52\displaystyle\binom32\displaystyle\binom{10}{2}\cdot8$ & Choose 2 slots out of 5 for first pair, 2 slots out of 3 for second pair, choose 2 digits out of 10 for pair values, 8 options for last slot \\
+					Three of a kind & aaabc & $\displaystyle\binom53\cdot10\cdot(9\cdot8) $                                & Choose 3 slots as the triple, 10 options in the triple, fill 2 slots without repeat                                                          \\
+					Full house      & aaabb & $\displaystyle\binom53\cdot10\cdot9 $                                        & Choose 3 slots as the triple, 10 options in the triple, 9 options for the pair                                                               \\
+					Four of a kind  & aaaab & $\displaystyle\binom54\cdot10\cdot9 $                                        & Choose 4 slots as the four, 10 options in the four, 9 options for last slot                                                                  \\
+					Five of a kind  & aaaaa & $10$                                                                         & 10 options for the repeated digit                                                                                                            \\
+				\end{tblr}
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\textbf{Git hash collisions (birthday problem)} \; For \hlfancy{lightgray}{$n$ independent uniform items} out of \hlfancy{lightgray}{$m$ possible options}, \\
+				\begin{tblr}{
+						colspec={X[1,l]|X[1,l]},
+						leftsep=0pt,
+						rightsep=0pt,
+						column{1}={rightsep=3pt},
+						column{2}={leftsep=3pt},
+					}
+					\begin{minipage}[t]{\linewidth} \vspace*{-1.5em}
+						Birthday approximation: \\
+						\hlfancytall{lightgray}{$P(\text{at least one})\approx1-e^{-n(n-1)/(2m)} = 1 - e^{-\binom{n}{2}/m}$} \\
+						For \hlfancy{lightgray}{$P(\text{at least one}) = 0.5$, $n \approx \sqrt{2m \ln 2} \approx 1.18\sqrt{m}$}
+					\end{minipage}
+					 &
+					$P(\text{at least one})=1{-}P(\text{no collis}) = 1 {-} \displaystyle\prod_{i=0}^{n-1}\left(1-\dfrac{i}{m}\right)$
+				\end{tblr}
+				\textbf{Git hashes}: Hex abbreviations of \hlfancy{lightgray}{length $l=7$ means $m = 16^7$ possible abbreviations},
+				50\% collision with \hlfancy{lightgray}{$n\approx1.18\sqrt{16^7}\approx19{,}300$ hashes}\\
+				\textbf{Birthday}: \hlfancy{lightgray}{$m=365$ possible birthdays}, 50\% collision with \hlfancy{lightgray}{$n\approx1.18\sqrt{365}\approx23$ people}
 
-		Continuous uniform: $X\sim U(a,b)$ \\
-		$x\in[a,b]$ \\
-		CDF: $\displaystyle F_X(x)=\dfrac{x-a}{b-a}$ \\
+				\vspace*{4pt}\hrule\vspace*{4pt}
 
-		Exponential: $X\sim\mathrm{Exp}(\lambda)$ \\
-		\hlfancy{lightgray}{Waiting time between events} in a Poisson process of \hlfancy{lightgray}{rate $\lambda$} per unit time \hlfancy{lightgray}{(not expected count)} \\
-		$x\in[0,\infty)$ \\
-		CDF: $F_X(x)=1-e^{-\lambda x}$ \\
-		Survival: $P(X>x)=e^{-\lambda x}$ \\
-		If given the \hlfancy{lightgray}{mean time between events $\mu$} in a Poisson process,
-		then the \hlfancy{lightgray}{rate per unit time is $\lambda = 1/\mu$}.
-		Therefore, the \hlfancy{lightgray}{waiting time between events follows a $\mathrm{Exp}(1/\mu)$ distribution}.
+				\textbf{Uniform subset} \; Choose \hlfancy{lightgray}{$n$ items from a sequence of $N$} such that \hlfancy{lightgray}{every subset of size $n$ is equally likely}. \\
+				If \hlfancy{lightgray}{$t$ items remain} and \hlfancy{lightgray}{$r$ are still needed}, the next items is \hlfancy{lightgray}{kept probability $r/t$}, \\
+				otherwise \hlfancy{lightgray}{skip it with probability $1-r/t=(t-r)/t$}. \\
+				\hlfancy{lightgray}{Every subset of size $n$ has a unique keep/skip path},
+				with \hlfancytall{lightgray}{$P(\text{that subset})=\dfrac{n!(N-n)!}{N!}=\dfrac1{\binom Nn}$}. \\
+				e.g. from 8 items, keep the 2nd, 4th, and 7th has probability $\dfrac58 \cdot \underline{\dfrac37} \cdot \dfrac46 \cdot \underline{\dfrac25} \cdot \dfrac34 \cdot \dfrac23 \cdot \underline{\dfrac12}
+					=\dfrac1{56}
+					=\dfrac1{\binom83}$ \\
+				$\var(I_i)=\dfrac{n(N-n)}{N^2}$, $\cov(I_i,I_j)=-\dfrac{n(N-n)}{N^2(N-1)}$, $\operatorname{Corr}(I_i,I_j)=-\dfrac{1}{N-1}$
+			\end{minipage}
+		\end{tblr}
 
-		\vspace*{1pt}\hrule\vspace*{1pt}
+		\vspace*{4pt}\hrule\vspace*{4pt}
 
+		\begin{tblr}{
+				colspec={X[9,l]|X[7,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				\textbf{Demand after survey and pop-up} \; $D$ is low, medium, or high demand, \; $C$ = favourable survey, \; $T$ = successful pop-up. \\
+				In low/medium/high order, $P(D)=(0.70,0.25,0.05)$, $P(C\mid D)=(0.20,0.50,0.90)$, $P(T\mid D)=(0.10,0.60,0.80)$. \\
+				\hlfancy{lightgray}{\textbf{Assume:} conditional independence (Naive Bayes): $P(C \cap T \mid D) = P(C \mid D)P(T \mid D)$} \\
+				\begin{tblr}{
+						colspec={X[6,l]|X[7,l]},
+						leftsep=0pt,
+						rightsep=0pt,
+						column{1}={rightsep=5pt},
+						column{2}={leftsep=5pt},
+					}
+					\begin{minipage}[t]{\linewidth}
+						$w_{CT}$ is the prior-weighted likelihoods, \\
+						$s_{CT}$ is the sum of $w_{CT}$ across demand levels.
+						\begin{align*}
+							w_{CT} & = P(D)P(C\cap T\mid D)                                                               \\
+							       & \hlfancymath{lightgray}{= P(D)P(C\mid D)P(T\mid D)} \textit{ (modelling assumption)} \\
+							       & = (0.70(0.20)(0.10),\ 0.25(0.50)(0.60),\ 0.05(0.90)(0.80))                           \\
+							       & = (0.014,0.075,0.036)
+						\end{align*}
+						$s_{CT} = \sum w_{CT} = 0.125$
+						\begin{align*}
+							P(D\mid C \cap T) & = \dfrac{P(D)P(C\cap T\mid D)}{s_{CT}} \textit{ (Bayes' Theorem)} \\
+							                  & = w_{CT} / s_{CT}                                                 \\
+							                  & = (0.112,0.600,0.288)
+						\end{align*}
+					\end{minipage}
+					 &
+					\begin{minipage}[t]{\linewidth}
+						$w_{CT'}$ is the prior-weighted likelihoods, \\
+						$s_{CT'}$ is the sum of $w_{CT'}$ across demand levels.
+						\begin{align*}
+							w_{CT'} & = P(D)P(C\cap T'\mid D)                                                               \\
+							        & \hlfancymath{lightgray}{= P(D)P(C\mid D)P(T'\mid D)} \textit{ (modelling assumption)} \\
+							        & = (0.70(0.20)(1{-}0.10),\ 0.25(0.50)(1{-}0.60),\ 0.05(0.90)(1{-}0.80))                \\
+							        & = (0.126,0.050,0.009)
+						\end{align*}
+						$s_{CT'} = \sum w_{CT'} = 0.185$
+						\begin{align*}
+							P(D\mid C \cap T') & = \dfrac{P(D)P(C\cap T'\mid D)}{s_{CT'}} \textit{ (Bayes' Theorem)} \\
+							                   & = w_{CT'}/s_{CT'}                                                   \\
+							                   & = (0.681,0.270,0.049)
+						\end{align*}
+					\end{minipage}
+				\end{tblr}
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\textbf{Bit flips in a binary counter} \quad Given \hlfancy{lightgray}{a uniformly random $m$-bit string}, add $1$ with wrap-around to all-zeroes. Let \hlfancy{lightgray}{$X$ be the number of bits that flip after addition}. \\
+				\begin{tblr}{
+						colspec={X[4,l]|X[5,l]},
+						leftsep=0pt,
+						rightsep=0pt,
+						column{1}={rightsep=5pt},
+						column{2}={leftsep=5pt},
+					}
+					\begin{minipage}[t]{\linewidth} \vspace*{-2em}
+						\begin{tblr}[t]{
+								colspec={|c|c|c|c|},
+								hlines,
+							}
+							\shortstack{Number of\\flips $k$} & Pattern & Count & $P(X=k)$ \\
+							1                                 & xxxx0   & 16    & $16/32$  \\
+							2                                 & xxx01   & 8     & $8/32$   \\
+							3                                 & xx011   & 4     & $4/32$   \\
+							4                                 & x0111   & 2     & $2/32$   \\
+							5                                 & x1111   & 2     & $2/32$
+						\end{tblr}
+					\end{minipage}
+					 &
+					\begin{minipage}[t]{\linewidth}
+						$f_X(k) = P(X=k)=\begin{cases}
+								2^{-k}           & 1\le k<m, \\
+								2^{-(m-1)} & k=m
+							\end{cases}$ \\
+						For \hlfancy{lightgray}{at least $k$ bit flips}, \hlfancy{lightgray}{$k-1$ trailing bits must be ones} \\
+						so, $P(X\ge k)=(1/2)^{k-1}$ \\
+						$X=\displaystyle\sum_{k=1}^m\mathbf{1}\{X\ge k\}$,
+						$E(X) = \displaystyle\sum_{k=1}^mP(X\ge k) = 2-\frac1{2^{m-1}}$ \\
+						$\var(X)=2-\dfrac{2m-1}{2^{m-1}}-\dfrac{1}{2^{2m-2}}$
+					\end{minipage}
+				\end{tblr}\\
+			\end{minipage}
+		\end{tblr}
+		\vspace*{4pt}\hrule\vspace*{4pt}
+
+		\begin{tblr}{
+				colspec={X[9,l]|X[9,l]|X[9,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={rightsep=5pt, leftsep=5pt},
+				column{3}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				\textbf{Inverse CDF} We can generate a variable with \hlfancy{lightgray}{any target CDF $F(x)$} \\
+				Just \hlfancy{lightgray}{transform a uniform variable $U \sim U(0, 1)$} and set \hlfancy{lightgray}{$X=F^{-1}(U)$}, \\
+				then \hlfancy{lightgray}{$X$ will have our target CDF $F$}. \\
+				If $F$ is continuous, $P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x)$ \\
+
+				\textbf{Target:} a \hlfancy{lightgray}{Pareto distribution $f_X(x)=2/x^3$} for $x\ge1$, $F_X(x)=1-x^{-2}$. \\
+				Inverting $U=F_X(X)$ gives \hlfancy{lightgray}{$X=1/\sqrt{1-U}$}. \\
+				Check: $P(X\le x)= P(1/\sqrt{1-U}\le x) = P(U\le1-x^{-2})=1-x^{-2}$. \\
+
+				\textbf{Target:} \hlfancy{lightgray}{Uniform point by area within a disk with radius $1$}. \\
+				Uniform area means $P(R \leq r) = \pi r^2/\pi = r^2$. Inverting gives \hlfancy{lightgray}{$R=\sqrt{U}$}. \\
+				Use independent $V \sim U(0, 1)$ for a \hlfancy{lightgray}{uniform angle $\Theta = 2\pi V$}. \\
+				Then the point in the disk is \hlfancy{lightgray}{$(X, Y) = (R\cos(\Theta), R\sin(\Theta))$} \\
+				Check: $R \sim U(0, 1)$ concentrates area in the center. \\
+				$50\%$ of points have radius $\leq 1/2$ even though that is only $1/4$ of the area. \\
+
+				\textbf{Target:} \hlfancy{lightgray}{Uniform point by volume within a sphere with radius $a$}. \\
+				Fraction of vol within radius $r$ is $P(R\leq r)=(4\pi r^3/3)/(4\pi a^3/3)=r^3/a^3$. \\
+				Inverting gives \hlfancy{lightgray}{$R=aU^{1/3}$}, which is uniform within the sphere. \\
+
+				\textbf{Target (Box--Muller):} Generate \hlfancy{lightgray}{two independent standard normal values}. \\
+				Joint density is $f_{X,Y}(x,y)=(2\pi)^{-1}e^{-(x^2+y^2)/2}$, only needs \hlfancy{lightgray}{$R=\sqrt{X^2+Y^2}$}. \\
+				Integrating in polar coordinates gives $P(R>r)=\int_r^\infty s e^{-s^2/2}\,ds=e^{-r^2/2}$. \\
+				Inverting gives \hlfancy{lightgray}{$R=\sqrt{-2\log U}$}. $\sqrt{-2\log(1-U)}$ also fits, using $P(R \leq r)$. \\
+				Use independent $V\sim U(0,1)$ for a \hlfancy{lightgray}{uniform angle $\Theta=2\pi V$}. \\
+				Then the values are \hlfancy{lightgray}{$(X,Y)=\left(\sqrt{-2\log U}\cos(2\pi V),\sqrt{-2\log U}\sin(2\pi V)\right)$}
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\textbf{Blind box collection} \\
+				Each box independently contains one of \hlfancy{lightgray}{$d$ equally likely designs}. \\
+				Let $T$ be the number of boxes needed to collect all $d$ designs. \\
+				Let $W_j$ be the number of boxes needed to \hlfancy{lightgray}{get a new design from $j-1$ to $j$}. \\
+				At this stage, a draw is a \hlfancy{lightgray}{success with probability $p_j=(d-j+1)/(d)$} \\
+				$W_j$ then follows a \hlfancy{lightgray}{Geom($p_j$) distribution}, so $P(W_j = r) = (1 - p_j)^{r - 1}p_j$. \\
+				Using the tail-sum formula,
+				\[
+					E(W_j)=\displaystyle\sum_{r=1}^{\infty}P(W_j\ge r)
+					=\displaystyle\sum_{r=1}^{\infty}(1-p_j)^{r-1}
+					=\dfrac1{p_j}=\dfrac{d}{d-j+1}
+				\]
+				Since $T=\displaystyle\sum_{j=1}^d W_j$,
+				$E(T)=\displaystyle\sum_{j=1}^d E(W_j)
+					=d\left(1+\frac12+\cdots+\frac1d\right)=dH_d$
+
+				\vspace*{4pt}\hrule\vspace*{4pt}
+
+				\textbf{Increasing runs in a random permutation} \\
+				Given \hlfancy{lightgray}{a random sequence of $n$ items}, a run is a consecutive block whose values are increasing. Let $D_i=\mathbf{1}\{A_i>A_{i+1}\}$ indicate a descent. \\
+				Let $R=1+\displaystyle\sum_{i=1}^{n-1}D_i$ be the number of runs. $E(D_i)=1/2$, $E(R)= (n+1)/2$ \\
+				Neighboring descents require $A_i>A_{i+1}>A_{i+2}$ which is one of six orders, \\
+				$E(D_iD_{i+1}) = 1/6$, $\cov(D_i,D_{i+1})=\dfrac16-\dfrac14=-\dfrac1{12}$. \\
+				Non-neighboring indicators are independent,
+				so $\cov(D_i,D_j) = 0$ for $|i-j|>1$. \\
+				$\var(D_i) = 1/4$, $\var(R)=(n-1)/4 + 2(n-2)\left(-1/12\right) = (n+1)/12$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\textbf{First and last of two server response times} \\
+				Two independent servers have two independent $\mathrm{Exp}(\lambda)$ stages. \\
+				Let $T_i$ be a server's total time. \\
+				$f_T(t)=\lambda^2te^{-\lambda t}$, $S_T(t)=P(T>t)=e^{-\lambda t}(1+\lambda t)$ \\
+				Let $U=\min(T_1,T_2)$, and $V=\max(T_1,T_2)$. \\
+				For $0<u<v$, \\
+				$f_{U,V}(u,v)=2f_T(u)f_T(v)=2\lambda^4uv e^{-\lambda(u+v)}$ \\
+				$f_U(u)=2f_T(u)S_T(u)$,  $f_V(v)=2(1 - S_T(v))f_T(v)$ \\
+				$f_{V\mid U}(v\mid u)=\dfrac{f_T(v)}{S_T(u)}=\dfrac{\lambda^2v e^{-\lambda(v-u)}}{1+\lambda u}$ \\
+				$E(V\mid U=u)=u+\dfrac{u+2/\lambda}{1+\lambda u}$ \\
+				$E(V-U\mid U=u)=\dfrac1\lambda\left(1+\dfrac1{1+\lambda u}\right)$ \\
+				$E(U)=\dfrac5{4\lambda}$, $E(V)=\dfrac{11}{4\lambda}$, $E(UV)=\dfrac4{\lambda^2}$,
+				so $\cov(U,V)=\dfrac9{16\lambda^2}>0$
+
+				\vspace*{4pt}\hrule\vspace*{4pt}
+
+				\textbf{Record updates in Maximum Search} \\
+				Given a random sequence of $n$ distinct values, let $R_i$ be the event that position $i$ contains the largest value among positions $1$ to $i$. \\
+				Let $I_i=\mathbf{1}\{R_i\}$, and let \hlfancytall{lightgray}{$X=\sum_{i=1}^n I_i$} \\
+				For $i<j$, given $R_j$, the first $i$ values remain in uniformly random relative order, so $P(R_i\mid R_j)=1/i$, so the indicators are pairwise independent. \\
+				\hlfancy{lightgray}{$E(I_i)=P(R_i)=1/i$} \quad \hlfancy{lightgray}{$E(X)=E\!\left(\sum_{i=1}^n I_i\right)=1+\frac12+\cdots+\frac1n=H_n$} \\
+				$E(X^2)   = H_n + 2\displaystyle\sum_{i<j}\dfrac1{ij}$ \quad $[E(X)]^2 = \displaystyle\sum_{i=1}^n\dfrac1{i^2} + 2\displaystyle\sum_{i<j}\dfrac1{ij}$ \\
+				$\var(X)  = E(X^2)-[E(X)]^2 = H_n-\displaystyle\sum_{i=1}^n\dfrac1{i^2}$
+			\end{minipage}
+		\end{tblr}
+
+		\vspace*{4pt}\hrule\vspace*{4pt}
+
+		\textbf{Replacement frequency in reservoir sampling} \; Given \hlfancy{lightgray}{an infinite data stream}, maintain a \hlfancy{lightgray}{uniform reservoir of size $k$} using one pass. \\
+		\hlfancy{lightgray}{Keep the first $k$ records} in the reservoir. For each \hlfancy{lightgray}{later record $i$}, \hlfancy{lightgray}{draw $J_i$ uniformly from $\{1,\ldots,i\}$}. \hlfancy{lightgray}{if $J_i\leq k$, replace the record in slot $J_i$}, otherwise keep the reservoir unchanged. \\
+		This \hlfancy{lightgray}{keeps record $i$ is with probability $k/i$}, every $k$-subset of the first $i$ records equally likely. \\
+		Let $I_i=1$ if record $i$ replaces an item, and $0$ otherwise.
+		The fresh independent draws make \hlfancy{lightgray}{$I_i\sim\mathrm{Bernoulli}(k/i)$ independent}, even though the reservoir contents are dependent. \\
+		\begin{tblr}{
+				colspec={X[3,l]|X[5,l]},
+				leftsep=0pt,
+				rightsep=0pt,
+				column{1}={rightsep=5pt},
+				column{2}={leftsep=5pt},
+			}
+			\begin{minipage}[t]{\linewidth}
+				For records $m+1$ to $n$, the number of replacements
+				$R_{m,n}=\displaystyle\sum_{i=m+1}^n I_i$ is Poisson-binomial \\
+				$\lambda=E(R_{m,n}) =k\displaystyle\sum_{i=m+1}^n\frac1i$ \quad
+				$\var(R_{m,n}) =\displaystyle\sum_{i=m+1}^n\frac{k}{i}\left(1-\frac{k}{i}\right)=\lambda-k^2\sum_{i=m+1}^n\frac1{i^2}$
+			\end{minipage}
+			 &
+			\begin{minipage}[t]{\linewidth}
+				When the individual probabilities $p_i=k/i$ are small, approximate
+				$R_{m,n}$ by $Z\sim\mathrm{Pois}(\lambda)$. \\
+				For any event $A$,
+				$\left|P(R_{m,n}\in A)-P(Z\in A)\right|
+					\leq\displaystyle\sum_{i=m+1}^n\frac{p_i^2}{\lambda}
+					\leq\max_{m<i\leq n}p_i$.
+			\end{minipage}
+		\end{tblr}
 	\end{tcolorbox}
 \end{paracol}
-
-\newpage
-
-\begin{tcolorbox}[title=Problems, width=\columnwidth]
-	\textbf{Five-digit poker test} \\
-	Count number of permutations for strings of 5 digits from $0$--$9$ \\
-	\begin{tblr}{
-			colspec={c|c|c|c},
-			hlines,
-		}
-		Pattern         & Shape & Count                                                                        & Counting idea                                                                                                                                \\
-		All different   & abcde & $10\cdot9\cdot8\cdot7\cdot6 $                                                & Fill 5 slots without repeat                                                                                                                  \\
-		One pair        & aabcd & $\displaystyle\binom52\cdot10\cdot(9\cdot8\cdot7) $                          & Choose 2 slots as the pair, 10 options in the pair, fill 3 slots without repeat                                                              \\
-		Two pairs       & aabbc & $\displaystyle\binom52\displaystyle\binom32\displaystyle\binom{10}{2}\cdot8$ & Choose 2 slots out of 5 for first pair, 2 slots out of 3 for second pair, choose 2 digits out of 10 for pair values, 8 options for last slot \\
-		Three of a kind & aaabc & $\displaystyle\binom53\cdot10\cdot(9\cdot8) $                                & Choose 3 slots as the triple, 10 options in the triple, fill 2 slots without repeat                                                          \\
-		Full house      & aaabb & $\displaystyle\binom53\cdot10\cdot9 $                                        & Choose 3 slots as the triple, 10 options in the triple, 9 options for the pair                                                               \\
-		Four of a kind  & aaaab & $\displaystyle\binom54\cdot10\cdot9 $                                        & Choose 4 slots as the four, 10 options in the four, 9 options for last slot                                                                  \\
-		Five of a kind  & aaaaa & $10$                                                                         & 10 options for the repeated digit                                                                                                            \\
-	\end{tblr}
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Git hash collisions (birthday problem)} \\
-	For \hlfancy{lightgray}{$n$ independent uniform items} out of \hlfancy{lightgray}{$m$ possible options}, \\
-	$\hlfancymath{lightgray}{P(\text{at least one})}=1-P(\text{no collision}) = \hlfancymath{lightgray}{1 - \displaystyle\prod_{i=0}^{n-1}\left(1-\dfrac{i}{m}\right)}$ \\
-	Birthday approximation: \hlfancytall{lightgray}{$P(\text{at least one})\approx1-e^{-n(n-1)/(2m)} = 1 - e^{-\binom{n}{2}/m}$}. For \hlfancy{lightgray}{$P(\text{at least one}) = 0.5$, $n \approx \sqrt{2m \ln 2} \approx 1.18\sqrt{m}$} \\
-	\textbf{Git hashes}: Hex abbreviations of \hlfancy{lightgray}{length $l=7$ means $m = 16^7$ possible abbreviations}, 50\% collision with \hlfancy{lightgray}{$n\approx1.18\sqrt{16^7}\approx19{,}300$ hashes}\\
-	\textbf{Birthday}: \hlfancy{lightgray}{$m=365$ possible birthdays}, 50\% collision with \hlfancy{lightgray}{$n\approx1.18\sqrt{365}\approx23$ people}
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Fisher--Yates random shuffling} \\
-	To \hlfancy{lightgray}{shuffle a sequence of length $n$ in $n$ steps}, for each \hlfancy{lightgray}{step $i$ from $1$ to $n$}, choose an \hlfancy{lightgray}{index $j$ from $\{i,\dots,n\}$}, then \hlfancy{lightgray}{swap position $i$ and $j$}. \\
-	This process gives \hlfancy{lightgray}{$n(n-1)...(1) = n!$ possible choice sequences}. Since there are \hlfancy{lightgray}{$n!$ possible shuffle orders}, the probability of every order is equally likely. \\
-	If instead \hlfancy{lightgray}{$j$ is chosen from $\{1,...,n\}$}, there will be \hlfancy{lightgray}{$n\cdot n \cdot ... = n^n$ choice sequences}, so the probability of every order is not all equally likely. \\
-
-	When \hlfancy{lightgray}{testing for all items to change position}, let $A_i$ be the event that item $i$ remains in its original position. \\
-	$P(\text{test fails})= P(A_1 \cup ... \cup A_n) = 1 - P(A_1' \cap ... \cap A_n')$
-	\begin{align*}
-		1 - P(A_1' \cap ... \cap A_n')
-		 & = \displaystyle\sum_{k=1}^n(-1)^{k+1}\binom nk\frac{(n-k)!}{n!} =\displaystyle\sum_{k=1}^n\frac{(-1)^{k+1}}{k!} \\
-		 & \hlfancymath{lightgray}{\approx 1-e^{-1} \approx 0.6321 \text{ as } n \to \infty}
-	\end{align*}
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Uniform selection in one pass} \\
-	Choose \hlfancy{lightgray}{$n$ items from a sequence of $N$} such that \hlfancy{lightgray}{every subset of size $n$ is equally likely}. \\
-	If \hlfancy{lightgray}{$t$ items remain} and \hlfancy{lightgray}{$r$ are still needed}, the next items is \hlfancy{lightgray}{kept probability $r/t$}, otherwise \hlfancy{lightgray}{skip it with probability $1-r/t=(t-r)/t$}. \\
-	\hlfancy{lightgray}{Every subset of size $n$ has a unique keep/skip path},
-	with \hlfancytall{lightgray}{$P(\text{that subset})=\dfrac{n!(N-n)!}{N!}=\dfrac1{\binom Nn}$}. \\
-	e.g. from 8 items, keep the 2nd, 4th, and 7th has probability $\dfrac58 \cdot \underline{\dfrac37} \cdot \dfrac46 \cdot \underline{\dfrac25} \cdot \dfrac34 \cdot \dfrac23 \cdot \underline{\dfrac12}
-		=\dfrac1{56}
-		=\dfrac1{\binom83}$ \\
-	$\var(I_i)=\dfrac{n(N-n)}{N^2}$, $\cov(I_i,I_j)=-\dfrac{n(N-n)}{N^2(N-1)}$, $\operatorname{Corr}(I_i,I_j)=-\dfrac{1}{N-1}$
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Fair bit extractor} \\
-	Given a bit generator with \hlfancy{lightgray}{independent outputs $P(1)=p$, $P(0)=q=1-p$}. \\
-	Since $P(01)=P(10)=pq$, \hlfancy{lightgray}{map $01\mapsto0$, $10\mapsto1$, and discard $00,11$}. \\
-	$P(\text{acceptance}) = 2pq$ \\
-	\hlfancy{lightgray}{$P(0\mid\text{accepted}) = P(1\mid\text{accepted}) = 1/2$} \\
-	From $N$ generated bits, expected number of output bits is $Npq \leq N/4$. \\
-	This method \hlfancy{lightgray}{does not require knowing $p$, just requireds $P(01) = P(10)$}. \\
-	$p \neq 0.5$ produces fewer outputs but equal pairs can similarly be recycled as $0011\mapsto0$, $1100\mapsto1$. \\
-	If \hlfancy{lightgray}{$P(01) \neq P(10)$, this method cannot be used} as the mapping is no longer fair.
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Demand after survey and pop-up} \\
-	\textbf{Given:} \\
-	$D$ is low, medium, or high demand \\
-	$C$ = favourable survey \\
-	$T$ = successful pop-up. \\
-	In low/medium/high order, $P(D)=(0.70,0.25,0.05)$, $P(C\mid D)=(0.20,0.50,0.90)$, $P(T\mid D)=(0.10,0.60,0.80)$. \\
-	\hlfancy{lightgray}{\textbf{Assume:} conditional independence (Naive Bayes): $P(C \cap T \mid D) = P(C \mid D)P(T \mid D)$} \\
-
-	$w_{CT}$ is the prior-weighted likelihoods, $s_{CT}$ is the sum of $w_{CT}$ across demand levels.
-	\begin{align*}
-		w_{CT} & = P(D)P(C\cap T\mid D)                                                               \\
-		       & \hlfancymath{lightgray}{= P(D)P(C\mid D)P(T\mid D)} \textit{ (modelling assumption)} \\
-		       & = (0.70(0.20)(0.10),\ 0.25(0.50)(0.60),\ 0.05(0.90)(0.80))                           \\
-		       & = (0.014,0.075,0.036)
-	\end{align*}
-	$s_{CT} = \sum w_{CT} = 0.125$
-	\begin{align*}
-		P(D\mid C \cap T) & = \dfrac{P(D)P(C\cap T\mid D)}{s_{CT}} \textit{ (Bayes' Theorem)} \\
-		                  & = w_{CT} / s_{CT}                                                 \\
-		                  & = (0.112,0.600,0.288)
-	\end{align*}
-	So the probability that demand is high given favourable survey and successful pop-up is $P(D = H \mid C \cap T) = 0.288$ \\
-
-	For a failed pop-up, $P(T'\mid D)=1-P(T\mid D)$.\\
-	$w_{CT'}$ is the prior-weighted likelihoods, $s_{CT'}$ is the sum of $w_{CT'}$ across demand levels.
-	\begin{align*}
-		w_{CT'} & = P(D)P(C\cap T'\mid D)                                                               \\
-		        & \hlfancymath{lightgray}{= P(D)P(C\mid D)P(T'\mid D)} \textit{ (modelling assumption)} \\
-		        & = (0.70(0.20)(0.90),\ 0.25(0.50)(0.40),\ 0.05(0.90)(0.20))                            \\
-		        & = (0.126,0.050,0.009)
-	\end{align*}
-	$s_{CT'} = \sum w_{CT'} = 0.185$
-	\begin{align*}
-		P(D\mid C \cap T') & = \dfrac{P(D)P(C\cap T'\mid D)}{s_{CT'}} \textit{ (Bayes' Theorem)} \\
-		                   & = w_{CT'}/s_{CT'}                                                   \\
-		                   & = (0.681,0.270,0.049)
-	\end{align*}
-	So the probability that demand is high given favourable survey and failed pop-up is $P(D=H\mid C\cap T') = 0.049$.
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Naive Bayes' email classifier} \\
-	\textbf{Given:} \\
-	$S$ = spam, $S'$ = not spam \\
-	$F$ = contains "free", $M$ = contains "meeting". \\
-	$P(S)=0.20$, $P(S')=0.80$ \\
-	$P(F\mid S)=0.70$, $P(F\mid S')=0.05$ \\
-	$P(M\mid S)=0.10$, $P(M\mid S')=0.60$ \\
-	\hlfancy{lightgray}{\textbf{Assume:} word indicators are conditionally independent}
-
-	\begin{align*}
-		\hlfancymath{lightgray}{P(F\cap M\mid S)} & \hlfancymath{lightgray}{= P(F \mid S)P(M \mid S)} \textit{ (modelling assumption)} \\
-		                                          & = 0.70(0.10)=0.07
-	\end{align*}
-	\begin{align*}
-		\hlfancymath{lightgray}{P(F\cap M\mid S')} & \hlfancymath{lightgray}{= P(F \mid S')P(M \mid S')} \textit{ (modelling assumption)} \\
-		                                           & = 0.05(0.60)=0.03
-	\end{align*}
-	\begin{align*}
-		P(S\mid F\cap M) & = \frac{P(S)P(F\cap M\mid S)}{P(S)P(F\cap M\mid S)+P(S')P(F\cap M\mid S')} \\
-		                 & =\frac{0.20(0.07)}{0.20(0.07)+0.80(0.03)}
-		= \frac{0.014}{0.038} = 0.368
-	\end{align*}
-	\begin{align*}
-		P(S'\mid F\cap M) & =\frac{P(S')P(F\cap M\mid S')}{P(S)P(F\cap M\mid S)+P(S')P(F\cap M\mid S')} \\
-		                  & = \frac{0.80(0.03)}{0.20(0.07)+0.80(0.03)}
-		=\frac{0.024}{0.038} = 0.632.
-	\end{align*}
-
-	\begin{align*}
-		\hlfancymath{lightgray}{P(F\cap M'\mid S)} & \hlfancymath{lightgray}{= P(F\mid S)P(M'\mid S)} \textit{ (modelling assumption)} \\
-		                                           & = 0.70(1-0.10)=0.63
-	\end{align*}
-	\begin{align*}
-		\hlfancymath{lightgray}{P(F\cap M'\mid S')} & \hlfancymath{lightgray}{= P(F\mid S')P(M'\mid S')} \textit{ (modelling assumption)} \\
-		                                            & = 0.05(1-0.60)=0.02
-	\end{align*}
-	\begin{align*}
-		P(S\mid F\cap M')
-		 & = \frac{P(S)P(F\cap M'\mid S)}
-		     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
-		 & = \frac{0.20(0.63)}{0.20(0.63)+0.80(0.02)} = \frac{0.126}{0.142}\approx 0.887
-	\end{align*}
-	\begin{align*}
-		P(S'\mid F\cap M')
-		 & = \frac{P(S')P(F\cap M'\mid S')}
-		     {P(S)P(F\cap M'\mid S)+P(S')P(F\cap M'\mid S')}                             \\
-		 & = \frac{0.80(0.02)}{0.20(0.63)+0.80(0.02)} = \frac{0.016}{0.142}\approx 0.113
-	\end{align*}
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Record updates in Maximum Search} \\
-	Given \hlfancy{lightgray}{a random sequence of $n$ values}, let $R_i$ be the event that \hlfancy{lightgray}{position $i$ contains the largest value among positions $1$ to $i$}. \\
-	Let \hlfancy{lightgray}{$I_i=1$ if $R_i$ occurs, and $0$ otherwise}.
-	Let \hlfancytall{lightgray}{$X=\displaystyle\sum^n I_i$} which counts the number of updates in a linear maximum search. \\
-	For $i<j$, given $R_j$, the first $i$ values remain in uniformly random relative order, so $P(R_i\mid R_j)=1/i$. \\
-	Hence \hlfancy{lightgray}{$P(R_i\cap R_j)=1/(ij)=P(R_i)P(R_j)$}, the indicators are pairwise independent. \\
-	\hlfancy{lightgray}{$E(I_i)=P(R_i)=1/i$} \\
-	\hlfancy{lightgray}{$E(X) = E(\sum I_i) = 1 + 1/2 + ... + 1/n = H_n$} \\[2ex]
-
-	\begin{align*}
-		E(X^2) & = \sum_i E(I_i^2)+\sum_{i \neq j}E(I_iI_j) \\
-		       & = \sum_i E(I_i)+\sum_{ i \neq j}\frac1{ij} \\
-		       & = H_n + 2\sum_{i < j}\frac1{ij}
-	\end{align*}
-	\begin{align*}
-		[E(X)]^2 = \left(H_n\right)^2 = \sum^n\frac1{i^2}+2\sum_{i<j}\frac1{ij}
-	\end{align*}
-	$\hlfancymath{lightgray}{\var(X)} = E(X^2) - [E(X)]^2 = \hlfancymath{lightgray}{H_n - \displaystyle\sum^n\frac1{i^2}}$
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Bit flips in a binary counter} \\
-	Given \hlfancy{lightgray}{a uniformly random $m$-bit string}, add $1$ with wrap-around to all-zeroes. \\
-	Let \hlfancy{lightgray}{$X$ be the number of bits that flip after addition}. \\
-	For $m=5$ \\
-	\begin{tblr}{
-			colspec={|c|c|c|c|},
-			hlines,
-		}
-		\shortstack{Number of\\flips $k$} & Pattern & Count & $P(X=k)$    \\
-		1                                 & xxxx0   & 16    & $16/32=1/2$ \\
-		2                                 & xxx01   & 8     & $8/32=1/4$  \\
-		3                                 & xx011   & 4     & $4/32=1/8$  \\
-		4                                 & x0111   & 2     & $2/32=1/16$ \\
-		5                                 & x1111   & 2     & $2/32=1/16$
-	\end{tblr}
-
-	$f_X(k) = P(X=k)=\begin{cases}
-			2^{-k}           & 1\le k<m, \\
-			2^{-(m-1)} & k=m
-		\end{cases}$ \\
-	For \hlfancy{lightgray}{at least $k$ bit flips}, \hlfancy{lightgray}{$k-1$ trailing bits must be ones}. So, \hlfancy{lightgray}{$P(X\ge k)=(1/2)^{k-1}$} \\
-	$X=\displaystyle\sum_{k=1}^m\mathbf{1}\{X\ge k\}$, so $E(X) = \displaystyle\sum_{k=1}^mP(X\ge k) = 2-\frac1{2^{m-1}}$ \\
-	$\var(X)=2-\dfrac{2m-1}{2^{m-1}}-\dfrac{1}{2^{2m-2}}$
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Inverse CDF} \\
-	We can \hlfancy{lightgray}{generate a variable with any target CDF $F(x)$} by \hlfancy{lightgray}{transforming a uniform variable $U \sim U(0, 1)$}. \\
-	Just set \hlfancy{lightgray}{$X=F^{-1}(U)$}, then \hlfancy{lightgray}{$X$ will have our target CDF $F$}. If $F$ is continuous, $P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x)$ \\
-
-	\textbf{Target}: a \hlfancy{lightgray}{Pareto distribution $f_X(x)=2/x^3$} for $x\ge1$, $F_X(x)=1-x^{-2}$. \\
-	Inverting $U=F_X(X)$ gives \hlfancy{lightgray}{$X=1/\sqrt{1-U}$}. \\
-	Check: $P(X\le x)= P(1/\sqrt{1-U}\le x) = P(U\le1-x^{-2})=1-x^{-2}$. \\
-
-	\textbf{Target}: \hlfancy{lightgray}{Uniform point by area within a disk with radius $1$}. Uniform area means $P(R \leq r) = \pi r^2/\pi = r^2$. \\
-	Inverting gives \hlfancy{lightgray}{$R=\sqrt{U}$}. Then use an independent $V \sim U(0, 1)$ for a \hlfancy{lightgray}{uniform angle $\Theta = 2\pi V$}. \\
-	Then the point in the disk is \hlfancy{lightgray}{$(X, Y) = (R\cos(\Theta), R\sin(\Theta))$} \\
-	Check: $R \sim U(0, 1)$ concentrates area in the center. $50\%$ of points are within the disk with radius $1/2$ even though that is only $1/4$ of the area. \\
-
-	\textbf{Target}: \hlfancy{lightgray}{Uniform point within a unit sphere}. The fraction of volume within radius $r$ is $P(R\leq r)=(4\pi r^3/3)/(4\pi/3)=r^3$, for $0\leq r\leq1$. \\
-	Inverting gives \hlfancy{lightgray}{$R=U^{1/3}$}, which is uniform within the sphere. \\
-
-	\textbf{Target} (Box--Muller): Generate \hlfancy{lightgray}{two independent standard normal values}. Their joint density is $f_{X,Y}(x,y)=(2\pi)^{-1}e^{-(x^2+y^2)/2}$, \\
-	which depends only on $R=\sqrt{X^2+Y^2}$. Integrating in polar coordinates gives $P(R>r)=\int_r^\infty s e^{-s^2/2}\,ds=e^{-r^2/2}$. \\
-	Thus \hlfancy{lightgray}{$R=\sqrt{-2\log U}$} has the required distribution. Then use an independent $V\sim U(0,1)$ for a \hlfancy{lightgray}{uniform angle $\Theta=2\pi V$}.  \\
-	Then the standard normal values are \hlfancy{lightgray}{$(X,Y)=\left(\sqrt{-2\log U}\cos(2\pi V),\sqrt{-2\log U}\sin(2\pi V)\right)$}
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Blind box collection} \\
-	Each box independently contains one of \hlfancy{lightgray}{$d$ equally likely designs}. \\
-	Let $T$ be the number of boxes needed to collect all $d$ designs. \\
-	Let $W_j$ be the number of boxes needed to get a new design from $j-1$ collected designs to $j$ collected designs. \\
-	At this stage, a draw is a \hlfancy{lightgray}{success with probability $p_j=(d-j+1)/(d)$} \\
-	$W_j$ then follows a \hlfancy{lightgray}{Geom($p_j$) distribution}, so $P(W_j = r) = (1 - p_j)^{r - 1}p_j$. \\
-	Using the tail-sum formula,
-	$E(W_j)=\displaystyle\sum_{r=1}^{\infty}P(W_j\ge r)
-		=\displaystyle\sum_{r=1}^{\infty}(1-p_j)^{r-1}
-		=\dfrac1{p_j}=\dfrac{d}{d-j+1}$ \\
-	Since $T=\displaystyle\sum_{j=1}^d W_j$,
-	$E(T)=\displaystyle\sum_{j=1}^d E(W_j)
-		=d\left(1+\frac12+\cdots+\frac1d\right)=dH_d$
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{First and last of two server response times} \\
-	Two independent servers have two independent $\mathrm{Exp}(\lambda)$ stages. \\
-	Let $T_i$ be a server's total time. \\
-	$f_T(t)=\lambda^2te^{-\lambda t}$, $S_T(t)=P(T>t)=e^{-\lambda t}(1+\lambda t)$ \\
-	Let $U=\min(T_1,T_2)$, and $V=\max(T_1,T_2)$. \\
-	For $0<u<v$, \\
-	$f_{U,V}(u,v)=2f_T(u)f_T(v)=2\lambda^4uv e^{-\lambda(u+v)}$ \\
-	$f_U(u)=2f_T(u)S_T(u)$,  $f_V(v)=2(1 - S_T(v))f_T(v)$ \\
-	$f_{V\mid U}(v\mid u)=\dfrac{f_T(v)}{S_T(u)}=\dfrac{\lambda^2v e^{-\lambda(v-u)}}{1+\lambda u}$ \\
-	$E(V\mid U=u)=u+\dfrac{u+2/\lambda}{1+\lambda u}$ \\
-	$E(V-U\mid U=u)=\dfrac1\lambda\left(1+\dfrac1{1+\lambda u}\right)$ \\
-	$E(U)=\dfrac5{4\lambda}$, $E(V)=\dfrac{11}{4\lambda}$, $E(UV)=\dfrac4{\lambda^2}$,
-	so $\cov(U,V)=\dfrac9{16\lambda^2}>0$
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Increasing runs in a random permutation} \\
-	Given \hlfancy{lightgray}{a random sequence of $n$ items}, a run is a consecutive block whose values are increasing. \\
-	Let $D_i=\mathbf{1}\{A_i>A_{i+1}\}$ indicate a descent and $R=1+\displaystyle\sum_{i=1}^{n-1}D_i$ be the number of runs\\
-	$E(D_i)=1/2$, $E(R)= (n+1)/2$ \\
-	Neighboring descents require $A_i>A_{i+1}>A_{i+2}$ which is one of six orders, \\
-	so $E(D_iD_{i+1}) = 1/6$, $\cov(D_i,D_{i+1})=\dfrac16-\dfrac14=-\dfrac1{12}$. \\
-	Non-neighboring indicators are independent, \\
-	so $\cov(D_i,D_j) = 0$ for $|i-j|>1$. \\
-	$\var(D_i) = 1/4$, $\var(R)=(n-1)/4 + 2(n-2)\left(-\dfrac1{12}\right) = (n+1)/12$
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Optimise packet length under retransmission} \\
-	Each packet has \hlfancy{lightgray}{$b$ data bits} and \hlfancy{lightgray}{$h$ overhead bits}. \\
-	If each bit is \hlfancy{lightgray}{independently corrupted with probability $q$}, then the \hlfancy{lightgray}{number of corruptions is $X_b\sim\mathrm{Bin}(b+h,q)$}. \\
-	A packet is \hlfancy{lightgray}{uncorrupted with probability $s_b=P(X_b=0)=(1-q)^{b+h}$}. \\
-	The number of attempts for one packet is \hlfancy{lightgray}{$N\sim\mathrm{Geom}(s_b)$} and $E(N)=1/s_b$. \\
-	The number of attempts for $r$ packets is \hlfancy{lightgray}{$T_r=\sum_{i=1}^rN_i\sim\mathrm{NB}(r,s_b)$} and $E(T_r)=r/s_b$. \\
-	Expected transmitted bits per delivered data bit is
-	$\hlfancymath{lightgray}{C(b)}=\dfrac{b+h}{b s_b}\hlfancymath{lightgray}{=\left(1+\dfrac hb\right)(1-q)^{-(b+h)}}$ \\
-	Let \hlfancy{lightgray}{$a=-\log(1-q)$}. Minimising $C(b)$ is the same as minimising $\log C(b)$, \\
-	so $\dfrac{d}{db}\log C(b)=a-\dfrac{h}{b(b+h)}=0$ gives \hlfancytall{lightgray}{minimum $b_* =\dfrac{\sqrt{h^2+4h/a}-h}{2}$}. \\
-	Compare both $C(\lfloor b_*\rfloor)$ and $C(\lceil b_*\rceil)$ for rounding. \\
-
-	For rare errors, \hlfancy{lightgray}{$X_b\approx\mathrm{Poisson}(q(b+h))$} and $s_b\approx e^{-q(b+h)}$. \\
-	Minimising $\log C(b)$ now gives $b(b + h) = h/q$. \\
-	When $q$ is small and $qh\ll1$, then $b \gg h$ and \hlfancytall{lightgray}{$b_*\approx\sqrt{h/q}$}.
-
-	\vspace*{4pt}\hrule\vspace*{4pt}
-
-	\textbf{Replacement frequency in reservoir sampling} \\
-	Given \hlfancy{lightgray}{an infinite data stream}, maintain a \hlfancy{lightgray}{uniform reservoir of size $k$} using one pass.
-	\hlfancy{lightgray}{Keep the first $k$ records} in the reservoir. For each \hlfancy{lightgray}{later record $i$}, \hlfancy{lightgray}{draw $J_i$ uniformly from $\{1,\ldots,i\}$} \\
-	\hlfancy{lightgray}{if $J_i\leq k$, replace the record in slot $J_i$}, otherwise keep the reservoir unchanged. \\
-	This \hlfancy{lightgray}{keeps record $i$ is with probability $k/i$}, every $k$-subset of the first $i$ records equally likely. \\
-	Let $I_i=1$ if record $i$ replaces an item, and $0$ otherwise. \\
-	The fresh independent draws make \hlfancy{lightgray}{$I_i\sim\mathrm{Bernoulli}(k/i)$ independent}, even though the reservoir contents are dependent. \\
-	For records $m+1$ through $n$, the number of replacements $R_{m,n}=\displaystyle\sum_{i=m+1}^n I_i$ is Poisson-binomial, with
-	$\lambda=E(R_{m,n}) =k\displaystyle\sum_{i=m+1}^n\frac1i$                             \\
-	$\var(R_{m,n}) =\displaystyle\sum_{i=m+1}^n\frac{k}{i}\left(1-\frac{k}{i}\right) =\lambda-k^2\sum_{i=m+1}^n\frac1{i^2}$ \\
-	When the individual probabilities $p_i=k/i$ are small, approximate $R_{m,n}$ by $Z\sim\mathrm{Pois}(\lambda)$. \\
-	For any event $A$, $\left|P(R_{m,n}\in A)-P(Z\in A)\right|\leq\displaystyle\sum_{i=m+1}^n\frac{p_i^2}{\lambda}\leq\max_{m<i\leq n}p_i$. \\
-\end{tcolorbox}
 
 \newpage
 
